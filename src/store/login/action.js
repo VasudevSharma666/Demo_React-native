@@ -1,15 +1,8 @@
-import {email, password} from './state';
+import {token} from './state';
 
-function emailChecker(data) {
+function tokenMethod(data) {
   return {
-    type: email,
-    data: data,
-  };
-}
-
-function passwordChecker(data) {
-  return {
-    type: password,
+    type: token,
     data: data,
   };
 }
