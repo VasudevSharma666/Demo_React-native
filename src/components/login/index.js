@@ -66,7 +66,7 @@ const index = ({navigation}) => {
       <View style={styles.Username}>
         <InputText
           Icon="mail"
-          type="email"
+          Title="email"
           props={state.email}
           handleState={(value) => Dispatch(value, (type = 'email'))}
         />
@@ -74,7 +74,7 @@ const index = ({navigation}) => {
       <View style={styles.Password}>
         <InputText
           Icon="form-textbox-password"
-          type="password"
+          Title="password"
           show={true}
           props={state.password}
           handleState={(value) => Dispatch(value, (type = 'password'))}

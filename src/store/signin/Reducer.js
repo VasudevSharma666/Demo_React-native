@@ -1,21 +1,23 @@
 import {name, email, password} from './state';
 
 const initialstate = {
-  name: '',
-  email: '',
-  password: '',
+  userData: {
+    name: '',
+    email: '',
+    password: '',
+  },
 };
 
 export const SigninReducer = (state = initialstate, action) => {
   switch (action.type) {
     case name: {
-      return {...state, name: action.data};
+      return {...state, userData: {...userData, name: action.data}};
     }
     case email: {
-      return {...state, email: action.data};
+      return {...state, userData: {...userData, email: action.data}};
     }
     case password: {
-      return {...state, password: action.data};
+      return {...state, userData: {...userData, email: action.data}};
     }
     default: {
       return {...state};

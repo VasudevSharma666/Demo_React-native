@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {StyleSheet, View, Text, Alert} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text, Alert, Linking} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Facebook from 'react-native-vector-icons/EvilIcons';
 import Twitter from 'react-native-vector-icons/AntDesign';
@@ -12,6 +12,7 @@ const Button = ({
   radius = 8,
   type,
   height,
+  url = null,
 }) => {
   const IconeType = () => {
     switch (type) {
@@ -53,6 +54,8 @@ const Button = ({
       onPress={() => {
         page != null
           ? navigation.navigate(page)
+          : url != null
+          ? Linking.openURL(url)
           : Alert.alert('Click On ' + value);
       }}>
       <View

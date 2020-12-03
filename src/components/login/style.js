@@ -3,17 +3,17 @@ export const styles = StyleSheet.create({
   Username: {
     position: 'absolute',
     top: 300,
-    left: 30,
+    alignSelf: 'center',
   },
   Password: {
     position: 'absolute',
     top: 400,
-    left: 30,
+    alignSelf: 'center',
   },
   button: {
     position: 'absolute',
     top: 500,
-    left: 30,
+    alignSelf: 'center',
     width: 300,
   },
   header: {

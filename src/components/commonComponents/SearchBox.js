@@ -2,20 +2,21 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import Search from 'react-native-vector-icons/AntDesign';
-const SearchBox = ({backgroundColor = 'red'}) => {
+
+const SearchBox = ({backgroundColor = 'red', value, handlerState}) => {
   return (
-    <>
-      <View
-        style={{backgroundColor: backgroundColor, width: '100%', height: 120}}>
-        <View style={styles.Seach}>
-          <TextInput
-            placeholder="what are you looking for..."
-            placeholderTextColor="#000000"
-          />
-          <Search name="search1" size={29} style={styles.search} />
-        </View>
+    <View
+      style={{backgroundColor: backgroundColor, width: '100%', height: 120}}>
+      <View style={styles.Seach}>
+        <TextInput
+          placeholder="what are you looking for..."
+          placeholderTextColor="#000000"
+          value={value}
+          onChangeText={(val) => handlerState(val)}
+        />
+        <Search name="search1" size={29} style={styles.search} />
       </View>
-    </>
+    </View>
   );
 };
 const styles = StyleSheet.create({

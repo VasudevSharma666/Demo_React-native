@@ -6,25 +6,35 @@ import {
   ImageBackground,
   Image,
   StatusBar,
+  View,
 } from 'react-native';
 
-function index() {
+const index = () => {
   return (
     <>
       <StatusBar backgroundColor="red" />
-
       <ImageBackground source={loginpage} style={styles.image} blurRadius={2}>
-        <Image source={pin} style={styles.pinImage} />
-        <Text style={styles.text}>DWT Listing</Text>
-        <Text style={styles.lineone}> </Text>
-        <Text style={styles.linetwo}> </Text>
-        <Text style={styles.text2}>Directory Them</Text>
-        <Text style={styles.text3}> Find & Explore World Top</Text>
-        <Text style={styles.text4}>Places</Text>
+        <View style={styles.TextAliment}>
+          <View style={{flex: 2, flexDirection: 'row', top: 150, left: 60}}>
+            <Image source={pin} style={styles.pinImage} />
+            <Text style={styles.text}>DWT Listing</Text>
+          </View>
+          <View style={styles.UnderWord}>
+            <View style={[styles.lineOne]} />
+            <View style={[styles.lineOne, {top: 4}]} />
+            <Text style={[styles.text2, {top: -7, left: 15}]}>
+              Directory Theme
+            </Text>
+          </View>
+        </View>
+        <View style={{position: 'absolute', top: 220, alignSelf: 'center'}}>
+          <Text style={styles.text3}> Find & Explore World Top</Text>
+          <Text style={styles.text3}>Places</Text>
+        </View>
       </ImageBackground>
     </>
   );
-}
+};
 const styles = StyleSheet.create({
   contaner: {
     flex: 1,
@@ -37,65 +47,44 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    fontSize: 25,
+    fontSize: 26,
     fontWeight: 'bold',
-    textAlign: 'center',
-
-    position: 'absolute',
-    top: 120,
-    left: 130,
+    top: -5,
   },
   text2: {
     color: 'white',
     fontSize: 15,
     fontWeight: 'bold',
-    textAlign: 'center',
-
-    position: 'absolute',
-    top: 150,
-    left: 157,
   },
   text3: {
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
+    width: 250,
+    justifyContent: 'center',
+    alignSelf: 'center',
     textAlign: 'center',
-
-    position: 'absolute',
-    top: 200,
-    left: 60,
-  },
-  text4: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
-
-    position: 'absolute',
-    top: 230,
-    left: 150,
   },
   pinImage: {
+    top: -5,
     width: 50,
-    height: 50,
-    position: 'absolute',
-    top: 120,
-    left: 80,
+    height: 60,
   },
-  lineone: {
-    textDecorationLine: 'line-through',
-    color: 'white',
-    position: 'absolute',
-    top: 148,
-    left: 130,
+  lineOne: {
+    borderBottomWidth: 2,
+    borderBottomColor: 'white',
+    width: 30,
+    left: -17,
+    top: 10,
   },
-
-  linetwo: {
-    textDecorationLine: 'line-through',
-    color: 'white',
-    position: 'absolute',
-    top: 152,
-    left: 130,
+  TextAliment: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  UnderWord: {
+    flex: 3,
+    top: 180,
+    left: -15,
   },
 });
 

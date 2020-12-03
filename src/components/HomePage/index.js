@@ -19,6 +19,8 @@ import {styles} from './style';
 
 const index = ({navigation}) => {
   const [Json, setJson] = useState([]);
+  const [SearchBox, setSearchBox] = useState('');
+
   useEffect(() => {
     fetch(BaseUrl + '/albums')
       .then((response) => response.json())
@@ -40,7 +42,11 @@ const index = ({navigation}) => {
         let's discover the best place to eat drink and shop nearest to you
       </Text>
       <View style={styles.Search}>
-        <Search backgroundColor="#00000000" />
+        <Search
+          backgroundColor="#00000000"
+          value={SearchBox}
+          handlerState={(value) => setSearchBox(value)}
+        />
       </View>
       <View style={styles.ButtonWithIcone}>
         <ScrollView

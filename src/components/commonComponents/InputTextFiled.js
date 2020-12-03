@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
+import React from 'react';
+import {View, StyleSheet, TextInput} from 'react-native';
 
 import IconLogo from 'react-native-vector-icons/AntDesign';
 import Password from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const InputText = ({type, Icon = null, show = false, handleState, props}) => {
+const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
   const IconType = () => {
     switch (Icon) {
       case 'form-textbox-password': {
@@ -26,7 +25,7 @@ const InputText = ({type, Icon = null, show = false, handleState, props}) => {
         <IconType />
         <TextInput
           style={styles.Username}
-          placeholder={type}
+          placeholder={Title}
           secureTextEntry={show}
           placeholderTextColor="#808080"
           value={props}

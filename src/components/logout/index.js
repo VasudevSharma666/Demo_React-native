@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {token} from '../../store/login/state';
+import {tokenMethod} from '../../store/login/action';
 const index = () => {
   const dispatch = useDispatch();
-  dispatch({type: token});
+  dispatch(tokenMethod(''));
   return <Text>Logout</Text>;
 };
 

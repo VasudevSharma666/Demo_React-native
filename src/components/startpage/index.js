@@ -42,13 +42,13 @@ const styles = StyleSheet.create({
   SingIn: {
     position: 'absolute',
     bottom: 200,
-    left: 50,
+    alignSelf: 'center',
     width: 250,
   },
   Login: {
     position: 'absolute',
-    bottom: 120,
-    left: 50,
+    bottom: 110,
+    alignSelf: 'center',
     width: 250,
   },
 });
