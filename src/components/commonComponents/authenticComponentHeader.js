@@ -8,11 +8,9 @@ const CheckConditon = ({Title, navigation}) => {
   switch (Title) {
     case 'Home': {
       return (
-        <>
-          <TouchableOpacity onPress={() => navigation.openDrawer()}>
-            <Icon name="menu-outline" size={40} color="white" left="20" />
-          </TouchableOpacity>
-        </>
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Icon name="menu-outline" size={40} color="white" left="20" />
+        </TouchableOpacity>
       );
     }
     default: {
@@ -33,14 +31,13 @@ const CheckConditon = ({Title, navigation}) => {
 };
 const Header = ({Title, navigation}) => {
   return (
-    <>
-      <View style={styles.HeaderBlock}>
-        <Text style={styles.Title}>{Title}</Text>
-        <CheckConditon Title={Title} navigation={navigation} />
-      </View>
-    </>
+    <View style={styles.HeaderBlock}>
+      <Text style={styles.Title}>{Title}</Text>
+      <CheckConditon Title={Title} navigation={navigation} />
+    </View>
   );
 };
+
 const styles = StyleSheet.create({
   HeaderBlock: {
     backgroundColor: 'red',
@@ -50,15 +47,10 @@ const styles = StyleSheet.create({
   },
   Title: {
     color: 'white',
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: 'bold',
     position: 'absolute',
-    left: 40,
-  },
-  Pin: {
-    position: 'relative',
-    left: 330,
-    top: 0,
+    left: '14%',
   },
 });
 

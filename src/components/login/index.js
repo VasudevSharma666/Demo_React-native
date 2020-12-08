@@ -6,7 +6,8 @@ import {styles} from './style';
 import Common from '../commonComponents/startingBackground';
 import HeaderOfNotLogin from '../commonComponents/unauthorizedComponentHeader';
 import InputText from '../commonComponents/InputTextFiled';
-import {token} from '../../store/login/state';
+import {tokenMethod} from '../../store/login/action';
+import {reg} from '../../constants/emailChecker';
 
 const initialState = {
   email: '',
@@ -36,11 +37,7 @@ const index = ({navigation}) => {
   };
 
   const Checker = () => {
-    if (
-      state.email.trim() == '' &&
-      state.email.match('@') &&
-      state.email.match('.com')
-    ) {
+    if (state.email.trim() == '' || reg.test(state.email) === false) {
       return Alert.alert('enter email ');
     } else if (state.password.trim() == '') {
       return Alert.alert('enter password ');
@@ -49,8 +46,8 @@ const index = ({navigation}) => {
         state.email == signinData.email &&
         state.password == signinData.password
       ) {
-        dispatchProps({type: token, data: 'token'});
-        return navigation.navigate('Drawer');
+        dispatchProps(tokenMethod('token'));
+        return navigation.navigate('Home');
       } else {
         return Alert.alert('Invalid email and password');
       }

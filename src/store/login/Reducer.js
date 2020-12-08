@@ -1,6 +1,6 @@
-import {token} from './state';
+import {token} from './type';
 const initialstate = {
-  tokenData: '',
+  tokenData: null,
 };
 
 export const loginReducer = (state = initialstate, action) => {

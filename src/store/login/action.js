@@ -1,4 +1,4 @@
-import {token} from './state';
+import {token} from './type';
 
 export const tokenMethod = (data) => {
   return {

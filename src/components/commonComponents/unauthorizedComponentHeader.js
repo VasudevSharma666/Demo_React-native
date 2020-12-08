@@ -1,19 +1,17 @@
 import React from 'react';
 import {Text, View, StyleSheet, Alert} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import Icone from 'react-native-vector-icons/AntDesign';
-const HeaderOfNotLogin = ({navigation, value}) => {
-  return (
-    <>
-      <View style={styles.Header}>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-          <Icone name="left" size={30} color="white" />
-        </TouchableOpacity>
-        <Text style={styles.Text1}>{value}</Text>
-      </View>
-    </>
-  );
-};
+import Icon from 'react-native-vector-icons/AntDesign';
+
+const HeaderOfNotLogin = ({navigation, value}) => (
+  <View style={styles.Header}>
+    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+      <Icon name="left" size={30} color="white" />
+    </TouchableOpacity>
+    <Text style={styles.Text1}>{value}</Text>
+  </View>
+);
+
 const styles = StyleSheet.create({
   Header: {
     flex: 1,

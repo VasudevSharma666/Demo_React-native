@@ -59,14 +59,26 @@ const index = ({navigation}) => {
           <Text> </Text>
           <ButtonWithIcon Icon="woman" TextData="Beauty" />
           <Text> </Text>
-          <ButtonWithIcon Icon="pluscircle" TextData="Hospital" />
+          <ButtonWithIcon
+            Icon="pluscircle"
+            TextData="Hospital"
+            navigation={navigation}
+            page="Health"
+          />
           <Text> </Text>
           <ButtonWithIcon Icon="customerservice" TextData="Service" />
+          <View style={{width: 50}} />
         </ScrollView>
       </View>
       <Text style={styles.LatestTitle}>Latest Listings</Text>
       <View style={styles.ViewAllButton}>
-        <Button value="View All" colorBody="red" radius={3} />
+        <Button
+          value="View All"
+          colorBody="red"
+          radius={3}
+          navigation={navigation}
+          page="Filter search"
+        />
       </View>
       <View style={styles.PostsCont}>
         <ScrollView showsVerticalScrollIndicator={false}>

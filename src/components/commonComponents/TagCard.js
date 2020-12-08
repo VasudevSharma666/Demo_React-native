@@ -1,19 +1,19 @@
 import React from 'react';
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
-
+import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import IconImport from 'react-native-vector-icons/AntDesign';
-const TagCard = ({TextData, Icon}) => {
-  return (
-    <>
-      <TouchableOpacity>
-        <View style={styles.tag}>
-          <IconImport name={Icon} size={40} color="red" />
-          <Text>{TextData}</Text>
-        </View>
-      </TouchableOpacity>
-    </>
-  );
-};
+
+const TagCard = ({TextData, Icon, navigation, page = null}) => (
+  <TouchableOpacity
+    onPress={() =>
+      page != null ? navigation.navigate(page) : Alert.alert(TextData)
+    }>
+    <View style={styles.tag}>
+      <IconImport name={Icon} size={40} color="red" />
+      <Text>{TextData}</Text>
+    </View>
+  </TouchableOpacity>
+);
+
 const styles = StyleSheet.create({
   tag: {
     flex: 1,

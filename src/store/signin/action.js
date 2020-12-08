@@ -1,4 +1,4 @@
-import {name, email, password} from './state';
+import {name, email, password, logout} from './type';
 
 export const setName = (data) => {
   return {
@@ -18,5 +18,11 @@ export const setpassword = (data) => {
   return {
     type: password,
     data: data,
+  };
+};
+
+export const LogoutMethod = () => {
+  return {
+    type: logout,
   };
 };

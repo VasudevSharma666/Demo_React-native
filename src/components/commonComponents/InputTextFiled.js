@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
-
 import IconLogo from 'react-native-vector-icons/AntDesign';
 import Password from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -20,19 +19,17 @@ const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
   };
 
   return (
-    <>
-      <View style={styles.UsernamePos}>
-        <IconType />
-        <TextInput
-          style={styles.Username}
-          placeholder={Title}
-          secureTextEntry={show}
-          placeholderTextColor="#808080"
-          value={props}
-          onChangeText={(event) => handleState(event)}
-        />
-      </View>
-    </>
+    <View style={styles.UsernamePos}>
+      <IconType />
+      <TextInput
+        style={styles.Username}
+        placeholder={Title}
+        secureTextEntry={show}
+        placeholderTextColor="#808080"
+        value={props}
+        onChangeText={(event) => handleState(event)}
+      />
+    </View>
   );
 };
 
@@ -51,4 +48,5 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
 });
+
 export default InputText;

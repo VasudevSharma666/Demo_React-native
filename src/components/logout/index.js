@@ -1,11 +1,17 @@
-import React from 'react';
-import {Text} from 'react-native';
+import React, {useEffect} from 'react';
 import {useDispatch} from 'react-redux';
+
 import {tokenMethod} from '../../store/login/action';
+import {LogoutMethod} from '../../store/signin/action';
+
 const index = () => {
   const dispatch = useDispatch();
-  dispatch(tokenMethod(''));
-  return <Text>Logout</Text>;
+  useEffect(() => {
+    dispatch(tokenMethod(null));
+    dispatch(LogoutMethod());
+  }, []);
+
+  return <></>;
 };
 
 export default index;

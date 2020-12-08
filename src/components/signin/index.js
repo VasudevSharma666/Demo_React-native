@@ -8,6 +8,7 @@ import Button from '../commonComponents/Button';
 import UnauthorizedComponentHeader from '../commonComponents/unauthorizedComponentHeader';
 import {styles} from './style';
 import {setName, setEmail, setpassword} from '../../store/signin/action';
+import {reg} from '../../constants/emailChecker';
 
 const initialState = {
   name: '',
@@ -31,6 +32,7 @@ const reducer = (state, action) => {
 const Index = ({navigation}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const dispatchProps = useDispatch();
+
   const Dispatch = (value, type) => {
     if (type == 'name') {
       dispatch({type: 'name', value: value});
@@ -44,12 +46,8 @@ const Index = ({navigation}) => {
   const Checker = () => {
     if (state.name.trim() == '') {
       return Alert.alert('enter name first');
-    } else if (
-      state.email.trim() == '' &&
-      state.email.match('@') &&
-      state.email.match('.com')
-    ) {
-      return Alert.alert('enter email ');
+    } else if (state.email.trim() == '' || reg.test(state.email) === false) {
+      return Alert.alert('enter email properly ');
     } else if (state.password.trim() == '') {
       return Alert.alert('enter password ');
     } else {
@@ -115,4 +113,5 @@ const Index = ({navigation}) => {
     </>
   );
 };
+
 export default Index;

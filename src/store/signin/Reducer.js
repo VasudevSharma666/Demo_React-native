@@ -1,23 +1,24 @@
-import {name, email, password} from './state';
+import {name, email, password, logout} from './type';
 
-const initialstate = {
-  userData: {
-    name: '',
-    email: '',
-    password: '',
-  },
+const initialState = {
+  name: '',
+  email: '',
+  password: '',
 };
 
-export const SigninReducer = (state = initialstate, action) => {
+export const SignInReducer = (state = initialState, action) => {
   switch (action.type) {
     case name: {
-      return {...state, userData: {...userData, name: action.data}};
+      return {...state, name: action.data};
     }
     case email: {
-      return {...state, userData: {...userData, email: action.data}};
+      return {...state, email: action.data};
     }
     case password: {
-      return {...state, userData: {...userData, email: action.data}};
+      return {...state, password: action.data};
+    }
+    case logout: {
+      return {state: initialState};
     }
     default: {
       return {...state};

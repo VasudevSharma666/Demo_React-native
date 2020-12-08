@@ -1,22 +1,37 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, Text, ActivityIndicator, Image} from 'react-native';
 import AddressIcon from 'react-native-vector-icons/Entypo';
 import PhoneIcon from 'react-native-vector-icons/Ionicons';
 import MailIcon from 'react-native-vector-icons/AntDesign';
 import AboutIcon from 'react-native-vector-icons/FontAwesome';
 
+import {styles} from './style';
 import Header from '../commonComponents/authenticComponentHeader';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {ProfileDp} from '../../constants/image';
 import Button from '../commonComponents/Button';
 import {ScrollView} from 'react-native-gesture-handler';
+import {BaseUrl} from '../../utils/Urls';
+import PostsContainer from '../commonComponents/PostsCard';
 
 const index = ({navigation}) => {
+  const [json, setJson] = useState([]);
+
+  useEffect(() => {
+    fetch(BaseUrl + '/posts?userId=2')
+      .then((response) => response.json())
+      .then((json) => setJson(json))
+      .catch((err) => Alert.alert('something is worng' + err));
+  }, []);
+
   return (
-    <>
-      <View style={{flex: 1, backgroundColor: 'white '}}>
+    <View style={{flex: 1, backgroundColor: '#D3D3D3'}}>
+      <View style={styles.tagBackground}>
         <Header Title="Profile" navigation={navigation} page="Home" />
         <View style={styles.ProfileImag}>
-          <Icon name="user" size={100} color="red" />
+          <Image
+            source={ProfileDp}
+            style={{width: 100, height: 100, borderRadius: 400 / 2}}
+          />
         </View>
         <Text style={styles.name}>Melisa</Text>
         <View style={styles.Icon}>
@@ -25,15 +40,16 @@ const index = ({navigation}) => {
               type="facebook"
               radius={60}
               colorBody="white"
-              height={40}
+              height={70}
               url="http://facebook.com/"
+              value=""
             />
             <Text> </Text>
             <Button
               type="twitter"
               radius={60}
               colorBody="white"
-              height={40}
+              height={70}
               url="http://twittwe.com/"
             />
             <Text> </Text>
@@ -41,7 +57,7 @@ const index = ({navigation}) => {
               type="google"
               radius={60}
               colorBody="white"
-              height={40}
+              height={70}
               url="https://www.google.com/"
             />
             <Text> </Text>
@@ -49,12 +65,12 @@ const index = ({navigation}) => {
               type="Linkedin"
               radius={60}
               colorBody="white"
-              height={40}
+              height={70}
               url="https://in.linkedin.com/"
             />
           </ScrollView>
         </View>
-        <View style={[styles.Labels, {top: 40}]}>
+        <View style={[styles.Labels, {top: 10}]}>
           <AddressIcon
             name="address"
             size={30}
@@ -66,7 +82,7 @@ const index = ({navigation}) => {
             Munster, IN , USA{' '}
           </Text>
         </View>
-        <View style={[styles.Labels, {top: 40}]}>
+        <View style={[styles.Labels, {top: 10}]}>
           <PhoneIcon
             name="call"
             size={30}
@@ -75,7 +91,7 @@ const index = ({navigation}) => {
           />
           <Text style={[styles.text, {top: 10, left: 10}]}>123456789</Text>
         </View>
-        <View style={[styles.Labels, {top: 40}]}>
+        <View style={[styles.Labels, {top: 10}]}>
           <MailIcon
             name="mail"
             size={30}
@@ -86,7 +102,7 @@ const index = ({navigation}) => {
             Malisa@gmail.com
           </Text>
         </View>
-        <View style={[styles.Labels, {top: 40}]}>
+        <View style={[styles.Labels, {top: 10}]}>
           <AboutIcon
             name="group"
             size={30}
@@ -96,49 +112,21 @@ const index = ({navigation}) => {
           <Text style={[styles.text, {top: 10, left: 10}]}>About</Text>
         </View>
       </View>
-    </>
+      <View style={styles.PostsCont}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          {json.length == 0 ? (
+            <ActivityIndicator size="large" color="red" />
+          ) : (
+            json.map((json, index) => (
+              <View key={index}>
+                <PostsContainer json={json} />
+              </View>
+            ))
+          )}
+        </ScrollView>
+      </View>
+    </View>
   );
 };
-
-const styles = StyleSheet.create({
-  ProfileImag: {
-    top: 20,
-    left: 20,
-    backgroundColor: 'gray',
-    width: 100,
-    height: 100,
-    alignItems: 'center',
-    borderRadius: 5,
-    shadowColor: 'black',
-    shadowOffset: {width: 0, height: 1},
-    shadowRadius: 2,
-    shadowOpacity: 0.05,
-    elevation: 2,
-    padding: '0.5%',
-  },
-  name: {
-    top: 23,
-    left: 30,
-    fontSize: 25,
-    fontWeight: 'bold',
-  },
-  Icon: {
-    top: 28,
-    left: 15,
-  },
-  Labels: {
-    flexDirection: 'row',
-    borderBottomColor: 'gray',
-    borderTopColor: 'gray',
-    borderWidth: 0.5,
-    width: '100%',
-    height: 50,
-    justifyContent: 'flex-start',
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
 
 export default index;
