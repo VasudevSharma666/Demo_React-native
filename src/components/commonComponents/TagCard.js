@@ -8,7 +8,7 @@ const TagCard = ({TextData, Icon, navigation, page = null}) => (
       page != null ? navigation.navigate(page) : Alert.alert(TextData)
     }>
     <View style={styles.tag}>
-      <IconImport name={Icon} size={40} color="red" />
+      <IconImport name={Icon} size={30} color="red" />
       <Text>{TextData}</Text>
     </View>
   </TouchableOpacity>

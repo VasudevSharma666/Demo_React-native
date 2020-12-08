@@ -51,9 +51,9 @@ export const styles = StyleSheet.create({
     right: 20,
   },
   PostsCont: {
-    position: 'relative',
-    top: 110,
+    flex: 1,
+    top: '15%',
     left: 30,
-    width: 300,
+    width: '85%',
   },
 });

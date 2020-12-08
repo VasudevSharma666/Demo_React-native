@@ -9,7 +9,9 @@ const CheckConditon = ({Title, navigation}) => {
     case 'Home': {
       return (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Icon name="menu-outline" size={40} color="white" left="20" />
+          <View style={{left: '3%'}}>
+            <Icon name="menu-outline" size={40} color="white" left="20" />
+          </View>
         </TouchableOpacity>
       );
     }
@@ -19,7 +21,7 @@ const CheckConditon = ({Title, navigation}) => {
           <TouchableOpacity
             onPress={() => navigation.navigate('Home')}
             style={{}}>
-            <View style={styles.Back}>
+            <View style={{left: '3%'}}>
               <Back name="arrowleft" size={30} color="white" left="20" />
             </View>
           </TouchableOpacity>
@@ -50,7 +52,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     position: 'absolute',
-    left: '14%',
+    left: '16%',
   },
 });
 

@@ -11,28 +11,23 @@ import {
 import {loginpage, pin} from '../../constants/image';
 
 const index = () => (
-  <>
-    <StatusBar backgroundColor="red" />
-    <ImageBackground source={loginpage} style={styles.image} blurRadius={2}>
-      <View style={styles.TextAliment}>
-        <View style={{flex: 2, flexDirection: 'row', top: 150, left: 60}}>
-          <Image source={pin} style={styles.pinImage} />
-          <Text style={styles.text}>DWT Listing</Text>
-        </View>
-        <View style={styles.UnderWord}>
-          <View style={[styles.lineOne]} />
-          <View style={[styles.lineOne, {top: 4}]} />
-          <Text style={[styles.text2, {top: -7, left: 15}]}>
-            Directory Theme
-          </Text>
-        </View>
+  <ImageBackground source={loginpage} style={styles.image} blurRadius={2}>
+    <View style={styles.TextAliment}>
+      <View style={{flex: 2, flexDirection: 'row', top: 150, left: 60}}>
+        <Image source={pin} style={styles.pinImage} />
+        <Text style={styles.text}>DWT Listing</Text>
       </View>
-      <View style={{position: 'absolute', top: 220, alignSelf: 'center'}}>
-        <Text style={styles.text3}> Find & Explore World Top</Text>
-        <Text style={styles.text3}>Places</Text>
+      <View style={styles.UnderWord}>
+        <View style={[styles.lineOne]} />
+        <View style={[styles.lineOne, {top: 4}]} />
+        <Text style={[styles.text2, {top: -7, left: 15}]}>Directory Theme</Text>
       </View>
-    </ImageBackground>
-  </>
+    </View>
+    <View style={{position: 'absolute', top: 220, alignSelf: 'center'}}>
+      <Text style={styles.text3}> Find & Explore World Top</Text>
+      <Text style={styles.text3}>Places</Text>
+    </View>
+  </ImageBackground>
 );
 
 const styles = StyleSheet.create({

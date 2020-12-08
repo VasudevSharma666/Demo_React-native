@@ -31,29 +31,27 @@ const index = ({navigation}) => (
           NCH Health Care Clinic for testing purpose{' '}
         </Text>
         <View style={styles.ButtonCss}>
-          <View style={[styles.ButtonBorder]}>
-            <Button
-              value="Saved"
-              colorBody="gray"
-              opacity={0.4}
-              type="Saved"
-              colorText="red"
-            />
-          </View>
-          <View style={[styles.ButtonBorder, {left: 10}]}>
+          <Button
+            value="Saved"
+            colorBody="gray"
+            opacity={0.7}
+            type="Saved"
+            colorText="red"
+          />
+          <View style={{left: 10}}>
             <Button
               value="Report"
               colorBody="gray"
-              opacity={0.4}
+              opacity={0.7}
               type="Alert"
               colorText="red"
             />
           </View>
-          <View style={[styles.ButtonBorder, {left: 20}]}>
+          <View style={{left: 20}}>
             <Button
               value="Claim "
               colorBody="gray"
-              opacity={0.4}
+              opacity={0.7}
               type="shield"
               colorText="red"
             />
@@ -70,7 +68,7 @@ const index = ({navigation}) => (
       <View style={[styles.Labels, {top: 10}]}>
         <AddressIcon
           name="address"
-          size={30}
+          size={20}
           color="red"
           style={{top: 10, left: 10}}
         />
@@ -79,7 +77,7 @@ const index = ({navigation}) => (
       <View style={[styles.Labels, {top: 10}]}>
         <PhoneIcon
           name="call"
-          size={30}
+          size={20}
           color="red"
           style={{top: 10, left: 10}}
         />
@@ -88,7 +86,7 @@ const index = ({navigation}) => (
       <View style={[styles.Labels, {top: 10}]}>
         <MailIcon
           name="mail"
-          size={30}
+          size={20}
           color="red"
           style={{top: 10, left: 10}}
         />

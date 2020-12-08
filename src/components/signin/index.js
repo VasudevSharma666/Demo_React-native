@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import {Text, View, TouchableOpacity, Alert} from 'react-native';
+import {Text, View, TouchableOpacity, Alert, ToastAndroid} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import Common from '../commonComponents/startingBackground';
@@ -45,11 +45,29 @@ const Index = ({navigation}) => {
 
   const Checker = () => {
     if (state.name.trim() == '') {
-      return Alert.alert('enter name first');
+      return ToastAndroid.showWithGravityAndOffset(
+        `Enter name first`,
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        10,
+        50,
+      );
     } else if (state.email.trim() == '' || reg.test(state.email) === false) {
-      return Alert.alert('enter email properly ');
+      return ToastAndroid.showWithGravityAndOffset(
+        `Enter email`,
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        10,
+        50,
+      );
     } else if (state.password.trim() == '') {
-      return Alert.alert('enter password ');
+      return ToastAndroid.showWithGravityAndOffset(
+        `Enter password`,
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        10,
+        50,
+      );
     } else {
       dispatchProps(setName(state.name));
       dispatchProps(setEmail(state.email));

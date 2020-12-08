@@ -70,10 +70,10 @@ const index = ({navigation}) => {
             />
           </ScrollView>
         </View>
-        <View style={[styles.Labels, {top: 10}]}>
+        <View style={[styles.Labels]}>
           <AddressIcon
             name="address"
-            size={30}
+            size={20}
             color="red"
             style={{top: 10, left: 10}}
           />
@@ -82,19 +82,19 @@ const index = ({navigation}) => {
             Munster, IN , USA{' '}
           </Text>
         </View>
-        <View style={[styles.Labels, {top: 10}]}>
+        <View style={[styles.Labels]}>
           <PhoneIcon
             name="call"
-            size={30}
+            size={20}
             color="red"
             style={{top: 10, left: 10}}
           />
           <Text style={[styles.text, {top: 10, left: 10}]}>123456789</Text>
         </View>
-        <View style={[styles.Labels, {top: 10}]}>
+        <View style={styles.Labels}>
           <MailIcon
             name="mail"
-            size={30}
+            size={20}
             color="red"
             style={{top: 10, left: 10}}
           />
@@ -102,10 +102,10 @@ const index = ({navigation}) => {
             Malisa@gmail.com
           </Text>
         </View>
-        <View style={[styles.Labels, {top: 10}]}>
+        <View style={[styles.Labels]}>
           <AboutIcon
             name="group"
-            size={30}
+            size={20}
             color="red"
             style={{top: 10, left: 10}}
           />

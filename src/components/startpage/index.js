@@ -11,7 +11,7 @@ const index = ({navigation}) => (
     <View style={styles.SingIn}>
       <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
         <View style={styles.buttonSingIn}>
-          <Text style={styles.buttontext}>Sign In</Text>
+          <Text style={styles.buttontext}>SignIn</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -19,7 +19,7 @@ const index = ({navigation}) => (
     <View style={styles.Login}>
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <View style={styles.buttonSingIn}>
-          <Text style={styles.buttontext}>Log In</Text>
+          <Text style={styles.buttontext}>LogIn</Text>
         </View>
       </TouchableOpacity>
     </View>

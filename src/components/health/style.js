@@ -35,9 +35,7 @@ export const styles = StyleSheet.create({
   },
   Labels: {
     flexDirection: 'row',
-    color: 'red',
-    fontSize: 15,
-    fontWeight: 'bold',
+    justifyContent: 'center',
     borderBottomColor: 'gray',
     borderBottomWidth: 0.4,
     width: '100%',
@@ -45,7 +43,7 @@ export const styles = StyleSheet.create({
   },
   textData: {
     color: 'black',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     width: '85%',
   },

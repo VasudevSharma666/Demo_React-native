@@ -1,8 +1,8 @@
 import React, {useReducer} from 'react';
-import {View, Text, Alert, TouchableOpacity} from 'react-native';
+import {View, Text, Alert, TouchableOpacity, ToastAndroid} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {styles} from './style';
 
+import {styles} from './style';
 import Common from '../commonComponents/startingBackground';
 import HeaderOfNotLogin from '../commonComponents/unauthorizedComponentHeader';
 import InputText from '../commonComponents/InputTextFiled';
@@ -38,13 +38,25 @@ const index = ({navigation}) => {
 
   const Checker = () => {
     if (state.email.trim() == '' || reg.test(state.email) === false) {
-      return Alert.alert('enter email ');
+      return ToastAndroid.showWithGravityAndOffset(
+        `Enter email `,
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        10,
+        50,
+      );
     } else if (state.password.trim() == '') {
-      return Alert.alert('enter password ');
+      return ToastAndroid.showWithGravityAndOffset(
+        `Enter password`,
+        ToastAndroid.SHORT,
+        ToastAndroid.TOP,
+        10,
+        50,
+      );
     } else {
       if (
-        state.email == signinData.email &&
-        state.password == signinData.password
+        state.email == signinData.userData.email &&
+        state.password == signinData.userData.password
       ) {
         dispatchProps(tokenMethod('token'));
         return navigation.navigate('Home');
@@ -70,7 +82,7 @@ const index = ({navigation}) => {
       </View>
       <View style={styles.Password}>
         <InputText
-          Icon="form-textbox-password"
+          Icon="lock"
           Title="password"
           show={true}
           props={state.password}

@@ -78,7 +78,7 @@ const index = ({navigation}) => {
           </View>
         </View>
       </View>
-      <SafeAreaView style={styles.PostsCont}>
+      <View style={styles.PostsCont}>
         <ScrollView showsVerticalScrollIndicator={false}>
           {state.json.length == 0 ? (
             <ActivityIndicator size="large" color="red" />
@@ -90,7 +90,7 @@ const index = ({navigation}) => {
             ))
           )}
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </View>
   );
 };

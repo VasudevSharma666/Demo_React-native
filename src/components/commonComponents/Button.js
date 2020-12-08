@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Alert, Linking} from 'react-native';
+import {StyleSheet, View, Text, Linking, ToastAndroid} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Facebook from 'react-native-vector-icons/EvilIcons';
 import Twitter from 'react-native-vector-icons/AntDesign';
@@ -34,13 +34,34 @@ const Button = ({
         return <Google name="linkedin" color="red" size={22} />;
       }
       case 'Saved': {
-        return <Twitter name="heart" color="red" size={15} />;
+        return (
+          <Twitter
+            name="heart"
+            color="red"
+            size={15}
+            style={{alignSelf: 'center'}}
+          />
+        );
       }
       case 'Alert': {
-        return <Alerting name="alert" color="red" size={18} />;
+        return (
+          <Alerting
+            name="alert"
+            color="red"
+            size={18}
+            style={{alignSelf: 'center'}}
+          />
+        );
       }
       case 'shield': {
-        return <ShieldIcon name="shield" color="green" size={18} />;
+        return (
+          <ShieldIcon
+            name="shield"
+            color="green"
+            size={18}
+            style={{alignSelf: 'center'}}
+          />
+        );
       }
       default: {
         return <></>;
@@ -54,7 +75,13 @@ const Button = ({
           ? navigation.navigate(page)
           : url != null
           ? Linking.openURL(url)
-          : Alert.alert('Click On ' + value);
+          : ToastAndroid.showWithGravityAndOffset(
+              `Click on ${value}`,
+              ToastAndroid.SHORT,
+              ToastAndroid.TOP,
+              10,
+              50,
+            );
       }}>
       <View
         style={{

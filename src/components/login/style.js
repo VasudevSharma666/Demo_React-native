@@ -2,17 +2,17 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   Username: {
     position: 'absolute',
-    top: 300,
+    top: 400,
     alignSelf: 'center',
   },
   Password: {
     position: 'absolute',
-    top: 400,
+    top: 470,
     alignSelf: 'center',
   },
   button: {
     position: 'absolute',
-    top: 500,
+    top: 550,
     alignSelf: 'center',
     width: 300,
   },

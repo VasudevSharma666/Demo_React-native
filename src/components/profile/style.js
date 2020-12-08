@@ -1,30 +1,26 @@
 import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   ProfileImag: {
-    top: 20,
-    left: 20,
-    width: 100,
-    height: 100,
-    alignItems: 'center',
+    flex: 1,
+    top: '3%',
+    flexDirection: 'row',
+    alignSelf: 'center',
   },
   name: {
-    top: 23,
-    left: 30,
     fontSize: 25,
     fontWeight: 'bold',
+    alignSelf: 'center',
   },
   Icon: {
-    top: 28,
-    left: 15,
+    alignItems: 'center',
   },
   Labels: {
     flexDirection: 'row',
-    borderBottomColor: 'gray',
     borderTopColor: 'gray',
-    borderWidth: 0.5,
+    borderTopWidth: 0.5,
     width: '100%',
-    height: 50,
-    justifyContent: 'flex-start',
+    height: '10%',
+    justifyContent: 'center',
   },
   text: {
     fontSize: 20,
@@ -41,6 +37,5 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: 'black',
-    height: 0,
   },
 });

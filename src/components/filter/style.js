@@ -44,10 +44,7 @@ export const styles = StyleSheet.create({
     flex: 2,
     backgroundColor: '#D3D3D3',
     top: 10,
-    left: '5%',
-    width: '90%',
+    width: '100%',
     height: '100%',
-    borderTopColor: 'black',
-    borderTopWidth: 1,
   },
 });

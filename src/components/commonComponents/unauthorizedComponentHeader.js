@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 const HeaderOfNotLogin = ({navigation, value}) => (
   <View style={styles.Header}>
     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-      <Icon name="left" size={30} color="white" />
+      <Icon name="left" size={30} color="white" style={{left: '3%'}} />
     </TouchableOpacity>
     <Text style={styles.Text1}>{value}</Text>
   </View>

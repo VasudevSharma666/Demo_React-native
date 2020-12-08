@@ -12,7 +12,9 @@ const PostsCard = ({json}) => (
         <Text style={{color: '#C0C0C0'}}>ID {json.id}</Text>
       </View>
       <View style={styles.text2}>
-        <Text style={{fontWeight: 'bold'}}>{json.title}</Text>
+        <Text style={{fontWeight: 'bold'}} numberOfLines={3}>
+          {json.title}
+        </Text>
       </View>
       <View style={styles.text3}>
         <Text style={{color: '#C0C0C0'}}>UserID {json.userId} </Text>

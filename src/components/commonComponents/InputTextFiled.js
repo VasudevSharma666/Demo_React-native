@@ -1,19 +1,25 @@
-import React from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import IconLogo from 'react-native-vector-icons/AntDesign';
 import Password from 'react-native-vector-icons/MaterialCommunityIcons';
+import EyeIcon from 'react-native-vector-icons/Ionicons';
 
 const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
+  const [Show, setShow] = useState(show);
   const IconType = () => {
-    switch (Icon) {
-      case 'form-textbox-password': {
-        return <Password name={Icon} size={40} color="#900" />;
+    switch (Title) {
+      case 'password': {
+        return (
+          <IconLogo name={Icon} size={25} color="#900" style={{top: '25%'}} />
+        );
       }
       case Icon == null: {
         return <></>;
       }
       default: {
-        return <IconLogo name={Icon} size={40} color="#900" />;
+        return (
+          <IconLogo name={Icon} size={25} color="#900" style={{left: '2%'}} />
+        );
       }
     }
   };
@@ -24,11 +30,25 @@ const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
       <TextInput
         style={styles.Username}
         placeholder={Title}
-        secureTextEntry={show}
+        secureTextEntry={Show}
         placeholderTextColor="#808080"
         value={props}
+        autoCapitalize="none"
         onChangeText={(event) => handleState(event)}
       />
+      {Title == 'password' ? (
+        <TouchableOpacity
+          style={styles.eye}
+          onPress={() => {
+            setShow(!Show);
+          }}>
+          {Show == false ? (
+            <EyeIcon name="eye" size={25} color="#900" />
+          ) : (
+            <EyeIcon name="eye-off" size={25} color="#900" />
+          )}
+        </TouchableOpacity>
+      ) : null}
     </View>
   );
 };
@@ -45,7 +65,14 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     borderColor: '#FFFFFF',
     width: 300,
+    height: 50,
     borderRadius: 8,
+    justifyContent: 'center',
+  },
+  eye: {
+    width: '10%',
+    left: '90%',
+    top: '-30%',
   },
 });
 
