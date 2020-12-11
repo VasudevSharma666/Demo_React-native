@@ -4,9 +4,11 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 import Common from '../commonComponents/startingBackground';
 import {styles} from './style';
+import BackgroundImag from '../commonComponents/BackgroundImag';
 
 const index = ({navigation}) => (
   <>
+    <BackgroundImag />
     <Common />
     <View style={styles.SingIn}>
       <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>

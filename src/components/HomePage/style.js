@@ -2,24 +2,21 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   HomeBackground: {
     width: '100%',
-    height: 260,
-    borderBottomLeftRadius: 100,
-    borderBottomRightRadius: 100,
+    height: 300,
   },
   FirstText: {
-    position: 'absolute',
-    top: 160,
-    left: '15%',
+    top: -160,
+    alignSelf: 'center',
     color: 'red',
     fontFamily: 'lucida grande',
     fontStyle: 'italic',
     fontSize: 20,
     fontWeight: 'bold',
+    elevation: 2,
   },
   SecondText: {
-    position: 'absolute',
-    top: 180,
-    left: '15%',
+    top: -160,
+    alignSelf: 'center',
     color: 'red',
     borderColor: 'black',
     fontFamily: 'lucida grande',
@@ -28,10 +25,9 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   Search: {
-    position: 'absolute',
-    top: 180,
-    left: '4%',
-    width: '90%',
+    top: -150,
+    alignSelf: 'center',
+    width: 250,
   },
   ButtonWithIcone: {
     position: 'absolute',
@@ -50,10 +46,10 @@ export const styles = StyleSheet.create({
     top: 370,
     right: 20,
   },
-  PostsCont: {
-    flex: 1,
-    top: '15%',
-    left: 30,
-    width: '85%',
+  ButtonBack: {
+    width: 70,
+    position: 'absolute',
+    bottom: '5%',
+    left: '70%',
   },
 });

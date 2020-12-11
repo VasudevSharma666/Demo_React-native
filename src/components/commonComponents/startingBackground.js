@@ -1,40 +1,32 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  ImageBackground,
-  Image,
-  StatusBar,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, Image, View} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import {loginpage, pin} from '../../constants/image';
+import {pin} from '../../constants/image';
 
 const index = () => (
-  <ImageBackground source={loginpage} style={styles.image} blurRadius={2}>
-    <View style={styles.TextAliment}>
-      <View style={{flex: 2, flexDirection: 'row', top: 150, left: 60}}>
-        <Image source={pin} style={styles.pinImage} />
-        <Text style={styles.text}>DWT Listing</Text>
+  <>
+    <View style={{flex: 1, alignSelf: 'center', top: '10%'}}>
+      <View style={styles.TextAliment}>
+        <View style={{flexDirection: 'row', alignSelf: 'center'}}>
+          <Image source={pin} style={styles.pinImage} />
+          <Text style={styles.text}>DWT Listing</Text>
+        </View>
+        <View style={styles.UnderWord}>
+          <View style={[styles.lineOne]} />
+          <Text style={[styles.text2, {top: -5, left: 15}]}>
+            Directory Theme
+          </Text>
+        </View>
       </View>
-      <View style={styles.UnderWord}>
-        <View style={[styles.lineOne]} />
-        <View style={[styles.lineOne, {top: 4}]} />
-        <Text style={[styles.text2, {top: -7, left: 15}]}>Directory Theme</Text>
-      </View>
-    </View>
-    <View style={{position: 'absolute', top: 220, alignSelf: 'center'}}>
+
       <Text style={styles.text3}> Find & Explore World Top</Text>
       <Text style={styles.text3}>Places</Text>
     </View>
-  </ImageBackground>
+  </>
 );
 
 const styles = StyleSheet.create({
-  contaner: {
-    flex: 1,
-    flexDirection: 'column',
-  },
   image: {
     flex: 1,
     resizeMode: 'cover',
@@ -56,8 +48,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     width: 250,
-    justifyContent: 'center',
-    alignSelf: 'center',
     textAlign: 'center',
   },
   pinImage: {
@@ -66,6 +56,9 @@ const styles = StyleSheet.create({
     height: 60,
   },
   lineOne: {
+    height: 7,
+    borderTopColor: 'white',
+    borderTopWidth: 2,
     borderBottomWidth: 2,
     borderBottomColor: 'white',
     width: 30,
@@ -73,13 +66,11 @@ const styles = StyleSheet.create({
     top: 10,
   },
   TextAliment: {
-    flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
   },
   UnderWord: {
-    flex: 3,
-    top: 180,
-    left: -15,
+    top: -35,
+    left: 100,
   },
 });
 

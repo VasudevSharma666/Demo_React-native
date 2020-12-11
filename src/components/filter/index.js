@@ -1,13 +1,12 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import {
   Text,
   View,
   ScrollView,
   ActivityIndicator,
-  SafeAreaView,
+  Animated,
+  FlatList,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
-import Sort from 'react-native-vector-icons/FontAwesome';
 
 import Button from '../commonComponents/Button';
 import Header from '../commonComponents/authenticComponentHeader';
@@ -35,63 +34,112 @@ const reducer = (state, action) => {
 };
 const index = ({navigation}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const scroll_Y = new Animated.Value(0);
+  const diffClamp = Animated.diffClamp(scroll_Y, 0, 190);
+  const translate_Y = diffClamp.interpolate({
+    inputRange: [0, 190],
+    outputRange: [0, -190],
+  });
   useEffect(() => {
-    fetch(BaseUrl + '/albums')
+    fetch(BaseUrl + '/posts?userId=1')
       .then((response) => response.json())
       .then((json) => dispatch({type: 'json', value: json}))
       .catch((err) => Alert.alert('something is wrong' + err));
   }, []);
   return (
-    <View style={{flex: 2, flexDirection: 'column'}}>
-      <View style={{flex: 1, justifyContent: 'center'}}>
-        <View style={styles.wrapper}>
-          <Header Title="Home" navigation={navigation} />
-          <View style={{flex: 1, flexWrap: 'wrap'}}>
+    <>
+      <Header Title="Home" navigation={navigation} />
+      <Animated.View
+        style={[
+          {transform: [{translateY: translate_Y}]},
+          {
+            height: 190,
+            backgroundColor: 'white',
+            position: 'absolute',
+            top: 50,
+            left: 0,
+            right: 0,
+            elevation: 2,
+          },
+        ]}>
+        <View style={styles.backgroundBox}>
+          <View style={styles.searchBox}>
             <SearchBox
+              backgroundColor="#00000000"
               value={state.searchBox}
               handlerState={(value) =>
                 dispatch({type: 'searchBox', value: value})
               }
             />
           </View>
-          <View style={styles.backgroundBox} />
-          <Text style={styles.text1}>{state.json.length} Result found</Text>
-          <View></View>
-          <View style={styles.Filter}>
-            <Button value="Filter" colorBody="#000000" radius={0} />
+        </View>
+        <View style={styles.ButtonSection}>
+          <View style={styles.ButtonWidth}>
+            <Button
+              value="Filter"
+              type="filter"
+              colorBody="black"
+              flexDirection="row"
+              radius={0}
+            />
           </View>
-          <View style={styles.IconFilter}>
-            <Icon name="filter" size={20} color="#77b5fe" />
+          <View style={styles.ButtonWidth}>
+            <Button
+              value="Sort"
+              type="sort"
+              colorBody="black"
+              flexDirection="row"
+              radius={0}
+            />
           </View>
-          <View style={styles.Sort}>
-            <Button value="Sort" colorBody="#000000" radius={0} />
-          </View>
-          <View style={styles.IconShort}>
-            <Sort name="sort-amount-desc" size={15} color="#77b5fe" />
-          </View>
-          <View style={styles.Reset}>
-            <Button value="Reset" colorBody="#000000" radius={0} />
-          </View>
-          <View style={styles.IconReset}>
-            <Icon name="retweet" size={20} color="#77b5fe" />
+          <View style={styles.ButtonWidth}>
+            <Button
+              value="Reset"
+              type="reset"
+              colorBody="black"
+              flexDirection="row"
+              radius={0}
+            />
           </View>
         </View>
+        <Text style={styles.textResult}>{state.json.length}Result found</Text>
+      </Animated.View>
+      {/* <ScrollView
+        showsVerticalScrollIndicator={false}
+        onScroll={(e) => {
+          scroll_Y.setValue(e.nativeEvent.contentOffset.y);
+        }}
+        //contentContainerStyle={{marginTop: 190}}
+        style={{backgroundColor: '#D8D8D8'}}>
+        {state.json.length == 0 ? (
+          <ActivityIndicator size="large" color="red" />
+        ) : (
+          state.json.map((json, index) => (
+            <View key={index}>
+              <PostsContainer json={json} />
+            </View>
+          ))
+        )}
+      </ScrollView> */}
+      <View style={{width: '90%', alignSelf: 'center'}}>
+        <FlatList
+          data={state.json}
+          keyExtractor={(_, index) => index.toString()}
+          renderItem={({item}) =>
+            item.length != 0 ? (
+              <PostsContainer json={item} />
+            ) : (
+              <ActivityIndicator size="large" color="red" />
+            )
+          }
+          onScroll={(e) => {
+            scroll_Y.setValue(e.nativeEvent.contentOffset.y);
+          }}
+          contentContainerStyle={{marginTop: 190}}
+          showsVerticalScrollIndicator={false}
+        />
       </View>
-      <View style={styles.PostsCont}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {state.json.length == 0 ? (
-            <ActivityIndicator size="large" color="red" />
-          ) : (
-            state.json.map((json, index) => (
-              <View key={index}>
-                <PostsContainer json={json} />
-              </View>
-            ))
-          )}
-        </ScrollView>
-      </View>
-    </View>
+    </>
   );
 };
 

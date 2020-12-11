@@ -17,7 +17,9 @@ const Button = ({
   radius = 8,
   type,
   height,
+  flexDirection = 'column',
   url = null,
+  setScroll = null,
 }) => {
   const IconType = () => {
     switch (type) {
@@ -63,6 +65,25 @@ const Button = ({
           />
         );
       }
+      case 'filter': {
+        return <Twitter name="filter" size={18} color="red" />;
+      }
+      case 'sort': {
+        return <ShieldIcon name="sort-amount-asc" size={18} color="red" />;
+      }
+      case 'reset': {
+        return <Twitter name="retweet" size={18} color="red" />;
+      }
+      case 'backScroll': {
+        return (
+          <Twitter
+            name="caretup"
+            size={20}
+            color="white"
+            style={{alignSelf: 'center', justifyContent: 'center'}}
+          />
+        );
+      }
       default: {
         return <></>;
       }
@@ -75,6 +96,8 @@ const Button = ({
           ? navigation.navigate(page)
           : url != null
           ? Linking.openURL(url)
+          : setScroll != null
+          ? setScroll.scrollTo({x: 0, y: 0, animated: true})
           : ToastAndroid.showWithGravityAndOffset(
               `Click on ${value}`,
               ToastAndroid.SHORT,
@@ -85,6 +108,7 @@ const Button = ({
       }}>
       <View
         style={{
+          flexDirection: flexDirection,
           backgroundColor: colorBody,
           borderRadius: radius,
           paddingVertical: 14,

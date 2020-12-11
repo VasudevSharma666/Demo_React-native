@@ -1,26 +1,19 @@
 import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   Username: {
-    position: 'absolute',
-    top: 400,
+    paddingBottom: 15,
     alignSelf: 'center',
   },
   Password: {
-    position: 'absolute',
-    top: 470,
+    paddingBottom: 15,
     alignSelf: 'center',
   },
   button: {
-    position: 'absolute',
-    top: 550,
+    paddingBottom: 15,
     alignSelf: 'center',
     width: 300,
   },
-  header: {
-    position: 'absolute',
-    top: 15,
-    width: '100%',
-  },
+
   buttonSingIn: {
     borderRadius: 8,
     paddingVertical: 14,

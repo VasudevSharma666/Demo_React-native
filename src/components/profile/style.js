@@ -20,22 +20,17 @@ export const styles = StyleSheet.create({
     borderTopWidth: 0.5,
     width: '100%',
     height: '10%',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
   },
-  PostsCont: {
-    flex: 1,
-    flexDirection: 'column',
-    top: 20,
-  },
+
   tagBackground: {
-    flex: 2,
+    height: 400,
     flexDirection: 'column',
     backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
   },
 });

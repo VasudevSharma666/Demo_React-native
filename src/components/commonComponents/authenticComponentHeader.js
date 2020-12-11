@@ -43,9 +43,10 @@ const Header = ({Title, navigation}) => {
 const styles = StyleSheet.create({
   HeaderBlock: {
     backgroundColor: 'red',
-    height: '10%',
+    height: 50,
     width: '100%',
     justifyContent: 'center',
+    elevation: 4,
   },
   Title: {
     color: 'white',

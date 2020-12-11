@@ -34,7 +34,7 @@ const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
         placeholderTextColor="#808080"
         value={props}
         autoCapitalize="none"
-        onChangeText={(event) => handleState(event)}
+        onChangeText={(value) => handleState(value)}
       />
       {Title == 'password' ? (
         <TouchableOpacity

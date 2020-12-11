@@ -1,6 +1,7 @@
 import React, {useReducer} from 'react';
 import {Text, View, TouchableOpacity, Alert, ToastAndroid} from 'react-native';
 import {useDispatch} from 'react-redux';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import Common from '../commonComponents/startingBackground';
 import InputText from '../commonComponents/InputTextFiled';
@@ -9,6 +10,7 @@ import UnauthorizedComponentHeader from '../commonComponents/unauthorizedCompone
 import {styles} from './style';
 import {setName, setEmail, setpassword} from '../../store/signin/action';
 import {reg} from '../../constants/emailChecker';
+import BackgroundImag from '../commonComponents/BackgroundImag';
 
 const initialState = {
   name: '',
@@ -78,56 +80,64 @@ const Index = ({navigation}) => {
 
   return (
     <>
+      <BackgroundImag />
+      <UnauthorizedComponentHeader value="SignIn" navigation={navigation} />
+
       <Common />
-      <View style={styles.header}>
-        <UnauthorizedComponentHeader value="SignIn" navigation={navigation} />
-      </View>
-      <View style={styles.name}>
-        <InputText
-          Title="name"
-          Icon="user"
-          handleState={(value) => Dispatch(value, (type = 'name'))}
-        />
-      </View>
-      <View style={styles.email}>
-        <InputText
-          Title="email"
-          Icon="mail"
-          handleState={(value) => Dispatch(value, (type = 'email'))}
-        />
-      </View>
-      <View style={styles.firstPassword}>
-        <InputText
-          Title="password"
-          Icon="lock"
-          show={true}
-          handleState={(value) => Dispatch(value, (type = 'password'))}
-        />
-      </View>
+      <KeyboardAwareScrollView style={{flex: 1}}>
+        <View style={styles.name}>
+          <InputText
+            Title="name"
+            Icon="user"
+            handleState={(value) => Dispatch(value, (type = 'name'))}
+          />
+        </View>
+        <View style={styles.email}>
+          <InputText
+            Title="email"
+            Icon="mail"
+            handleState={(value) => Dispatch(value, (type = 'email'))}
+          />
+        </View>
+        <View style={styles.firstPassword}>
+          <InputText
+            Title="password"
+            Icon="lock"
+            show={true}
+            handleState={(value) => Dispatch(value, (type = 'password'))}
+          />
+        </View>
 
-      <View style={styles.SignIn}>
-        <TouchableOpacity onPress={Checker}>
-          <View style={styles.buttonSingIn}>
-            <Text style={styles.buttontext}>SignIn</Text>
+        <View style={styles.SignIn}>
+          <TouchableOpacity onPress={Checker}>
+            <View style={styles.buttonSingIn}>
+              <Text style={styles.buttontext}>SignIn</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            flex: 3,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}>
+          <View style={styles.facebook}>
+            <Button
+              value="Facebook"
+              colorBody="#0000FF"
+              url="https://www.facebook.com/"
+            />
           </View>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.facebook}>
-        <Button
-          value="Facebook"
-          colorBody="#0000FF"
-          url="https://www.facebook.com/"
-        />
-      </View>
-      <Text style={styles.OR}>OR</Text>
-      <View style={styles.Google}>
-        <Button
-          value="Google"
-          colorBody="#dd5e08"
-          url="https://www.google.com/"
-        />
-      </View>
+          <Text style={styles.OR}>OR</Text>
+          <View style={styles.Google}>
+            <Button
+              value="Google"
+              colorBody="#dd5e08"
+              url="https://www.google.com/"
+            />
+          </View>
+        </View>
+      </KeyboardAwareScrollView>
     </>
   );
 };

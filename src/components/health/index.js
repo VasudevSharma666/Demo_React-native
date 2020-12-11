@@ -24,6 +24,8 @@ const index = ({navigation}) => (
         sliderBoxHeight={250}
         circleLoop={true}
         autoplay={true}
+        dotColor="transparent"
+        inactiveDotColor="transparent"
       />
       <View style={styles.SilderText}>
         <Text style={styles.text}>
@@ -65,34 +67,17 @@ const index = ({navigation}) => (
       <Image source={EmergencyBuild} style={[styles.imag, {left: '35%'}]} />
     </View>
     <View>
-      <View style={[styles.Labels, {top: 10}]}>
-        <AddressIcon
-          name="address"
-          size={20}
-          color="red"
-          style={{top: 10, left: 10}}
-        />
-        <Text style={[styles.textData, {top: 10, left: 10}]}>Hondai</Text>
+      <View style={[styles.Labels]}>
+        <AddressIcon name="address" size={20} color="red" />
+        <Text style={[styles.textData]}>Hondai</Text>
       </View>
-      <View style={[styles.Labels, {top: 10}]}>
-        <PhoneIcon
-          name="call"
-          size={20}
-          color="red"
-          style={{top: 10, left: 10}}
-        />
-        <Text style={[styles.textData, {top: 10, left: 10}]}>123456789</Text>
+      <View style={[styles.Labels]}>
+        <PhoneIcon name="call" size={20} color="red" />
+        <Text style={[styles.textData]}>123456789</Text>
       </View>
-      <View style={[styles.Labels, {top: 10}]}>
-        <MailIcon
-          name="mail"
-          size={20}
-          color="red"
-          style={{top: 10, left: 10}}
-        />
-        <Text style={[styles.textData, {top: 10, left: 10}]}>
-          XYZ@gmail.com
-        </Text>
+      <View style={[styles.Labels]}>
+        <MailIcon name="mail" size={20} color="red" />
+        <Text style={[styles.textData]}>XYZ@gmail.com</Text>
       </View>
     </View>
   </View>

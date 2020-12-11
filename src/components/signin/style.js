@@ -1,36 +1,28 @@
 import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   name: {
-    position: 'absolute',
-    top: 300,
+    paddingBottom: 15,
     alignSelf: 'center',
   },
   email: {
-    position: 'absolute',
-    top: 360,
+    paddingBottom: 15,
     alignSelf: 'center',
   },
   firstPassword: {
-    position: 'absolute',
-    top: 420,
+    paddingBottom: 15,
     alignSelf: 'center',
   },
   SignIn: {
-    position: 'absolute',
-    top: 490,
+    paddingBottom: 15,
     alignSelf: 'center',
     width: 300,
   },
   facebook: {
-    position: 'absolute',
-    top: 570,
     alignSelf: 'flex-start',
     left: 25,
     width: 130,
   },
   Google: {
-    position: 'absolute',
-    top: 570,
     alignSelf: 'flex-end',
     right: 25,
     width: 130,
@@ -40,9 +32,6 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
-    position: 'absolute',
-    top: 580,
-    alignSelf: 'center',
   },
   header: {
     position: 'absolute',

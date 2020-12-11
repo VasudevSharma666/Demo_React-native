@@ -5,19 +5,20 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 const HeaderOfNotLogin = ({navigation, value}) => (
   <View style={styles.Header}>
+    <Text style={styles.Text1}>{value}</Text>
     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
       <Icon name="left" size={30} color="white" style={{left: '3%'}} />
     </TouchableOpacity>
-    <Text style={styles.Text1}>{value}</Text>
   </View>
 );
 
 const styles = StyleSheet.create({
   Header: {
-    flex: 1,
-    backgroundColor: 'transparent',
+    height: 50,
+    backgroundColor: 'red',
     width: '100%',
-    height: 20,
+    justifyContent: 'center',
+    elevation: 4,
   },
   Text1: {
     position: 'absolute',

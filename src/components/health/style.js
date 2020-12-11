@@ -35,16 +35,18 @@ export const styles = StyleSheet.create({
   },
   Labels: {
     flexDirection: 'row',
-    justifyContent: 'center',
     borderBottomColor: 'gray',
     borderBottomWidth: 0.4,
     width: '100%',
     height: '15%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   textData: {
     color: 'black',
     fontSize: 18,
     fontWeight: 'bold',
-    width: '85%',
+    width: '70%',
+    left: 10,
   },
 });
