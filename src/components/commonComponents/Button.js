@@ -7,13 +7,15 @@ import Google from 'react-native-vector-icons/Entypo';
 import Alerting from 'react-native-vector-icons/Foundation';
 import ShieldIcon from 'react-native-vector-icons/FontAwesome';
 
+import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+
 const Button = ({
   opacity = 100,
   value,
   navigation,
   page = null,
-  colorBody = '#FF0000',
-  colorText = 'white',
+  colorBody = basicComponentsOne,
+  colorText = basicComponentsTwo,
   radius = 8,
   type,
   height,

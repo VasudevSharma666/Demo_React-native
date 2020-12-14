@@ -16,6 +16,7 @@ import Button from '../commonComponents/Button';
 import PostsContainer from '../commonComponents/PostsCard';
 import {BaseUrl} from '../../utils/Urls';
 import {styles} from './style';
+import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
 
 const initialState = {
   json: [],
@@ -54,9 +55,8 @@ const index = ({navigation}) => {
       <View style={styles.ButtonBack}>
         <Button
           type="backScroll"
-          colorBody="red"
+          colorBody={basicComponentsOne}
           setScroll={state.scroll_To}
-          value=""
           height={50}
           radius={60}
         />
@@ -103,7 +103,6 @@ const index = ({navigation}) => {
           </Text>
           <View style={styles.Search}>
             <Search
-              backgroundColor="#00000000"
               value={state.searchBox}
               handlerState={(value) =>
                 dispatch({type: 'searchBox', value: value})
@@ -133,7 +132,7 @@ const index = ({navigation}) => {
           <View style={styles.ViewAllButton}>
             <Button
               value="View All"
-              colorBody="red"
+              colorBody={basicComponentsOne}
               radius={3}
               navigation={navigation}
               page="Filter search"
@@ -142,7 +141,7 @@ const index = ({navigation}) => {
         </View>
         <View style={{width: '90%', alignSelf: 'center'}}>
           {state.json.length == 0 ? (
-            <ActivityIndicator size="large" color="red" />
+            <ActivityIndicator size="large" color={basicComponentsOne} />
           ) : (
             state.json.map((json, index) => (
               <View key={index}>

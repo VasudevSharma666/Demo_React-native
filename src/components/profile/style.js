@@ -1,4 +1,6 @@
 import {StyleSheet} from 'react-native';
+import {basicComponentsTwo, inputPlaceHolder} from '../../constants/color';
+
 export const styles = StyleSheet.create({
   ProfileImag: {
     flex: 1,
@@ -16,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   Labels: {
     flexDirection: 'row',
-    borderTopColor: 'gray',
+    borderTopColor: inputPlaceHolder,
     borderTopWidth: 0.5,
     width: '100%',
     height: '10%',
@@ -31,6 +33,6 @@ export const styles = StyleSheet.create({
   tagBackground: {
     height: 400,
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: basicComponentsTwo,
   },
 });

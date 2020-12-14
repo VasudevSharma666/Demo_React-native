@@ -8,6 +8,11 @@ var PickerItem = Picker.Item;
 import Header from '../commonComponents/authenticComponentHeader';
 import Button from '../commonComponents/Button';
 import {styles} from './style';
+import {
+  inputPlaceHolder,
+  buttonBackground,
+  TextColor,
+} from '../../constants/color';
 
 const initialState = {
   category: '',
@@ -41,13 +46,13 @@ const index = ({navigation}) => {
           <View style={styles.PickerElement}>
             <Picker
               selectedValue={state.category}
-              onValueChange={(itemValue, itemIndex) =>
+              onValueChange={(itemValue) =>
                 dispatch({type: 'category', value: itemValue})
               }>
               <PickerItem
                 label="Search Category"
                 value="nullData"
-                color="gray"
+                color={inputPlaceHolder}
               />
               <PickerItem label="Foods" value="foods" />
               <PickerItem label="Travels" value="travels" />
@@ -58,13 +63,13 @@ const index = ({navigation}) => {
           <View style={styles.PickerElement}>
             <Picker
               selectedValue={state.price}
-              onValueChange={(itemValue, itemIndex) =>
+              onValueChange={(itemValue) =>
                 dispatch({type: 'price', value: itemValue})
               }>
               <PickerItem
                 label="Search Price Type"
                 value="nullData"
-                color="gray"
+                color={inputPlaceHolder}
               />
               <PickerItem label="10k-1L" value="thousand" />
               <PickerItem label="1L-10L" value="Lake" />
@@ -74,14 +79,14 @@ const index = ({navigation}) => {
           <TextInput
             style={styles.InputBox}
             placeholder="Location"
-            placeholderTextColor="gray"
+            placeholderTextColor={inputPlaceHolder}
           />
           <Text style={styles.status}>Status</Text>
           <View style={styles.button}>
             <Button
               value="Open Now"
-              colorBody="#D3D3D3"
-              colorText="black"
+              colorBody={buttonBackground}
+              colorText={TextColor}
               radius={20}
             />
           </View>
@@ -89,22 +94,22 @@ const index = ({navigation}) => {
           <View style={[styles.button, {flexDirection: 'row', top: '7%'}]}>
             <Button
               value="High to Low"
-              colorBody="#D3D3D3"
-              colorText="black"
+              colorBody={buttonBackground}
+              colorText={TextColor}
               radius={20}
             />
             <View style={{width: 10}} />
             <Button
               value="Low to High"
-              colorBody="#D3D3D3"
-              colorText="black"
+              colorBody={buttonBackground}
+              colorText={TextColor}
               radius={20}
             />
           </View>
           <TextInput
             style={[styles.InputBox, {top: '10%'}]}
             placeholder="Current Location"
-            placeholderTextColor="gray"
+            placeholderTextColor={inputPlaceHolder}
           />
         </ScrollView>
       </View>

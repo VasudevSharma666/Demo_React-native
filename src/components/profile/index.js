@@ -12,6 +12,7 @@ import Button from '../commonComponents/Button';
 import {ScrollView} from 'react-native-gesture-handler';
 import {BaseUrl} from '../../utils/Urls';
 import PostsContainer from '../commonComponents/PostsCard';
+import {basicComponentsTwo, basicComponentsOne} from '../../constants/color';
 
 const index = ({navigation}) => {
   const [json, setJson] = useState([]);
@@ -55,7 +56,7 @@ const index = ({navigation}) => {
             <Button
               type="facebook"
               radius={60}
-              colorBody="white"
+              colorBody={basicComponentsTwo}
               height={70}
               url="http://facebook.com/"
               value=""
@@ -64,7 +65,7 @@ const index = ({navigation}) => {
             <Button
               type="twitter"
               radius={60}
-              colorBody="white"
+              colorBody={basicComponentsTwo}
               height={70}
               url="http://twittwe.com/"
             />
@@ -72,7 +73,7 @@ const index = ({navigation}) => {
             <Button
               type="google"
               radius={60}
-              colorBody="white"
+              colorBody={basicComponentsTwo}
               height={70}
               url="https://www.google.com/"
             />
@@ -80,26 +81,36 @@ const index = ({navigation}) => {
             <Button
               type="Linkedin"
               radius={60}
-              colorBody="white"
+              colorBody={basicComponentsTwo}
               height={70}
               url="https://in.linkedin.com/"
             />
           </ScrollView>
         </View>
         <View style={[styles.Labels]}>
-          <AddressIcon name="address" size={21} color="red" />
+          <AddressIcon name="address" size={21} color={basicComponentsOne} />
           <Text style={[styles.text, {left: 10}]}> Munster, IN , USA </Text>
         </View>
         <View style={[styles.Labels]}>
-          <PhoneIcon name="call" size={20} color="red" style={{left: -30}} />
+          <PhoneIcon
+            name="call"
+            size={20}
+            color={basicComponentsOne}
+            style={{left: -30}}
+          />
           <Text style={[styles.text, {left: -20}]}>123456789</Text>
         </View>
         <View style={styles.Labels}>
-          <MailIcon name="mail" size={20} color="red" />
+          <MailIcon name="mail" size={20} color={basicComponentsOne} />
           <Text style={[styles.text, {left: 15}]}>Malisa@gmail.com</Text>
         </View>
         <View style={[styles.Labels]}>
-          <AboutIcon name="group" size={20} color="red" style={{left: -58}} />
+          <AboutIcon
+            name="group"
+            size={20}
+            color={basicComponentsOne}
+            style={{left: -58}}
+          />
           <Text style={[styles.text, {left: -45}]}>About</Text>
         </View>
       </Animated.View>
@@ -111,7 +122,7 @@ const index = ({navigation}) => {
         }}
         contentContainerStyle={{marginTop: 400}}>
         {json.length == 0 ? (
-          <ActivityIndicator size="large" color="red" />
+          <ActivityIndicator size="large" color={basicComponentsOne} />
         ) : (
           json.map((json, index) => (
             <View key={index} style={{width: '90%', alignSelf: 'center'}}>

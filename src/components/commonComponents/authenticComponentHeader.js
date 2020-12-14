@@ -4,13 +4,20 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import Back from 'react-native-vector-icons/AntDesign';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+
 const CheckConditon = ({Title, navigation}) => {
   switch (Title) {
     case 'Home': {
       return (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
           <View style={{left: '3%'}}>
-            <Icon name="menu-outline" size={40} color="white" left="20" />
+            <Icon
+              name="menu-outline"
+              size={40}
+              color={basicComponentsTwo}
+              left="20"
+            />
           </View>
         </TouchableOpacity>
       );
@@ -22,7 +29,12 @@ const CheckConditon = ({Title, navigation}) => {
             onPress={() => navigation.navigate('Home')}
             style={{}}>
             <View style={{left: '3%'}}>
-              <Back name="arrowleft" size={30} color="white" left="20" />
+              <Back
+                name="arrowleft"
+                size={30}
+                color={basicComponentsTwo}
+                left="20"
+              />
             </View>
           </TouchableOpacity>
           <View />
@@ -42,14 +54,14 @@ const Header = ({Title, navigation}) => {
 
 const styles = StyleSheet.create({
   HeaderBlock: {
-    backgroundColor: 'red',
+    backgroundColor: basicComponentsOne,
     height: 50,
     width: '100%',
     justifyContent: 'center',
     elevation: 4,
   },
   Title: {
-    color: 'white',
+    color: basicComponentsTwo,
     fontSize: 20,
     fontWeight: 'bold',
     position: 'absolute',

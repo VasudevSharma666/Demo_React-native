@@ -11,6 +11,7 @@ import {styles} from './style';
 import {setName, setEmail, setpassword} from '../../store/signin/action';
 import {reg} from '../../constants/emailChecker';
 import BackgroundImag from '../commonComponents/BackgroundImag';
+import {facebookIcon, googleIcon} from '../../constants/color';
 
 const initialState = {
   name: '',
@@ -124,7 +125,7 @@ const Index = ({navigation}) => {
           <View style={styles.facebook}>
             <Button
               value="Facebook"
-              colorBody="#0000FF"
+              colorBody={facebookIcon}
               url="https://www.facebook.com/"
             />
           </View>
@@ -132,7 +133,7 @@ const Index = ({navigation}) => {
           <View style={styles.Google}>
             <Button
               value="Google"
-              colorBody="#dd5e08"
+              colorBody={googleIcon}
               url="https://www.google.com/"
             />
           </View>

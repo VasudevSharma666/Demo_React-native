@@ -8,7 +8,7 @@ const index = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(tokenMethod(null));
-    dispatch(LogoutMethod());
+    //dispatch(LogoutMethod());
   }, []);
 
   return <></>;

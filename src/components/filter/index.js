@@ -14,6 +14,11 @@ import SearchBox from '../commonComponents/SearchBox';
 import PostsContainer from '../commonComponents/PostsCard';
 import {BaseUrl} from '../../utils/Urls';
 import {styles} from './style';
+import {
+  basicComponentsOne,
+  basicComponentsTwo,
+  TextColor,
+} from '../../constants/color';
 
 const initialState = {
   json: [],
@@ -54,7 +59,7 @@ const index = ({navigation}) => {
           {transform: [{translateY: translate_Y}]},
           {
             height: 190,
-            backgroundColor: 'white',
+            backgroundColor: basicComponentsTwo,
             position: 'absolute',
             top: 50,
             left: 0,
@@ -65,7 +70,6 @@ const index = ({navigation}) => {
         <View style={styles.backgroundBox}>
           <View style={styles.searchBox}>
             <SearchBox
-              backgroundColor="#00000000"
               value={state.searchBox}
               handlerState={(value) =>
                 dispatch({type: 'searchBox', value: value})
@@ -78,7 +82,7 @@ const index = ({navigation}) => {
             <Button
               value="Filter"
               type="filter"
-              colorBody="black"
+              colorBody={TextColor}
               flexDirection="row"
               radius={0}
             />
@@ -87,7 +91,7 @@ const index = ({navigation}) => {
             <Button
               value="Sort"
               type="sort"
-              colorBody="black"
+              colorBody={TextColor}
               flexDirection="row"
               radius={0}
             />
@@ -129,7 +133,7 @@ const index = ({navigation}) => {
             item.length != 0 ? (
               <PostsContainer json={item} />
             ) : (
-              <ActivityIndicator size="large" color="red" />
+              <ActivityIndicator size="large" color={basicComponentsOne} />
             )
           }
           onScroll={(e) => {

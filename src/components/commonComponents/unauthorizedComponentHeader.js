@@ -3,6 +3,8 @@ import {Text, View, StyleSheet, Alert} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/AntDesign';
 
+import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+
 const HeaderOfNotLogin = ({navigation, value}) => (
   <View style={styles.Header}>
     <Text style={styles.Text1}>{value}</Text>
@@ -15,7 +17,7 @@ const HeaderOfNotLogin = ({navigation, value}) => (
 const styles = StyleSheet.create({
   Header: {
     height: 50,
-    backgroundColor: 'red',
+    backgroundColor: basicComponentsOne,
     width: '100%',
     justifyContent: 'center',
     elevation: 4,
@@ -24,7 +26,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 10,
     right: 20,
-    color: 'white',
+    color: basicComponentsTwo,
     fontWeight: 'bold',
   },
 });

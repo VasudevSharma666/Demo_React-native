@@ -1,17 +1,17 @@
-import {SafeAreaView, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {basicComponentsOne, transparent} from '../../constants/color';
 export const styles = StyleSheet.create({
   backgroundBox: {
     justifyContent: 'center',
     height: 90,
-    backgroundColor: 'red',
+    backgroundColor: basicComponentsOne,
   },
 
   searchBox: {
     width: '70%',
-
     justifyContent: 'center',
     alignSelf: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: transparent,
   },
   ButtonSection: {
     justifyContent: 'space-between',

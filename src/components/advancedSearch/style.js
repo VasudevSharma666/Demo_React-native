@@ -1,12 +1,14 @@
 import {StyleSheet} from 'react-native';
+import {pinIcon, buttonBackground} from '../../constants/color';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   pinIcon: {
     left: '85%',
-    top: '-7%',
-    color: 'yellow',
+    top: '-6%',
+    color: pinIcon,
+    elevation: 10,
   },
   formArea: {
     flex: 1,
@@ -15,12 +17,12 @@ export const styles = StyleSheet.create({
   },
   InputBox: {
     borderBottomWidth: 2,
-    borderBottomColor: '#D8D8D8',
+    borderBottomColor: buttonBackground,
   },
   PickerElement: {
     width: '100%',
     borderBottomWidth: 2,
-    borderBottomColor: '#D8D8D8',
+    borderBottomColor: buttonBackground,
   },
   status: {
     fontWeight: 'bold',

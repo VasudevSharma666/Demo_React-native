@@ -1,13 +1,14 @@
 import {StyleSheet} from 'react-native';
+import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
 export const styles = StyleSheet.create({
   buttonSingIn: {
     borderRadius: 8,
     paddingVertical: 14,
     paddingHorizontal: 10,
-    backgroundColor: '#FF0000',
+    backgroundColor: basicComponentsOne,
   },
   buttontext: {
-    color: 'white',
+    color: basicComponentsTwo,
     fontWeight: 'bold',
     textAlign: 'center',
   },

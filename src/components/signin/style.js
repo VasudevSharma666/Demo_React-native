@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {basicComponentsTwo, basicComponentsOne} from '../../constants/color';
 export const styles = StyleSheet.create({
   name: {
     paddingBottom: 15,
@@ -28,7 +29,7 @@ export const styles = StyleSheet.create({
     width: 130,
   },
   OR: {
-    color: 'white',
+    color: basicComponentsTwo,
     fontSize: 15,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -42,7 +43,7 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     paddingVertical: 14,
     paddingHorizontal: 10,
-    backgroundColor: '#FF0000',
+    backgroundColor: basicComponentsOne,
   },
   buttontext: {
     color: 'white',

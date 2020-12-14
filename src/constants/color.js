@@ -1,0 +1,11 @@
+export const basicComponentsOne = '#FF0000'; //red
+export const basicComponentsTwo = '#ffffff'; //white
+export const darkBasicColors = '#990000'; // Dark red
+export const inputPlaceHolder = '#808080'; //Dark gray
+export const buttonBackground = '#D3D3D3'; //lite gray
+export const TextColor = '#080808'; //black
+export const pinIcon = '#fffb0f'; //yellow
+export const LiteText = '#C0C0C0'; //silver
+export const facebookIcon = '#0000FF'; //Dark Blue
+export const googleIcon = '#dd5e08'; //Dark Orange
+export const transparent = 'transparent';

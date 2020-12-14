@@ -1,4 +1,11 @@
 import {StyleSheet} from 'react-native';
+
+import {
+  basicComponentsOne,
+  inputPlaceHolder,
+  TextColor,
+} from '../../constants/color';
+
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -8,10 +15,10 @@ export const styles = StyleSheet.create({
     left: 10,
   },
   text: {
-    color: 'red',
+    color: basicComponentsOne,
     fontSize: 15,
     fontWeight: 'bold',
-    borderBottomColor: 'red',
+    borderBottomColor: basicComponentsOne,
     borderBottomWidth: 1,
     width: '85%',
   },
@@ -30,12 +37,12 @@ export const styles = StyleSheet.create({
     height: 100,
     left: '15%',
     top: -30,
-    borderColor: 'red',
+    borderColor: basicComponentsOne,
     borderWidth: 1,
   },
   Labels: {
     flexDirection: 'row',
-    borderBottomColor: 'gray',
+    borderBottomColor: inputPlaceHolder,
     borderBottomWidth: 0.4,
     width: '100%',
     height: '15%',
@@ -43,7 +50,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textData: {
-    color: 'black',
+    color: TextColor,
     fontSize: 18,
     fontWeight: 'bold',
     width: '70%',

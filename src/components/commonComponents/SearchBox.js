@@ -3,14 +3,24 @@ import {View, StyleSheet} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import Search from 'react-native-vector-icons/AntDesign';
 
-const SearchBox = ({backgroundColor = 'red', value, handlerState}) => (
+import {
+  basicComponentsTwo,
+  TextColor,
+  basicComponentsOne,
+} from '../../constants/color';
+
+const SearchBox = ({
+  backgroundColor = {basicComponentsOne},
+  value,
+  handlerState,
+}) => (
   <View style={{backgroundColor: backgroundColor, width: '100%'}}>
     <View style={styles.Search}>
       <TextInput
         placeholder="What are you looking for..."
-        placeholderTextColor="#000000"
-        // value={value}
-        // onChangeText={(val) => handlerState(val)}
+        placeholderTextColor={TextColor}
+        value={value}
+        onChangeText={(val) => handlerState(val)}
         style={styles.InputBox}
       />
       <Search name="search1" size={20} style={styles.searchIcon} />
@@ -21,8 +31,8 @@ const SearchBox = ({backgroundColor = 'red', value, handlerState}) => (
 const styles = StyleSheet.create({
   Search: {
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderRadius: 8,
+    backgroundColor: basicComponentsTwo,
+    borderRadius: 10,
     alignItems: 'center',
   },
   searchIcon: {

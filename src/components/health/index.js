@@ -14,6 +14,11 @@ import {
 } from '../../constants/image';
 import Button from '../commonComponents/Button';
 import {styles} from './style';
+import {
+  transparent,
+  inputPlaceHolder,
+  basicComponentsOne,
+} from '../../constants/color';
 
 const index = ({navigation}) => (
   <View style={styles.container}>
@@ -24,8 +29,8 @@ const index = ({navigation}) => (
         sliderBoxHeight={250}
         circleLoop={true}
         autoplay={true}
-        dotColor="transparent"
-        inactiveDotColor="transparent"
+        dotColor={transparent}
+        inactiveDotColor={transparent}
       />
       <View style={styles.SilderText}>
         <Text style={styles.text}>
@@ -35,27 +40,27 @@ const index = ({navigation}) => (
         <View style={styles.ButtonCss}>
           <Button
             value="Saved"
-            colorBody="gray"
+            colorBody={inputPlaceHolder}
             opacity={0.7}
             type="Saved"
-            colorText="red"
+            colorText={basicComponentsOne}
           />
           <View style={{left: 10}}>
             <Button
               value="Report"
-              colorBody="gray"
+              colorBody={inputPlaceHolder}
               opacity={0.7}
               type="Alert"
-              colorText="red"
+              colorText={basicComponentsOne}
             />
           </View>
           <View style={{left: 20}}>
             <Button
               value="Claim "
-              colorBody="gray"
+              colorBody={inputPlaceHolder}
               opacity={0.7}
               type="shield"
-              colorText="red"
+              colorText={basicComponentsOne}
             />
           </View>
         </View>
@@ -68,15 +73,15 @@ const index = ({navigation}) => (
     </View>
     <View>
       <View style={[styles.Labels]}>
-        <AddressIcon name="address" size={20} color="red" />
+        <AddressIcon name="address" size={20} color={basicComponentsOne} />
         <Text style={[styles.textData]}>Hondai</Text>
       </View>
       <View style={[styles.Labels]}>
-        <PhoneIcon name="call" size={20} color="red" />
+        <PhoneIcon name="call" size={20} color={basicComponentsOne} />
         <Text style={[styles.textData]}>123456789</Text>
       </View>
       <View style={[styles.Labels]}>
-        <MailIcon name="mail" size={20} color="red" />
+        <MailIcon name="mail" size={20} color={basicComponentsOne} />
         <Text style={[styles.textData]}>XYZ@gmail.com</Text>
       </View>
     </View>

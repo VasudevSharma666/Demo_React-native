@@ -1,8 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, Image, View} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 import {pin} from '../../constants/image';
+import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
 
 const index = () => (
   <>
@@ -33,18 +33,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: 'white',
+    color: basicComponentsTwo,
     fontSize: 26,
     fontWeight: 'bold',
     top: -5,
   },
   text2: {
-    color: 'white',
+    color: basicComponentsTwo,
     fontSize: 15,
     fontWeight: 'bold',
   },
   text3: {
-    color: 'white',
+    color: basicComponentsTwo,
     fontSize: 20,
     fontWeight: 'bold',
     width: 250,
@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
   },
   lineOne: {
     height: 7,
-    borderTopColor: 'white',
+    borderTopColor: basicComponentsTwo,
     borderTopWidth: 2,
     borderBottomWidth: 2,
-    borderBottomColor: 'white',
+    borderBottomColor: basicComponentsTwo,
     width: 30,
     left: -17,
     top: 10,
