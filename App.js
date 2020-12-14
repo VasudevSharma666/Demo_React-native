@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import SplashScreen from 'react-native-splash-screen';
 
 import startPage from './src/components/startpage';
 import Login from './src/components/login';
@@ -12,6 +13,9 @@ const Stack = createStackNavigator();
 
 const App = () => {
   const token = useSelector((state) => state.login);
+  useEffect(() => {
+    setTimeout(() => SplashScreen.hide(), 3000);
+  }, []);
   return (
     <NavigationContainer>
       {token.tokenData == null ? (
