@@ -10,18 +10,11 @@ import ShieldIcon from 'react-native-vector-icons/FontAwesome';
 import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
 
 const Button = ({
-  opacity = 100,
+  onPress,
+  style,
   value,
-  navigation,
-  page = null,
-  colorBody = basicComponentsOne,
   colorText = basicComponentsTwo,
-  radius = 8,
   type,
-  height,
-  flexDirection = 'column',
-  url = null,
-  setScroll = null,
 }) => {
   const IconType = () => {
     switch (type) {
@@ -92,43 +85,27 @@ const Button = ({
     }
   };
   return (
-    <TouchableOpacity
-      onPress={() => {
-        page != null
-          ? navigation.navigate(page)
-          : url != null
-          ? Linking.openURL(url)
-          : setScroll != null
-          ? setScroll.scrollTo({x: 0, y: 0, animated: true})
-          : ToastAndroid.showWithGravityAndOffset(
-              `Click on ${value}`,
-              ToastAndroid.SHORT,
-              ToastAndroid.TOP,
-              10,
-              50,
-            );
-      }}>
-      <View
-        style={{
-          flexDirection: flexDirection,
-          backgroundColor: colorBody,
-          borderRadius: radius,
-          paddingVertical: 14,
-          paddingHorizontal: 10,
-          height: height,
-          opacity: opacity,
-        }}>
+    <TouchableOpacity onPress={onPress}>
+      <View style={[styles.ButtonStyle, style]}>
         <IconType type={type} />
-        <Text style={[styles.buttontext, {color: colorText}]}>{value}</Text>
+        <Text style={[styles.buttonText, {color: colorText}]}>{value}</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  buttontext: {
+  buttonText: {
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  ButtonStyle: {
+    flexDirection: 'column',
+    backgroundColor: basicComponentsOne,
+    borderRadius: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 10,
+    opacity: 100,
   },
 });
 

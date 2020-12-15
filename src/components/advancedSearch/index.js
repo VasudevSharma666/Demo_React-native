@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import {Text, View, ScrollView} from 'react-native';
+import {Text, View, ScrollView, ToastAndroid} from 'react-native';
 import {TextInput} from 'react-native-gesture-handler';
 import PinIcon from 'react-native-vector-icons/Entypo';
 import {Picker} from '@react-native-community/picker';
@@ -85,25 +85,49 @@ const index = ({navigation}) => {
           <View style={styles.button}>
             <Button
               value="Open Now"
-              colorBody={buttonBackground}
               colorText={TextColor}
-              radius={20}
+              style={{backgroundColor: buttonBackground, borderRadius: 20}}
+              onPress={() =>
+                ToastAndroid.showWithGravityAndOffset(
+                  'Open now',
+                  ToastAndroid.SHORT,
+                  ToastAndroid.TOP,
+                  10,
+                  50,
+                )
+              }
             />
           </View>
           <Text style={[styles.status, {top: 20}]}>Rated As</Text>
           <View style={[styles.button, {flexDirection: 'row', top: '7%'}]}>
             <Button
               value="High to Low"
-              colorBody={buttonBackground}
               colorText={TextColor}
-              radius={20}
+              style={{backgroundColor: buttonBackground, borderRadius: 20}}
+              onPress={() =>
+                ToastAndroid.showWithGravityAndOffset(
+                  'High to low',
+                  ToastAndroid.SHORT,
+                  ToastAndroid.TOP,
+                  10,
+                  50,
+                )
+              }
             />
             <View style={{width: 10}} />
             <Button
               value="Low to High"
-              colorBody={buttonBackground}
               colorText={TextColor}
-              radius={20}
+              style={{backgroundColor: buttonBackground, borderRadius: 20}}
+              onPress={() =>
+                ToastAndroid.showWithGravityAndOffset(
+                  'low to High',
+                  ToastAndroid.SHORT,
+                  ToastAndroid.TOP,
+                  10,
+                  50,
+                )
+              }
             />
           </View>
           <TextInput
@@ -114,7 +138,18 @@ const index = ({navigation}) => {
         </ScrollView>
       </View>
       <View>
-        <Button value="search" />
+        <Button
+          value="search"
+          onPress={() =>
+            ToastAndroid.showWithGravityAndOffset(
+              'Searching...',
+              ToastAndroid.SHORT,
+              ToastAndroid.TOP,
+              10,
+              50,
+            )
+          }
+        />
       </View>
     </View>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Image} from 'react-native';
+import {Text, View, ToastAndroid, Image} from 'react-native';
 import {SliderBox} from 'react-native-image-slider-box';
 import PhoneIcon from 'react-native-vector-icons/Ionicons';
 import MailIcon from 'react-native-vector-icons/AntDesign';
@@ -40,27 +40,51 @@ const index = ({navigation}) => (
         <View style={styles.ButtonCss}>
           <Button
             value="Saved"
-            colorBody={inputPlaceHolder}
-            opacity={0.7}
             type="Saved"
             colorText={basicComponentsOne}
+            style={{backgroundColor: inputPlaceHolder, opacity: 0.7}}
+            onPress={() =>
+              ToastAndroid.showWithGravityAndOffset(
+                'Saved',
+                ToastAndroid.SHORT,
+                ToastAndroid.TOP,
+                10,
+                50,
+              )
+            }
           />
           <View style={{left: 10}}>
             <Button
               value="Report"
-              colorBody={inputPlaceHolder}
-              opacity={0.7}
               type="Alert"
               colorText={basicComponentsOne}
+              style={{backgroundColor: inputPlaceHolder, opacity: 0.7}}
+              onPress={() =>
+                ToastAndroid.showWithGravityAndOffset(
+                  'Report',
+                  ToastAndroid.SHORT,
+                  ToastAndroid.TOP,
+                  10,
+                  50,
+                )
+              }
             />
           </View>
           <View style={{left: 20}}>
             <Button
               value="Claim "
-              colorBody={inputPlaceHolder}
-              opacity={0.7}
               type="shield"
               colorText={basicComponentsOne}
+              style={{backgroundColor: inputPlaceHolder, opacity: 0.7}}
+              onPress={() =>
+                ToastAndroid.showWithGravityAndOffset(
+                  'Claim',
+                  ToastAndroid.SHORT,
+                  ToastAndroid.TOP,
+                  10,
+                  50,
+                )
+              }
             />
           </View>
         </View>

@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Animated,
   FlatList,
+  ToastAndroid,
 } from 'react-native';
 
 import Button from '../commonComponents/Button';
@@ -54,95 +55,107 @@ const index = ({navigation}) => {
   return (
     <>
       <Header Title="Home" navigation={navigation} />
-      <Animated.View
-        style={[
-          {transform: [{translateY: translate_Y}]},
-          {
-            height: 190,
-            backgroundColor: basicComponentsTwo,
-            position: 'absolute',
-            top: 50,
-            left: 0,
-            right: 0,
-            elevation: 2,
-          },
-        ]}>
-        <View style={styles.backgroundBox}>
-          <View style={styles.searchBox}>
-            <SearchBox
-              value={state.searchBox}
-              handlerState={(value) =>
-                dispatch({type: 'searchBox', value: value})
-              }
-            />
-          </View>
-        </View>
-        <View style={styles.ButtonSection}>
-          <View style={styles.ButtonWidth}>
-            <Button
-              value="Filter"
-              type="filter"
-              colorBody={TextColor}
-              flexDirection="row"
-              radius={0}
-            />
-          </View>
-          <View style={styles.ButtonWidth}>
-            <Button
-              value="Sort"
-              type="sort"
-              colorBody={TextColor}
-              flexDirection="row"
-              radius={0}
-            />
-          </View>
-          <View style={styles.ButtonWidth}>
-            <Button
-              value="Reset"
-              type="reset"
-              colorBody="black"
-              flexDirection="row"
-              radius={0}
-            />
-          </View>
-        </View>
-        <Text style={styles.textResult}>{state.json.length}Result found</Text>
-      </Animated.View>
-      {/* <ScrollView
+      <ScrollView
         showsVerticalScrollIndicator={false}
         onScroll={(e) => {
           scroll_Y.setValue(e.nativeEvent.contentOffset.y);
         }}
-        //contentContainerStyle={{marginTop: 190}}
         style={{backgroundColor: '#D8D8D8'}}>
-        {state.json.length == 0 ? (
-          <ActivityIndicator size="large" color="red" />
-        ) : (
-          state.json.map((json, index) => (
-            <View key={index}>
-              <PostsContainer json={json} />
+        <Animated.View
+          style={[
+            {transform: [{translateY: translate_Y}]},
+            {
+              height: 190,
+              backgroundColor: basicComponentsTwo,
+              elevation: 2,
+            },
+          ]}>
+          <View style={styles.backgroundBox}>
+            <View style={styles.searchBox}>
+              <SearchBox
+                value={state.searchBox}
+                handlerState={(value) =>
+                  dispatch({type: 'searchBox', value: value})
+                }
+              />
             </View>
-          ))
-        )}
-      </ScrollView> */}
-      <View style={{width: '90%', alignSelf: 'center'}}>
-        <FlatList
-          data={state.json}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({item}) =>
-            item.length != 0 ? (
-              <PostsContainer json={item} />
-            ) : (
-              <ActivityIndicator size="large" color={basicComponentsOne} />
-            )
-          }
-          onScroll={(e) => {
-            scroll_Y.setValue(e.nativeEvent.contentOffset.y);
-          }}
-          contentContainerStyle={{marginTop: 190}}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+          </View>
+          <View style={styles.ButtonSection}>
+            <View style={styles.ButtonWidth}>
+              <Button
+                value="Filter"
+                type="filter"
+                style={{
+                  backgroundColor: TextColor,
+                  borderRadius: 0,
+                  flexDirection: 'row',
+                }}
+                onPress={() =>
+                  ToastAndroid.showWithGravityAndOffset(
+                    'Filtering...',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    10,
+                    50,
+                  )
+                }
+              />
+            </View>
+            <View style={styles.ButtonWidth}>
+              <Button
+                value="Sort"
+                type="sort"
+                style={{
+                  backgroundColor: TextColor,
+                  borderRadius: 0,
+                  flexDirection: 'row',
+                }}
+                onPress={() =>
+                  ToastAndroid.showWithGravityAndOffset(
+                    'Sorting...',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    10,
+                    50,
+                  )
+                }
+              />
+            </View>
+            <View style={styles.ButtonWidth}>
+              <Button
+                value="Reset"
+                type="reset"
+                style={{
+                  backgroundColor: TextColor,
+                  borderRadius: 0,
+                  flexDirection: 'row',
+                }}
+                onPress={() =>
+                  ToastAndroid.showWithGravityAndOffset(
+                    'Reset...',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    10,
+                    50,
+                  )
+                }
+              />
+            </View>
+          </View>
+          <Text style={styles.textResult}>{state.json.length}Result found</Text>
+        </Animated.View>
+        <View style={{width: '90%', alignSelf: 'center'}}>
+          {state.json.length == 0 ? (
+            <ActivityIndicator size="large" color="red" />
+          ) : (
+            state.json.map((json, index) => (
+              <View key={index}>
+                <PostsContainer json={json} />
+              </View>
+            ))
+          )}
+        </View>
+      </ScrollView>
     </>
   );
 };

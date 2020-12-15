@@ -1,5 +1,11 @@
 import React, {useReducer} from 'react';
-import {Text, View, TouchableOpacity, Alert, ToastAndroid} from 'react-native';
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  Linking,
+  ToastAndroid,
+} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
@@ -125,16 +131,16 @@ const Index = ({navigation}) => {
           <View style={styles.facebook}>
             <Button
               value="Facebook"
-              colorBody={facebookIcon}
-              url="https://www.facebook.com/"
+              style={{backgroundColor: facebookIcon}}
+              onPress={() => Linking.openURL('https://www.facebook.com/')}
             />
           </View>
           <Text style={styles.OR}>OR</Text>
           <View style={styles.Google}>
             <Button
               value="Google"
-              colorBody={googleIcon}
-              url="https://www.google.com/"
+              style={{backgroundColor: googleIcon}}
+              onPress={() => Linking.openURL('https://www.google.com/')}
             />
           </View>
         </View>

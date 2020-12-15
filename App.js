@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 const App = () => {
   const token = useSelector((state) => state.login);
   useEffect(() => {
-    setTimeout(() => SplashScreen.hide(), 3000);
+    SplashScreen.hide();
   }, []);
   return (
     <NavigationContainer>

@@ -8,11 +8,8 @@ import {
   TextColor,
 } from '../../constants/color';
 
-const TagCard = ({TextData, Icon, navigation, page = null}) => (
-  <TouchableOpacity
-    onPress={() =>
-      page != null ? navigation.navigate(page) : Alert.alert(TextData)
-    }>
+const TagCard = ({TextData, Icon, onPress}) => (
+  <TouchableOpacity onPress={onPress} style={styles.Container}>
     <View style={styles.tag}>
       <IconImport name={Icon} size={30} color={basicComponentsOne} />
       <Text>{TextData}</Text>
@@ -32,6 +29,9 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     borderColor: TextColor,
     borderWidth: 0.2,
+  },
+  Container: {
+    marginLeft: 5,
   },
 });
 

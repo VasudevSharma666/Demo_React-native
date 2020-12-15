@@ -9,12 +9,15 @@ export const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   name: {
+    top: 10,
     fontSize: 25,
     fontWeight: 'bold',
     alignSelf: 'center',
+    elevation: 1,
   },
   Icon: {
     alignItems: 'center',
+    top: 10,
   },
   Labels: {
     flexDirection: 'row',
@@ -31,7 +34,7 @@ export const styles = StyleSheet.create({
   },
 
   tagBackground: {
-    height: 400,
+    height: 370,
     flexDirection: 'column',
     backgroundColor: basicComponentsTwo,
   },

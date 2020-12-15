@@ -5,23 +5,20 @@ import {TagDemo} from '../../constants/image';
 import {LiteText} from '../../constants/color';
 
 const PostsCard = ({json}) => (
-  <>
-    <Text> </Text>
-    <View style={styles.Container}>
-      <Image source={TagDemo} style={styles.Image} />
-      <View style={styles.text1}>
-        <Text style={{color: LiteText}}>ID {json.id}</Text>
-      </View>
-      <View style={styles.text2}>
-        <Text style={{fontWeight: 'bold'}} numberOfLines={3}>
-          {json.title}
-        </Text>
-      </View>
-      <View style={styles.text3}>
-        <Text style={{color: LiteText}}>UserID {json.userId} </Text>
-      </View>
+  <View style={styles.Container}>
+    <Image source={TagDemo} style={styles.Image} />
+    <View style={styles.text1}>
+      <Text style={{color: LiteText}}>ID {json.id}</Text>
     </View>
-  </>
+    <View style={styles.text2}>
+      <Text style={{fontWeight: 'bold'}} numberOfLines={3}>
+        {json.title}
+      </Text>
+    </View>
+    <View style={styles.text3}>
+      <Text style={{color: LiteText}}>UserID {json.userId} </Text>
+    </View>
+  </View>
 );
 
 const styles = StyleSheet.create({
@@ -29,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     borderRadius: 5,
-    marginBottom: '3%',
+    marginBottom: '7%',
   },
   Image: {
     width: 170,

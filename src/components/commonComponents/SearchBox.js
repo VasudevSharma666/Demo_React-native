@@ -9,12 +9,8 @@ import {
   basicComponentsOne,
 } from '../../constants/color';
 
-const SearchBox = ({
-  backgroundColor = {basicComponentsOne},
-  value,
-  handlerState,
-}) => (
-  <View style={{backgroundColor: backgroundColor, width: '100%'}}>
+const SearchBox = ({value, handlerState, style}) => (
+  <View style={[styles.Container, style]}>
     <View style={styles.Search}>
       <TextInput
         placeholder="What are you looking for..."
@@ -22,6 +18,7 @@ const SearchBox = ({
         value={value}
         onChangeText={(val) => handlerState(val)}
         style={styles.InputBox}
+        autoCapitalize="none"
       />
       <Search name="search1" size={20} style={styles.searchIcon} />
     </View>
@@ -29,6 +26,10 @@ const SearchBox = ({
 );
 
 const styles = StyleSheet.create({
+  Container: {
+    width: '100%',
+    backgroundColor: basicComponentsOne,
+  },
   Search: {
     flexDirection: 'row',
     backgroundColor: basicComponentsTwo,

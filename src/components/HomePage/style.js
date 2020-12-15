@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {basicComponentsOne} from '../../constants/color';
+import {basicComponentsOne, LiteText} from '../../constants/color';
 export const styles = StyleSheet.create({
   HomeBackground: {
     width: '100%',
@@ -35,21 +35,29 @@ export const styles = StyleSheet.create({
     left: 25,
   },
   LatestTitle: {
-    position: 'absolute',
-    top: 380,
-    left: 20,
+    left: '40%',
     fontSize: 20,
     fontWeight: 'bold',
   },
   ViewAllButton: {
-    position: 'absolute',
-    top: 370,
-    right: 20,
+    right: '15%',
+    top: '-3%',
   },
   ButtonBack: {
     width: 70,
     position: 'absolute',
     bottom: '5%',
     left: '70%',
+  },
+  TagContainer: {
+    width: '90%',
+    alignSelf: 'center',
+  },
+  MainContainer: {
+    backgroundColor: '#e3e3e3',
+    elevation: 2,
+    width: '100%',
+    height: 430,
+    marginBottom: 10,
   },
 });

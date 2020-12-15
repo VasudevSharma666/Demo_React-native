@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   ScrollView,
   ImageBackground,
+  ToastAndroid,
 } from 'react-native';
 
 import Header from '../commonComponents/authenticComponentHeader';
@@ -14,9 +15,10 @@ import Search from '../commonComponents/SearchBox';
 import ButtonWithIcon from '../commonComponents/TagCard';
 import Button from '../commonComponents/Button';
 import PostsContainer from '../commonComponents/PostsCard';
-import {BaseUrl} from '../../utils/Urls';
+import {Api} from '../../store/api/operation';
 import {styles} from './style';
-import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+import {basicComponentsOne, transparent} from '../../constants/color';
+import {useDispatch, useSelector} from 'react-redux';
 
 const initialState = {
   json: [],
@@ -42,23 +44,22 @@ const reducer = (state, action) => {
 };
 const index = ({navigation}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  const dispatchRedux = useDispatch();
+  const ApiData = useSelector((state) => state.Api);
   useEffect(() => {
-    fetch(BaseUrl + '/albums')
-      .then((response) => response.json())
-      .then((json) => dispatch({type: 'json', value: json}))
-      .catch((err) => Alert.alert('something is wrong' + err));
+    dispatchRedux(Api('/albums', 'home'));
   }, []);
+  useEffect(() => {
+    dispatch({type: 'json', value: ApiData.json.homepage});
+  }, [ApiData.json.homepage]);
 
   const ReturnBackScroll = () => {
     return (
       <View style={styles.ButtonBack}>
         <Button
           type="backScroll"
-          colorBody={basicComponentsOne}
-          setScroll={state.scroll_To}
-          height={50}
-          radius={60}
+          onPress={() => state.scroll_To.scrollTo({x: 0, y: 0, animated: true})}
+          style={{borderRadius: 60, height: 50}}
         />
       </View>
     );
@@ -67,7 +68,6 @@ const index = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <Header Title="Home" navigation={navigation} />
-
       <ScrollView
         showsVerticalScrollIndicator={false}
         ref={(c) => dispatch({type: 'scrollTo', value: c})}
@@ -79,14 +79,7 @@ const index = ({navigation}) => {
             dispatch({type: 'backToUp', value: true});
           }
         }}>
-        <View
-          style={[
-            {
-              top: -20,
-              height: 430,
-              width: '100%',
-            },
-          ]}>
+        <View style={styles.MainContainer}>
           <ImageBackground
             source={HomeBackground}
             style={styles.HomeBackground}
@@ -97,6 +90,7 @@ const index = ({navigation}) => {
             resizeMode="cover"
             blurRadius={2}
           />
+
           <Text style={styles.FirstText}>Find Nearby Attractions</Text>
           <Text style={styles.SecondText}>
             let's discover the best place to eat drink and shop nearest to you
@@ -107,39 +101,88 @@ const index = ({navigation}) => {
               handlerState={(value) =>
                 dispatch({type: 'searchBox', value: value})
               }
+              style={{backgroundColor: transparent}}
             />
           </View>
           <View style={styles.ButtonWithIcone}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <ButtonWithIcon Icon="car" TextData="Automotive" />
-              <Text> </Text>
-              <ButtonWithIcon Icon="clockcircleo" TextData="Service" />
-              <Text> </Text>
-              <ButtonWithIcon Icon="woman" TextData="Beauty" />
-              <Text> </Text>
+              <ButtonWithIcon
+                Icon="car"
+                TextData="Automotive"
+                onPress={() =>
+                  ToastAndroid.showWithGravityAndOffset(
+                    'Automotive',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    10,
+                    50,
+                  )
+                }
+              />
+              <ButtonWithIcon
+                Icon="clockcircleo"
+                TextData="Service"
+                onPress={() =>
+                  ToastAndroid.showWithGravityAndOffset(
+                    'server',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    10,
+                    50,
+                  )
+                }
+              />
+              <ButtonWithIcon
+                Icon="woman"
+                TextData="Beauty"
+                onPress={() =>
+                  ToastAndroid.showWithGravityAndOffset(
+                    'Beauty',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    10,
+                    50,
+                  )
+                }
+              />
               <ButtonWithIcon
                 Icon="pluscircle"
                 TextData="Hospital"
-                navigation={navigation}
-                page="Health"
+                onPress={() => navigation.navigate('Health')}
               />
-              <Text> </Text>
-              <ButtonWithIcon Icon="customerservice" TextData="Service" />
+              <ButtonWithIcon
+                Icon="customerservice"
+                TextData="Service"
+                onPress={() =>
+                  ToastAndroid.showWithGravityAndOffset(
+                    'server',
+                    ToastAndroid.SHORT,
+                    ToastAndroid.TOP,
+                    10,
+                    50,
+                  )
+                }
+              />
               <View style={{width: 50}} />
             </ScrollView>
           </View>
-          <Text style={styles.LatestTitle}>Latest Listings</Text>
-          <View style={styles.ViewAllButton}>
-            <Button
-              value="View All"
-              colorBody={basicComponentsOne}
-              radius={3}
-              navigation={navigation}
-              page="Filter search"
-            />
+          <View
+            style={{
+              flexDirection: 'row',
+              width: '100%',
+              justifyContent: 'space-between',
+            }}>
+            <Text style={styles.LatestTitle}>Latest Listings</Text>
+            <View style={styles.ViewAllButton}>
+              <Button
+                value="View All"
+                style={{borderRadius: 3}}
+                onPress={() => navigation.navigate('Filter search')}
+              />
+            </View>
           </View>
         </View>
-        <View style={{width: '90%', alignSelf: 'center'}}>
+        <View style={styles.TagContainer}>
           {state.json.length == 0 ? (
             <ActivityIndicator size="large" color={basicComponentsOne} />
           ) : (
