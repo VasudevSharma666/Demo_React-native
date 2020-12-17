@@ -1,11 +1,5 @@
-import React, {useReducer} from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Linking,
-  ToastAndroid,
-} from 'react-native';
+import React, {useState} from 'react';
+import {Text, View, Linking, ToastAndroid} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
@@ -14,73 +8,40 @@ import InputText from '../commonComponents/InputTextFiled';
 import Button from '../commonComponents/Button';
 import UnauthorizedComponentHeader from '../commonComponents/unauthorizedComponentHeader';
 import {styles} from './style';
-import {setName, setEmail, setpassword} from '../../store/signin/action';
+import {set_user} from '../../store/signin/action';
 import {reg} from '../../constants/emailChecker';
 import BackgroundImag from '../commonComponents/BackgroundImag';
+import mainStyle from '../commonComponents/mainStyle';
 import {facebookIcon, googleIcon} from '../../constants/color';
-
-const initialState = {
-  name: '',
-  email: '',
-  password: '',
-};
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'email': {
-      return {...state, email: action.value};
-    }
-    case 'password': {
-      return {...state, password: action.value};
-    }
-    case 'name': {
-      return {...state, name: action.value};
-    }
-  }
-};
+import Toaster from '../commonComponents/Toaster';
 
 const Index = ({navigation}) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
   const dispatchProps = useDispatch();
 
-  const Dispatch = (value, type) => {
-    if (type == 'name') {
-      dispatch({type: 'name', value: value});
-    } else if (type == 'email') {
-      dispatch({type: 'email', value: value});
-    } else {
-      dispatch({type: 'password', value: value});
-    }
+  const Dispatch = (type, value) => {
+    setUserData({
+      ...userData,
+      [type]: value,
+    });
   };
 
   const Checker = () => {
-    if (state.name.trim() == '') {
-      return ToastAndroid.showWithGravityAndOffset(
-        `Enter name first`,
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-        10,
-        50,
-      );
-    } else if (state.email.trim() == '' || reg.test(state.email) === false) {
-      return ToastAndroid.showWithGravityAndOffset(
-        `Enter email`,
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-        10,
-        50,
-      );
-    } else if (state.password.trim() == '') {
-      return ToastAndroid.showWithGravityAndOffset(
-        `Enter password`,
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-        10,
-        50,
-      );
+    if (userData.name.trim() == '') {
+      return Toaster('Enter name');
+    } else if (
+      userData.email.trim() == '' ||
+      reg.test(userData.email) === false
+    ) {
+      return Toaster('please enter email properly');
+    } else if (userData.password.trim() == '') {
+      return Toaster('Enter password');
     } else {
-      dispatchProps(setName(state.name));
-      dispatchProps(setEmail(state.email));
-      dispatchProps(setpassword(state.password));
+      dispatchProps(set_user(userData));
       return navigation.navigate('Login');
     }
   };
@@ -89,45 +50,40 @@ const Index = ({navigation}) => {
     <>
       <BackgroundImag />
       <UnauthorizedComponentHeader value="SignIn" navigation={navigation} />
-
       <Common />
-      <KeyboardAwareScrollView style={{flex: 1}}>
-        <View style={styles.name}>
+      <KeyboardAwareScrollView
+        style={[mainStyle.KeyBoardScrollView, styles.keyBoard]}>
+        <View style={mainStyle.input}>
           <InputText
             Title="name"
             Icon="user"
-            handleState={(value) => Dispatch(value, (type = 'name'))}
+            value={userData.name}
+            handleState={(value) => Dispatch('name', value)}
           />
         </View>
-        <View style={styles.email}>
+        <View style={mainStyle.input}>
           <InputText
             Title="email"
             Icon="mail"
-            handleState={(value) => Dispatch(value, (type = 'email'))}
+            value={userData.email}
+            handleState={(value) => Dispatch('email', value)}
           />
         </View>
-        <View style={styles.firstPassword}>
+        <View style={mainStyle.input}>
           <InputText
             Title="password"
             Icon="lock"
-            show={true}
-            handleState={(value) => Dispatch(value, (type = 'password'))}
+            hide={true}
+            value={userData.password}
+            handleState={(value) => Dispatch('password', value)}
           />
         </View>
-
-        <View style={styles.SignIn}>
-          <TouchableOpacity onPress={Checker}>
-            <View style={styles.buttonSingIn}>
-              <Text style={styles.buttontext}>SignIn</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            flex: 3,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
+        <Button
+          value="SignUp"
+          style={mainStyle.unauthButton}
+          onPress={() => Checker()}
+        />
+        <View style={styles.LinkButton}>
           <View style={styles.facebook}>
             <Button
               value="Facebook"

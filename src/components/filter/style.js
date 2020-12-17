@@ -1,5 +1,10 @@
 import {StyleSheet} from 'react-native';
-import {basicComponentsOne, transparent} from '../../constants/color';
+import {
+  basicComponentsOne,
+  transparent,
+  basicComponentsTwo,
+  TextColor,
+} from '../../constants/color';
 export const styles = StyleSheet.create({
   backgroundBox: {
     justifyContent: 'center',
@@ -24,5 +29,17 @@ export const styles = StyleSheet.create({
     left: 20,
     top: 10,
     fontSize: 20,
+  },
+  SectionContainer: {
+    height: 190,
+    backgroundColor: basicComponentsTwo,
+    elevation: 2,
+    marginBottom: 10,
+  },
+  ButtonStyle: {
+    backgroundColor: TextColor,
+    borderRadius: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
   },
 });

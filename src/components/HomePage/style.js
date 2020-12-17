@@ -9,10 +9,8 @@ export const styles = StyleSheet.create({
     top: -160,
     alignSelf: 'center',
     color: basicComponentsOne,
-    fontFamily: 'lucida grande',
     fontStyle: 'italic',
     fontSize: 20,
-    fontWeight: 'bold',
     elevation: 2,
   },
   SecondText: {
@@ -22,7 +20,6 @@ export const styles = StyleSheet.create({
     fontFamily: 'lucida grande',
     fontStyle: 'italic',
     fontSize: 8,
-    fontWeight: 'bold',
   },
   Search: {
     top: -150,
@@ -35,12 +32,11 @@ export const styles = StyleSheet.create({
     left: 25,
   },
   LatestTitle: {
-    left: '40%',
+    marginLeft: 15,
     fontSize: 20,
-    fontWeight: 'bold',
   },
   ViewAllButton: {
-    right: '15%',
+    marginRight: 20,
     top: '-3%',
   },
   ButtonBack: {
@@ -49,15 +45,21 @@ export const styles = StyleSheet.create({
     bottom: '5%',
     left: '70%',
   },
-  TagContainer: {
-    width: '90%',
-    alignSelf: 'center',
-  },
+
   MainContainer: {
     backgroundColor: '#e3e3e3',
     elevation: 2,
     width: '100%',
     height: 430,
     marginBottom: 10,
+  },
+  ImageStyle: {
+    borderBottomLeftRadius: 100,
+    borderBottomRightRadius: 100,
+  },
+  LastLine: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
   },
 });

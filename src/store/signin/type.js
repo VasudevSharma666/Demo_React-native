@@ -1,4 +1,2 @@
-export const name = 'USER_NAME';
-export const email = 'EMAIL';
-export const password = 'PASSWORD';
+export const user = 'USER_DATA';
 export const logout = 'LOGOUT';

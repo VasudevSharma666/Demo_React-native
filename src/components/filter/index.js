@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -6,77 +6,51 @@ import {
   ActivityIndicator,
   Animated,
   FlatList,
-  ToastAndroid,
 } from 'react-native';
 
+import Toaster from '../commonComponents/Toaster';
 import Button from '../commonComponents/Button';
 import Header from '../commonComponents/authenticComponentHeader';
 import SearchBox from '../commonComponents/SearchBox';
 import PostsContainer from '../commonComponents/PostsCard';
-import {BaseUrl} from '../../utils/Urls';
+import {Api} from '../../store/api/operation';
 import {styles} from './style';
-import {
-  basicComponentsOne,
-  basicComponentsTwo,
-  TextColor,
-} from '../../constants/color';
+import {buttonBackground} from '../../constants/color';
+import mainStyle from '../commonComponents/mainStyle';
+import {useDispatch, useSelector} from 'react-redux';
 
-const initialState = {
-  json: [],
-  searchBox: '',
-};
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'json': {
-      return {...state, json: action.value};
-    }
-    case 'searchBox': {
-      return {...state, searchBox: action.value};
-    }
-    default: {
-      return {...state};
-    }
-  }
-};
 const index = ({navigation}) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const scroll_Y = new Animated.Value(0);
-  const diffClamp = Animated.diffClamp(scroll_Y, 0, 190);
-  const translate_Y = diffClamp.interpolate({
-    inputRange: [0, 190],
-    outputRange: [0, -190],
+  const dispatch = useDispatch();
+  const ApiData = useSelector((state) => state.Api);
+  const [Data, setData] = useState({
+    json: [],
+    searchBox: '',
   });
+  const DispatchData = (type, value) => {
+    setData({
+      ...Data,
+      [type]: value,
+    });
+  };
+
   useEffect(() => {
-    fetch(BaseUrl + '/posts?userId=1')
-      .then((response) => response.json())
-      .then((json) => dispatch({type: 'json', value: json}))
-      .catch((err) => Alert.alert('something is wrong' + err));
+    dispatch(Api('/albums?userId=2', 'filter'));
   }, []);
+  useEffect(() => {
+    DispatchData('json', ApiData.json.filter);
+  }, [ApiData.json.filter]);
   return (
     <>
       <Header Title="Home" navigation={navigation} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        onScroll={(e) => {
-          scroll_Y.setValue(e.nativeEvent.contentOffset.y);
-        }}
-        style={{backgroundColor: '#D8D8D8'}}>
-        <Animated.View
-          style={[
-            {transform: [{translateY: translate_Y}]},
-            {
-              height: 190,
-              backgroundColor: basicComponentsTwo,
-              elevation: 2,
-            },
-          ]}>
+        style={{backgroundColor: buttonBackground}}>
+        <Animated.View style={[styles.SectionContainer]}>
           <View style={styles.backgroundBox}>
             <View style={styles.searchBox}>
               <SearchBox
-                value={state.searchBox}
-                handlerState={(value) =>
-                  dispatch({type: 'searchBox', value: value})
-                }
+                value={Data.searchBox}
+                handlerState={(value) => DispatchData('searchBox', value)}
               />
             </View>
           </View>
@@ -85,70 +59,34 @@ const index = ({navigation}) => {
               <Button
                 value="Filter"
                 type="filter"
-                style={{
-                  backgroundColor: TextColor,
-                  borderRadius: 0,
-                  flexDirection: 'row',
-                }}
-                onPress={() =>
-                  ToastAndroid.showWithGravityAndOffset(
-                    'Filtering...',
-                    ToastAndroid.SHORT,
-                    ToastAndroid.TOP,
-                    10,
-                    50,
-                  )
-                }
+                style={styles.ButtonStyle}
+                onPress={() => Toaster('Filter')}
               />
             </View>
             <View style={styles.ButtonWidth}>
               <Button
                 value="Sort"
                 type="sort"
-                style={{
-                  backgroundColor: TextColor,
-                  borderRadius: 0,
-                  flexDirection: 'row',
-                }}
-                onPress={() =>
-                  ToastAndroid.showWithGravityAndOffset(
-                    'Sorting...',
-                    ToastAndroid.SHORT,
-                    ToastAndroid.TOP,
-                    10,
-                    50,
-                  )
-                }
+                style={styles.ButtonStyle}
+                onPress={() => Toaster('Sort')}
               />
             </View>
             <View style={styles.ButtonWidth}>
               <Button
                 value="Reset"
                 type="reset"
-                style={{
-                  backgroundColor: TextColor,
-                  borderRadius: 0,
-                  flexDirection: 'row',
-                }}
-                onPress={() =>
-                  ToastAndroid.showWithGravityAndOffset(
-                    'Reset...',
-                    ToastAndroid.SHORT,
-                    ToastAndroid.TOP,
-                    10,
-                    50,
-                  )
-                }
+                style={styles.ButtonStyle}
+                onPress={() => Toaster('Reset')}
               />
             </View>
           </View>
-          <Text style={styles.textResult}>{state.json.length}Result found</Text>
+          <Text style={styles.textResult}>{Data.json.length}Result found</Text>
         </Animated.View>
-        <View style={{width: '90%', alignSelf: 'center'}}>
-          {state.json.length == 0 ? (
+        <View style={mainStyle.PostsContainer}>
+          {Data.json.length == 0 ? (
             <ActivityIndicator size="large" color="red" />
           ) : (
-            state.json.map((json, index) => (
+            Data.json.map((json, index) => (
               <View key={index}>
                 <PostsContainer json={json} />
               </View>

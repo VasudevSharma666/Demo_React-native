@@ -1,67 +1,44 @@
-import React, {useReducer} from 'react';
-import {View, Text, Alert, TouchableOpacity, ToastAndroid} from 'react-native';
+import React, {useState} from 'react';
+import {View, Alert, ToastAndroid} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import {styles} from './style';
 import Common from '../commonComponents/startingBackground';
 import HeaderOfNotLogin from '../commonComponents/unauthorizedComponentHeader';
 import InputText from '../commonComponents/InputTextFiled';
 import {tokenMethod} from '../../store/login/action';
 import {reg} from '../../constants/emailChecker';
 import BackgroundImag from '../commonComponents/BackgroundImag';
-
-const initialState = {
-  email: '',
-  password: '',
-};
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'email': {
-      return {...state, email: action.value};
-    }
-    case 'password': {
-      return {...state, password: action.value};
-    }
-  }
-};
+import Button from '../commonComponents/Button';
+import mainStyle from '../commonComponents/mainStyle';
+import Toaster from '../commonComponents/Toaster';
 
 const index = ({navigation}) => {
   const signinData = useSelector((state) => state.signin);
   const dispatchProps = useDispatch();
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const Dispatch = (value, type) => {
-    if (type == 'email') {
-      dispatch({type: 'email', value: value});
-    } else {
-      dispatch({type: 'password', value: value});
-    }
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: '',
+  });
+  const Dispatch = (type, value) => {
+    setLoginData({
+      ...loginData,
+      [type]: value,
+    });
   };
 
   const Checker = () => {
-    if (state.email.trim() == '' || reg.test(state.email) === false) {
-      return ToastAndroid.showWithGravityAndOffset(
-        `Enter email `,
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-        10,
-        50,
-      );
-    } else if (state.password.trim() == '') {
-      return ToastAndroid.showWithGravityAndOffset(
-        `Enter password`,
-        ToastAndroid.SHORT,
-        ToastAndroid.TOP,
-        10,
-        50,
-      );
+    if (loginData.email.trim() == '' || reg.test(loginData.email) === false) {
+      return Toaster('please enter email properly');
+    } else if (loginData.password.trim() == '') {
+      return Toaster('Enter Password');
     } else {
       if (
-        state.email == signinData.userData.email &&
-        state.password == signinData.userData.password
+        loginData.email == signinData.userData.email &&
+        loginData.password == signinData.userData.password
       ) {
         dispatchProps(tokenMethod('token'));
-        return navigation.navigate('Home');
+        return Toaster('successful');
       } else {
         return Alert.alert('Invalid email and password');
       }
@@ -72,31 +49,29 @@ const index = ({navigation}) => {
       <BackgroundImag />
       <HeaderOfNotLogin value="Login" navigation={navigation} />
       <Common />
-      <KeyboardAwareScrollView style={{flex: 1, top: '10%'}}>
-        <View style={styles.Username}>
+      <KeyboardAwareScrollView style={mainStyle.KeyBoardScrollView}>
+        <View style={mainStyle.input}>
           <InputText
             Icon="mail"
             Title="email"
-            props={state.email}
-            handleState={(value) => Dispatch(value, (type = 'email'))}
+            value={loginData.email}
+            handleState={(value) => Dispatch('email', value)}
           />
         </View>
-        <View style={styles.Password}>
+        <View style={mainStyle.input}>
           <InputText
             Icon="lock"
             Title="password"
-            show={true}
-            props={state.password}
-            handleState={(value) => Dispatch(value, (type = 'password'))}
+            hide={true}
+            value={loginData.Password}
+            handleState={(value) => Dispatch('password', value)}
           />
         </View>
-        <View style={styles.button}>
-          <TouchableOpacity onPress={Checker}>
-            <View style={styles.buttonSingIn}>
-              <Text style={styles.buttontext}>Log In</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
+        <Button
+          value="Log-in"
+          style={mainStyle.unauthButton}
+          onPress={() => Checker()}
+        />
       </KeyboardAwareScrollView>
     </>
   );

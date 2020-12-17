@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     top: '-6%',
     color: pinIcon,
     elevation: 10,
+    fontSize: 30,
   },
   formArea: {
     flex: 1,
@@ -32,5 +33,9 @@ export const styles = StyleSheet.create({
     width: '30%',
     top: 10,
     height: '10%',
+  },
+  OtherButtonStyle: {
+    flexDirection: 'row',
+    top: '7%',
   },
 });

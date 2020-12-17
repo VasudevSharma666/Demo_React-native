@@ -1,12 +1,11 @@
-import React, {useEffect, useReducer} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  Alert,
   ActivityIndicator,
   ScrollView,
   ImageBackground,
-  ToastAndroid,
+  Animated,
 } from 'react-native';
 
 import Header from '../commonComponents/authenticComponentHeader';
@@ -19,38 +18,29 @@ import {Api} from '../../store/api/operation';
 import {styles} from './style';
 import {basicComponentsOne, transparent} from '../../constants/color';
 import {useDispatch, useSelector} from 'react-redux';
+import Toaster from '../commonComponents/Toaster';
+import mainStyle from '../commonComponents/mainStyle';
 
-const initialState = {
-  json: [],
-  searchBox: '',
-  backToUp: false,
-  scroll_To: 0,
-};
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'json': {
-      return {...state, json: action.value};
-    }
-    case 'searchBox': {
-      return {...state, searchBox: action.value};
-    }
-    case 'backToUp': {
-      return {...state, backToUp: action.value};
-    }
-    case 'scrollTo': {
-      return {...state, scroll_To: action.value};
-    }
-  }
-};
 const index = ({navigation}) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [Data, setData] = useState({
+    json: [],
+    searchBox: '',
+    backToUp: false,
+    scroll_To: 0,
+  });
+  const DispatchData = (type, value) => {
+    setData({
+      ...Data,
+      [type]: value,
+    });
+  };
   const dispatchRedux = useDispatch();
   const ApiData = useSelector((state) => state.Api);
   useEffect(() => {
     dispatchRedux(Api('/albums', 'home'));
   }, []);
   useEffect(() => {
-    dispatch({type: 'json', value: ApiData.json.homepage});
+    DispatchData('json', ApiData.json.homepage);
   }, [ApiData.json.homepage]);
 
   const ReturnBackScroll = () => {
@@ -58,49 +48,46 @@ const index = ({navigation}) => {
       <View style={styles.ButtonBack}>
         <Button
           type="backScroll"
-          onPress={() => state.scroll_To.scrollTo({x: 0, y: 0, animated: true})}
+          onPress={() => Data.scroll_To.scrollTo({x: 0, y: 0, animated: true})}
           style={{borderRadius: 60, height: 50}}
         />
       </View>
     );
   };
-
   return (
-    <View style={{flex: 1}}>
+    <>
       <Header Title="Home" navigation={navigation} />
-      <ScrollView
+      <Animated.ScrollView
         showsVerticalScrollIndicator={false}
-        ref={(c) => dispatch({type: 'scrollTo', value: c})}
+        ref={(c) => {
+          setData({...Data, scroll_To: c});
+        }}
         bounces={false}
         onScroll={(e) => {
           if (e.nativeEvent.contentOffset.y <= 30) {
-            dispatch({type: 'backToUp', value: false});
+            DispatchData('backToUp', false);
           } else {
-            dispatch({type: 'backToUp', value: true});
+            DispatchData('backToUp', true);
           }
         }}>
         <View style={styles.MainContainer}>
           <ImageBackground
             source={HomeBackground}
             style={styles.HomeBackground}
-            imageStyle={{
-              borderBottomLeftRadius: 100,
-              borderBottomRightRadius: 100,
-            }}
+            imageStyle={styles.ImageStyle}
             resizeMode="cover"
             blurRadius={2}
           />
-
-          <Text style={styles.FirstText}>Find Nearby Attractions</Text>
-          <Text style={styles.SecondText}>
+          <Text style={[styles.FirstText, mainStyle.TextBold]}>
+            Find Nearby Attractions
+          </Text>
+          <Text style={[styles.SecondText, mainStyle.TextBold]}>
             let's discover the best place to eat drink and shop nearest to you
           </Text>
           <View style={styles.Search}>
             <Search
-              value={state.searchBox}
-              handlerState={(value) =>
-                dispatch({type: 'searchBox', value: value})
-              }
+              value={Data.searchBox}
+              handlerState={(value) => DispatchData('searchBox', value)}
               style={{backgroundColor: transparent}}
             />
           </View>
@@ -109,41 +96,17 @@ const index = ({navigation}) => {
               <ButtonWithIcon
                 Icon="car"
                 TextData="Automotive"
-                onPress={() =>
-                  ToastAndroid.showWithGravityAndOffset(
-                    'Automotive',
-                    ToastAndroid.SHORT,
-                    ToastAndroid.TOP,
-                    10,
-                    50,
-                  )
-                }
+                onPress={() => Toaster('Automotive')}
               />
               <ButtonWithIcon
                 Icon="clockcircleo"
                 TextData="Service"
-                onPress={() =>
-                  ToastAndroid.showWithGravityAndOffset(
-                    'server',
-                    ToastAndroid.SHORT,
-                    ToastAndroid.TOP,
-                    10,
-                    50,
-                  )
-                }
+                onPress={() => Toaster('server')}
               />
               <ButtonWithIcon
                 Icon="woman"
                 TextData="Beauty"
-                onPress={() =>
-                  ToastAndroid.showWithGravityAndOffset(
-                    'Beauty',
-                    ToastAndroid.SHORT,
-                    ToastAndroid.TOP,
-                    10,
-                    50,
-                  )
-                }
+                onPress={() => Toaster('Beauty')}
               />
               <ButtonWithIcon
                 Icon="pluscircle"
@@ -153,26 +116,15 @@ const index = ({navigation}) => {
               <ButtonWithIcon
                 Icon="customerservice"
                 TextData="Service"
-                onPress={() =>
-                  ToastAndroid.showWithGravityAndOffset(
-                    'server',
-                    ToastAndroid.SHORT,
-                    ToastAndroid.TOP,
-                    10,
-                    50,
-                  )
-                }
+                onPress={() => Toaster('server')}
               />
               <View style={{width: 50}} />
             </ScrollView>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              justifyContent: 'space-between',
-            }}>
-            <Text style={styles.LatestTitle}>Latest Listings</Text>
+          <View style={styles.LastLine}>
+            <Text style={[styles.LatestTitle, mainStyle.TextBold]}>
+              Latest Listings
+            </Text>
             <View style={styles.ViewAllButton}>
               <Button
                 value="View All"
@@ -182,20 +134,20 @@ const index = ({navigation}) => {
             </View>
           </View>
         </View>
-        <View style={styles.TagContainer}>
-          {state.json.length == 0 ? (
+        <View style={mainStyle.PostsContainer}>
+          {Data.json.length == 0 ? (
             <ActivityIndicator size="large" color={basicComponentsOne} />
           ) : (
-            state.json.map((json, index) => (
+            Data.json.map((json, index) => (
               <View key={index}>
                 <PostsContainer json={json} />
               </View>
             ))
           )}
         </View>
-      </ScrollView>
-      {state.backToUp != false ? <ReturnBackScroll /> : null}
-    </View>
+      </Animated.ScrollView>
+      {Data.backToUp != false ? <ReturnBackScroll /> : null}
+    </>
   );
 };
 

@@ -19,93 +19,64 @@ import {
   inputPlaceHolder,
   basicComponentsOne,
 } from '../../constants/color';
+import Toaster from '../commonComponents/Toaster';
+import mainStyle from '../commonComponents/mainStyle';
 
 const index = ({navigation}) => (
   <View style={styles.container}>
     <Header Title="Health" navigation={navigation} />
-    <View>
-      <SliderBox
-        images={HealthImag}
-        sliderBoxHeight={250}
-        circleLoop={true}
-        autoplay={true}
-        dotColor={transparent}
-        inactiveDotColor={transparent}
-      />
-      <View style={styles.SilderText}>
-        <Text style={styles.text}>
-          {' '}
-          NCH Health Care Clinic for testing purpose{' '}
-        </Text>
-        <View style={styles.ButtonCss}>
-          <Button
-            value="Saved"
-            type="Saved"
-            colorText={basicComponentsOne}
-            style={{backgroundColor: inputPlaceHolder, opacity: 0.7}}
-            onPress={() =>
-              ToastAndroid.showWithGravityAndOffset(
-                'Saved',
-                ToastAndroid.SHORT,
-                ToastAndroid.TOP,
-                10,
-                50,
-              )
-            }
-          />
-          <View style={{left: 10}}>
-            <Button
-              value="Report"
-              type="Alert"
-              colorText={basicComponentsOne}
-              style={{backgroundColor: inputPlaceHolder, opacity: 0.7}}
-              onPress={() =>
-                ToastAndroid.showWithGravityAndOffset(
-                  'Report',
-                  ToastAndroid.SHORT,
-                  ToastAndroid.TOP,
-                  10,
-                  50,
-                )
-              }
-            />
-          </View>
-          <View style={{left: 20}}>
-            <Button
-              value="Claim "
-              type="shield"
-              colorText={basicComponentsOne}
-              style={{backgroundColor: inputPlaceHolder, opacity: 0.7}}
-              onPress={() =>
-                ToastAndroid.showWithGravityAndOffset(
-                  'Claim',
-                  ToastAndroid.SHORT,
-                  ToastAndroid.TOP,
-                  10,
-                  50,
-                )
-              }
-            />
-          </View>
-        </View>
+    <SliderBox
+      images={HealthImag}
+      sliderBoxHeight={250}
+      circleLoop={true}
+      autoplay={true}
+      dotColor={transparent}
+      inactiveDotColor={transparent}
+    />
+    <View style={styles.SilderText}>
+      <Text style={styles.text}>
+        NCH Health Care Clinic for testing purpose
+      </Text>
+      <View style={[styles.ButtonCss]}>
+        <Button
+          value="Saved"
+          type="Saved"
+          colorText={basicComponentsOne}
+          style={styles.ButtonStyle}
+          onPress={() => Toaster('saved...')}
+        />
+        <Button
+          value="Report"
+          type="Alert"
+          colorText={basicComponentsOne}
+          style={[styles.ButtonStyle, {marginLeft: 5}]}
+          onPress={() => Toaster('Report...')}
+        />
+        <Button
+          value="Claim "
+          type="shield"
+          colorText={basicComponentsOne}
+          style={[styles.ButtonStyle, {marginLeft: 5}]}
+          onPress={() => Toaster('Claim...')}
+        />
       </View>
     </View>
-    <View style={{flexDirection: 'row'}}>
+    <View style={styles.imgContainer}>
       <Image source={hospitalBuild} style={styles.imag} />
-      <Image source={hLogo} style={[styles.imag, {left: '25%'}]} />
-      <Image source={EmergencyBuild} style={[styles.imag, {left: '35%'}]} />
+      <Image source={hLogo} style={[styles.imag, {marginLeft: 5}]} />
+      <Image source={EmergencyBuild} style={[styles.imag, {marginLeft: 5}]} />
     </View>
     <View>
       <View style={[styles.Labels]}>
-        <AddressIcon name="address" size={20} color={basicComponentsOne} />
+        <AddressIcon name="address" style={mainStyle.IconsCss} />
         <Text style={[styles.textData]}>Hondai</Text>
       </View>
       <View style={[styles.Labels]}>
-        <PhoneIcon name="call" size={20} color={basicComponentsOne} />
+        <PhoneIcon name="call" style={mainStyle.IconsCss} />
         <Text style={[styles.textData]}>123456789</Text>
       </View>
       <View style={[styles.Labels]}>
-        <MailIcon name="mail" size={20} color={basicComponentsOne} />
+        <MailIcon name="mail" style={mainStyle.IconsCss} />
         <Text style={[styles.textData]}>XYZ@gmail.com</Text>
       </View>
     </View>

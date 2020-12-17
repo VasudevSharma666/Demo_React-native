@@ -13,14 +13,12 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
   },
   SingIn: {
-    position: 'absolute',
-    bottom: 200,
+    marginBottom: '10%',
     alignSelf: 'center',
     width: 250,
   },
   Login: {
-    position: 'absolute',
-    bottom: 110,
+    marginBottom: '30%',
     alignSelf: 'center',
     width: 250,
   },

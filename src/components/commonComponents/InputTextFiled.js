@@ -9,8 +9,8 @@ import {
   inputPlaceHolder,
 } from '../../constants/color';
 
-const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
-  const [Show, setShow] = useState(show);
+const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
+  const [Show, setShow] = useState(hide);
   const IconType = () => {
     switch (Title) {
       case 'password': {
@@ -19,7 +19,7 @@ const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
             name={Icon}
             size={25}
             color={basicComponentsOne}
-            style={{top: '25%'}}
+            style={{top: '25%', left: 5}}
           />
         );
       }
@@ -47,7 +47,7 @@ const InputText = ({Title, Icon = null, show = false, handleState, props}) => {
         placeholder={Title}
         secureTextEntry={Show}
         placeholderTextColor={inputPlaceHolder}
-        value={props}
+        value={value}
         autoCapitalize="none"
         onChangeText={(value) => handleState(value)}
       />

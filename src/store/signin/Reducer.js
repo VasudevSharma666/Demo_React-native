@@ -1,23 +1,20 @@
-import {name, email, password, logout} from './type';
+import {user, logout} from './type';
 
 const initialState = {
   userData: {
-    name: '',
-    email: '',
-    password: '',
+    name: 'k',
+    email: 'k@gmail.com',
+    password: '1',
   },
 };
 
 export const SignInReducer = (state = initialState, action) => {
   switch (action.type) {
-    case name: {
-      return {...state, userData: {...state.userData, name: action.data}};
-    }
-    case email: {
-      return {...state, userData: {...state.userData, email: action.data}};
-    }
-    case password: {
-      return {...state, userData: {...state.userData, password: action.data}};
+    case user: {
+      return {
+        ...state,
+        userData: action.data,
+      };
     }
     case logout: {
       return {state: initialState};

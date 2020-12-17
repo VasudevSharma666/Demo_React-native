@@ -17,11 +17,12 @@ import Header from '../commonComponents/authenticComponentHeader';
 import {ProfileDp} from '../../constants/image';
 import Button from '../commonComponents/Button';
 import {ScrollView} from 'react-native-gesture-handler';
-import {BaseUrl} from '../../utils/Urls';
 import PostsContainer from '../commonComponents/PostsCard';
-import {basicComponentsTwo, basicComponentsOne} from '../../constants/color';
+import {basicComponentsOne} from '../../constants/color';
 import {Api} from '../../store/api/operation';
 import {useDispatch, useSelector} from 'react-redux';
+import mainStyle from '../commonComponents/mainStyle';
+
 const index = ({navigation}) => {
   const [json, setJson] = useState([]);
   const ApiData = useSelector((state) => state.Api);
@@ -47,87 +48,49 @@ const index = ({navigation}) => {
         style={[
           styles.tagBackground,
           {transform: [{translateY: translate_Y}]},
-          {
-            position: 'absolute',
-            top: 55,
-            elevation: 2,
-            width: '100%',
-          },
         ]}>
         <View style={styles.ProfileImag}>
-          <Image
-            source={ProfileDp}
-            style={{width: 120, height: 120, borderRadius: 400 / 2}}
-          />
+          <Image source={ProfileDp} style={styles.Profile} />
         </View>
         <Text style={styles.name}>Melisa</Text>
         <View style={styles.Icon}>
           <ScrollView horizontal>
             <Button
               type="facebook"
-              style={{
-                borderRadius: 60,
-                height: 70,
-                backgroundColor: basicComponentsTwo,
-              }}
+              style={styles.SocialMedia}
               onPress={() => Linking.openURL('http://facebook.com/')}
             />
-            <Text> </Text>
             <Button
               type="twitter"
-              style={{
-                borderRadius: 60,
-                height: 70,
-                backgroundColor: basicComponentsTwo,
-              }}
+              style={styles.SocialMedia}
               onPress={() => Linking.openURL('http://twittwe.com/')}
             />
-            <Text> </Text>
             <Button
               type="google"
-              style={{
-                borderRadius: 60,
-                height: 70,
-                backgroundColor: basicComponentsTwo,
-              }}
+              style={styles.SocialMedia}
               onPress={() => Linking.openURL('https://www.google.com/')}
             />
-            <Text> </Text>
             <Button
               type="Linkedin"
-              style={{
-                borderRadius: 60,
-                height: 70,
-                backgroundColor: basicComponentsTwo,
-              }}
+              style={styles.SocialMedia}
               onPress={() => Linking.openURL('https://in.linkedin.com/')}
             />
           </ScrollView>
         </View>
         <View style={[styles.Labels]}>
-          <AddressIcon name="address" size={21} color={basicComponentsOne} />
+          <AddressIcon name="address" style={mainStyle.IconsCss} />
           <Text style={[styles.text, {left: 10}]}> Munster, IN , USA </Text>
         </View>
         <View style={[styles.Labels]}>
-          <PhoneIcon
-            name="call"
-            size={20}
-            color={basicComponentsOne}
-            style={{left: -30}}
-          />
+          <PhoneIcon name="call" style={[mainStyle.IconsCss, {left: -30}]} />
           <Text style={[styles.text, {left: -20}]}>123456789</Text>
         </View>
         <View style={styles.Labels}>
-          <MailIcon name="mail" size={20} color={basicComponentsOne} />
+          <MailIcon name="mail" style={mainStyle.IconsCss} />
           <Text style={[styles.text, {left: 15}]}>Malisa@gmail.com</Text>
         </View>
-        <View style={[styles.Labels]}>
-          <AboutIcon
-            name="group"
-            size={20}
-            color={basicComponentsOne}
-            style={{left: -58}}
-          />
+        <View style={styles.Labels}>
+          <AboutIcon name="group" style={[mainStyle.IconsCss, {left: -58}]} />
           <Text style={[styles.text, {left: -45}]}>About</Text>
         </View>
       </Animated.View>
@@ -137,12 +100,12 @@ const index = ({navigation}) => {
         onScroll={(e) => {
           scroll_Y.setValue(e.nativeEvent.contentOffset.y);
         }}
-        contentContainerStyle={{marginTop: 390}}>
+        contentContainerStyle={{marginTop: 380}}>
         {json.length == 0 ? (
           <ActivityIndicator size="large" color={basicComponentsOne} />
         ) : (
           json.map((json, index) => (
-            <View key={index} style={{width: '90%', alignSelf: 'center'}}>
+            <View key={index} style={[mainStyle.PostsContainer]}>
               <PostsContainer json={json} />
             </View>
           ))

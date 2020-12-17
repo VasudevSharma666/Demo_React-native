@@ -24,13 +24,15 @@ export const styles = StyleSheet.create({
   },
   ButtonCss: {
     width: 80,
-    top: 10,
+    marginTop: 10,
     flexDirection: 'row',
   },
-  ButtonBorder: {
-    borderColor: 'black',
-    borderWidth: 0.5,
-    borderRadius: 8,
+  ButtonStyle: {
+    backgroundColor: inputPlaceHolder,
+    opacity: 0.7,
+  },
+  imgContainer: {
+    flexDirection: 'row',
   },
   imag: {
     width: 100,
@@ -54,6 +56,6 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     width: '70%',
-    left: 10,
+    marginLeft: 10,
   },
 });

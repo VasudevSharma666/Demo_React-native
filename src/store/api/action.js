@@ -1,4 +1,5 @@
 import {HomepageJson, ProfileJson, FilterJson} from './type';
+import fetchCall from '../../utils/fetchCall';
 
 export const HomePageMethod = (data) => {
   return {

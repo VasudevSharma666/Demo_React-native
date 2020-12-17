@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     borderRadius: 5,
-    marginBottom: '7%',
+    marginBottom: 20,
   },
   Image: {
     width: 170,

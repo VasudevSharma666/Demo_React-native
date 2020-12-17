@@ -1,23 +1,9 @@
-import {name, email, password, logout} from './type';
+import {user, logout} from './type';
 
-export const setName = (data) => {
+export const set_user = (data) => {
   return {
-    type: name,
-    data: data,
-  };
-};
-
-export const setEmail = (data) => {
-  return {
-    type: email,
-    data: data,
-  };
-};
-
-export const setpassword = (data) => {
-  return {
-    type: password,
-    data: data,
+    type: user,
+    data,
   };
 };
 
