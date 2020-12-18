@@ -1,16 +1,26 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/AntDesign';
 import HealthIcon from 'react-native-vector-icons/FontAwesome5';
+import {useDispatch} from 'react-redux';
 
 import HomePage from '../../components/HomePage';
 import Filter from '../../components/filter';
 import Profile from '../../components/profile';
-import Logout from '../../components/logout';
 import AdvancedSearch from '../../components/advancedSearch';
 import Health from '../../components/health';
+import {tokenMethod} from '../../store/login/action';
 
 const Drawer = createDrawerNavigator();
+
+const Logout = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(tokenMethod(null));
+  }, []);
+  return <></>;
+};
+
 const drawerNavigation = () => (
   <Drawer.Navigator
     initialRouteName={'Home'}

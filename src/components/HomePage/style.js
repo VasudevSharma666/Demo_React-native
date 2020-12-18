@@ -62,4 +62,8 @@ export const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
   },
+  scrollup: {
+    borderRadius: 60,
+    height: 50,
+  },
 });

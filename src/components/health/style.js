@@ -30,6 +30,7 @@ export const styles = StyleSheet.create({
   ButtonStyle: {
     backgroundColor: inputPlaceHolder,
     opacity: 0.7,
+    marginLeft: 10,
   },
   imgContainer: {
     flexDirection: 'row',
@@ -37,10 +38,10 @@ export const styles = StyleSheet.create({
   imag: {
     width: 100,
     height: 100,
-    left: '15%',
     top: -30,
     borderColor: basicComponentsOne,
     borderWidth: 1,
+    marginLeft: 10,
   },
   Labels: {
     flexDirection: 'row',

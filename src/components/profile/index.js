@@ -7,6 +7,7 @@ import {
   Animated,
   Linking,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Entypo';
 import AddressIcon from 'react-native-vector-icons/Entypo';
 import PhoneIcon from 'react-native-vector-icons/Ionicons';
 import MailIcon from 'react-native-vector-icons/AntDesign';
@@ -22,6 +23,7 @@ import {basicComponentsOne} from '../../constants/color';
 import {Api} from '../../store/api/operation';
 import {useDispatch, useSelector} from 'react-redux';
 import mainStyle from '../commonComponents/mainStyle';
+import jsonContainer from './jsonContainer';
 
 const index = ({navigation}) => {
   const [json, setJson] = useState([]);
@@ -42,7 +44,7 @@ const index = ({navigation}) => {
   }, [ApiData.json.profile]);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#D3D3D3'}}>
+    <>
       <Header Title="Profile" navigation={navigation} page="Home" />
       <Animated.View
         style={[
@@ -55,44 +57,26 @@ const index = ({navigation}) => {
         <Text style={styles.name}>Melisa</Text>
         <View style={styles.Icon}>
           <ScrollView horizontal>
-            <Button
-              type="facebook"
-              style={styles.SocialMedia}
-              onPress={() => Linking.openURL('http://facebook.com/')}
-            />
-            <Button
-              type="twitter"
-              style={styles.SocialMedia}
-              onPress={() => Linking.openURL('http://twittwe.com/')}
-            />
-            <Button
-              type="google"
-              style={styles.SocialMedia}
-              onPress={() => Linking.openURL('https://www.google.com/')}
-            />
-            <Button
-              type="Linkedin"
-              style={styles.SocialMedia}
-              onPress={() => Linking.openURL('https://in.linkedin.com/')}
-            />
+            {jsonContainer.socialMedia.map((items) => (
+              <View key={items.id}>
+                <Button
+                  type={items.type}
+                  style={styles.SocialMedia}
+                  onPress={() => Linking.openURL(items.link)}
+                />
+              </View>
+            ))}
           </ScrollView>
         </View>
-        <View style={[styles.Labels]}>
-          <AddressIcon name="address" style={mainStyle.IconsCss} />
-          <Text style={[styles.text, {left: 10}]}> Munster, IN , USA </Text>
-        </View>
-        <View style={[styles.Labels]}>
-          <PhoneIcon name="call" style={[mainStyle.IconsCss, {left: -30}]} />
-          <Text style={[styles.text, {left: -20}]}>123456789</Text>
-        </View>
-        <View style={styles.Labels}>
-          <MailIcon name="mail" style={mainStyle.IconsCss} />
-          <Text style={[styles.text, {left: 15}]}>Malisa@gmail.com</Text>
-        </View>
-        <View style={styles.Labels}>
-          <AboutIcon name="group" style={[mainStyle.IconsCss, {left: -58}]} />
-          <Text style={[styles.text, {left: -45}]}>About</Text>
-        </View>
+        {jsonContainer.contactData.map((items) => (
+          <View style={[styles.Labels]} key={items.id}>
+            <Icon
+              name={items.Icon}
+              style={[mainStyle.IconsCss, styles.AddOtherCss]}
+            />
+            <Text style={[styles.text]}>{items.data}</Text>
+          </View>
+        ))}
       </Animated.View>
 
       <Animated.ScrollView
@@ -111,7 +95,7 @@ const index = ({navigation}) => {
           ))
         )}
       </Animated.ScrollView>
-    </View>
+    </>
   );
 };
 

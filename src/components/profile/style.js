@@ -7,10 +7,8 @@ import {
 
 export const styles = StyleSheet.create({
   ProfileImag: {
-    flex: 1,
-    flexDirection: 'row',
     alignSelf: 'center',
-    marginTop: 10,
+    marginTop: 2,
   },
   Profile: {
     width: 120,
@@ -18,28 +16,26 @@ export const styles = StyleSheet.create({
     borderRadius: 400 / 2,
   },
   name: {
-    top: 10,
     fontSize: 25,
     fontWeight: 'bold',
     alignSelf: 'center',
-    elevation: 1,
   },
   Icon: {
     alignItems: 'center',
-    top: 10,
   },
   Labels: {
     flexDirection: 'row',
     borderTopColor: inputPlaceHolder,
     borderTopWidth: 0.5,
     width: '100%',
-    height: '10%',
+    height: 40,
     alignItems: 'center',
-    justifyContent: 'center',
+    top: -13,
   },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
+    marginLeft: 10,
   },
 
   tagBackground: {
@@ -60,5 +56,8 @@ export const styles = StyleSheet.create({
   IconCss: {
     fontSize: 21,
     color: basicComponentsOne,
+  },
+  AddOtherCss: {
+    marginLeft: 20,
   },
 });

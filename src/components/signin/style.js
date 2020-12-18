@@ -22,6 +22,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   keyBoard: {
-    marginBottom: 15,
+    marginBottom: 10,
   },
 });

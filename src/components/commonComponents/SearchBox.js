@@ -1,6 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
-import {TextInput} from 'react-native-gesture-handler';
+import {View, StyleSheet, TextInput} from 'react-native';
 import Search from 'react-native-vector-icons/AntDesign';
 
 import {
@@ -20,7 +19,7 @@ const SearchBox = ({value, handlerState, style}) => (
         style={styles.InputBox}
         autoCapitalize="none"
       />
-      <Search name="search1" size={20} style={styles.searchIcon} />
+      <Search name="search1" size={20} />
     </View>
   </View>
 );
@@ -36,11 +35,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-  searchIcon: {
-    left: 20,
-  },
+
   InputBox: {
-    width: 200,
+    width: '90%',
   },
 });
 

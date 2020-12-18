@@ -14,27 +14,13 @@ const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
   const IconType = () => {
     switch (Title) {
       case 'password': {
-        return (
-          <IconLogo
-            name={Icon}
-            size={25}
-            color={basicComponentsOne}
-            style={{top: '25%', left: 5}}
-          />
-        );
+        return <IconLogo name={Icon} style={[styles.IconCss]} />;
       }
       case Icon == null: {
         return <></>;
       }
       default: {
-        return (
-          <IconLogo
-            name={Icon}
-            size={25}
-            color={basicComponentsOne}
-            style={{left: '2%'}}
-          />
-        );
+        return <IconLogo name={Icon} style={styles.IconCss} />;
       }
     }
   };
@@ -58,9 +44,9 @@ const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
             setShow(!Show);
           }}>
           {Show == false ? (
-            <EyeIcon name="eye" size={25} color={basicComponentsOne} />
+            <EyeIcon name="eye" style={styles.IconCss} />
           ) : (
-            <EyeIcon name="eye-off" size={25} color={basicComponentsOne} />
+            <EyeIcon name="eye-off" style={styles.IconCss} />
           )}
         </TouchableOpacity>
       ) : null}
@@ -70,24 +56,26 @@ const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
 
 const styles = StyleSheet.create({
   Username: {
-    position: 'absolute',
-    left: 35,
     fontSize: 22,
     color: basicComponentsTwo,
-    width: 250,
+    width: 230,
   },
   UsernamePos: {
+    flexDirection: 'row',
     borderWidth: 3,
     borderColor: basicComponentsTwo,
     width: 300,
     height: 50,
     borderRadius: 8,
-    justifyContent: 'center',
+    alignItems: 'center',
   },
   eye: {
-    width: '10%',
-    left: '90%',
-    top: '-30%',
+    width: 50,
+  },
+  IconCss: {
+    fontSize: 25,
+    color: basicComponentsOne,
+    marginLeft: 5,
   },
 });
 

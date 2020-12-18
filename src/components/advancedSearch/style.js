@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   },
   pinIcon: {
     left: '85%',
-    top: '-6%',
+    top: -40,
     color: pinIcon,
     elevation: 10,
     fontSize: 30,
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
   formArea: {
     flex: 1,
     width: '90%',
-    left: '4%',
+    alignSelf: 'center',
   },
   InputBox: {
     borderBottomWidth: 2,
@@ -31,11 +31,17 @@ export const styles = StyleSheet.create({
   },
   button: {
     width: '30%',
-    top: 10,
-    height: '10%',
+    marginTop: 10,
   },
   OtherButtonStyle: {
     flexDirection: 'row',
-    top: '7%',
+    marginTop: 10,
+  },
+  Shift: {
+    marginTop: 10,
+  },
+  ButtonStyle: {
+    backgroundColor: buttonBackground,
+    borderRadius: 20,
   },
 });

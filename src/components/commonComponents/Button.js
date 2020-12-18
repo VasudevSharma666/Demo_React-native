@@ -8,6 +8,7 @@ import Alerting from 'react-native-vector-icons/Foundation';
 import ShieldIcon from 'react-native-vector-icons/FontAwesome';
 
 import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+import mainStyle from './mainStyle';
 
 const Button = ({
   onPress,
@@ -19,24 +20,22 @@ const Button = ({
   const IconType = () => {
     switch (type) {
       case 'facebook': {
-        return <Facebook name="sc-facebook" color="red" size={25} />;
+        return <Facebook name="sc-facebook" style={mainStyle.IconsCss} />;
       }
       case 'twitter': {
-        return <Twitter name="twitter" color="red" size={25} />;
+        return <Twitter name="twitter" style={mainStyle.IconsCss} />;
       }
       case 'google': {
-        return <Google name="google-" color="red" size={25} />;
+        return <Google name="google-" style={mainStyle.IconsCss} />;
       }
       case 'Linkedin': {
-        return <Google name="linkedin" color="red" size={22} />;
+        return <Google name="linkedin" style={mainStyle.IconsCss} />;
       }
       case 'Saved': {
         return (
           <Twitter
             name="heart"
-            color="red"
-            size={15}
-            style={{alignSelf: 'center'}}
+            style={[mainStyle.IconsCss, {alignSelf: 'center'}]}
           />
         );
       }
@@ -44,9 +43,7 @@ const Button = ({
         return (
           <Alerting
             name="alert"
-            color="red"
-            size={18}
-            style={{alignSelf: 'center'}}
+            style={[mainStyle.IconsCss, {alignSelf: 'center'}]}
           />
         );
       }
@@ -54,28 +51,31 @@ const Button = ({
         return (
           <ShieldIcon
             name="shield"
-            color="green"
-            size={18}
-            style={{alignSelf: 'center'}}
+            style={[mainStyle.IconsCss, {alignSelf: 'center', color: 'green'}]}
           />
         );
       }
-      case 'filter': {
-        return <Twitter name="filter" size={18} color="red" />;
+      case 'Filter': {
+        return <Twitter name="filter" style={mainStyle.IconsCss} />;
       }
-      case 'sort': {
-        return <ShieldIcon name="sort-amount-asc" size={18} color="red" />;
+      case 'Sort': {
+        return <ShieldIcon name="sort-amount-asc" style={mainStyle.IconsCss} />;
       }
-      case 'reset': {
-        return <Twitter name="retweet" size={18} color="red" />;
+      case 'Reset': {
+        return <Twitter name="retweet" style={mainStyle.IconsCss} />;
       }
       case 'backScroll': {
         return (
           <Twitter
             name="caretup"
-            size={20}
-            color="white"
-            style={{alignSelf: 'center', justifyContent: 'center'}}
+            style={[
+              mainStyle.IconsCss,
+              {
+                alignSelf: 'center',
+                justifyContent: 'center',
+                color: basicComponentsTwo,
+              },
+            ]}
           />
         );
       }

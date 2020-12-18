@@ -5,7 +5,6 @@ import {
   ScrollView,
   ActivityIndicator,
   Animated,
-  FlatList,
 } from 'react-native';
 
 import Toaster from '../commonComponents/Toaster';
@@ -18,6 +17,7 @@ import {styles} from './style';
 import {buttonBackground} from '../../constants/color';
 import mainStyle from '../commonComponents/mainStyle';
 import {useDispatch, useSelector} from 'react-redux';
+import jsonContainer from './jsonContainer';
 
 const index = ({navigation}) => {
   const dispatch = useDispatch();
@@ -55,30 +55,16 @@ const index = ({navigation}) => {
             </View>
           </View>
           <View style={styles.ButtonSection}>
-            <View style={styles.ButtonWidth}>
-              <Button
-                value="Filter"
-                type="filter"
-                style={styles.ButtonStyle}
-                onPress={() => Toaster('Filter')}
-              />
-            </View>
-            <View style={styles.ButtonWidth}>
-              <Button
-                value="Sort"
-                type="sort"
-                style={styles.ButtonStyle}
-                onPress={() => Toaster('Sort')}
-              />
-            </View>
-            <View style={styles.ButtonWidth}>
-              <Button
-                value="Reset"
-                type="reset"
-                style={styles.ButtonStyle}
-                onPress={() => Toaster('Reset')}
-              />
-            </View>
+            {jsonContainer.buttonData.map((items) => (
+              <View key={items.id} style={styles.ButtonWidth}>
+                <Button
+                  value={items.value}
+                  type={items.value}
+                  style={styles.ButtonStyle}
+                  onPress={() => Toaster(items.value)}
+                />
+              </View>
+            ))}
           </View>
           <Text style={styles.textResult}>{Data.json.length}Result found</Text>
         </Animated.View>

@@ -20,14 +20,15 @@ import {basicComponentsOne, transparent} from '../../constants/color';
 import {useDispatch, useSelector} from 'react-redux';
 import Toaster from '../commonComponents/Toaster';
 import mainStyle from '../commonComponents/mainStyle';
+import jsonCollector from './jsonContainer';
 
 const index = ({navigation}) => {
   const [Data, setData] = useState({
     json: [],
     searchBox: '',
     backToUp: false,
-    scroll_To: 0,
   });
+  const [refScroll, setRefScroll] = useState(0);
   const DispatchData = (type, value) => {
     setData({
       ...Data,
@@ -48,8 +49,8 @@ const index = ({navigation}) => {
       <View style={styles.ButtonBack}>
         <Button
           type="backScroll"
-          onPress={() => Data.scroll_To.scrollTo({x: 0, y: 0, animated: true})}
-          style={{borderRadius: 60, height: 50}}
+          onPress={() => refScroll.scrollTo({x: 0, y: 0, animated: true})}
+          style={styles.scrollup}
         />
       </View>
     );
@@ -59,8 +60,8 @@ const index = ({navigation}) => {
       <Header Title="Home" navigation={navigation} />
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
-        ref={(c) => {
-          setData({...Data, scroll_To: c});
+        ref={(value) => {
+          setRefScroll(value);
         }}
         bounces={false}
         onScroll={(e) => {
@@ -88,36 +89,24 @@ const index = ({navigation}) => {
             <Search
               value={Data.searchBox}
               handlerState={(value) => DispatchData('searchBox', value)}
-              style={{backgroundColor: transparent}}
+              style={mainStyle.transparent}
             />
           </View>
           <View style={styles.ButtonWithIcone}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              <ButtonWithIcon
-                Icon="car"
-                TextData="Automotive"
-                onPress={() => Toaster('Automotive')}
-              />
-              <ButtonWithIcon
-                Icon="clockcircleo"
-                TextData="Service"
-                onPress={() => Toaster('server')}
-              />
-              <ButtonWithIcon
-                Icon="woman"
-                TextData="Beauty"
-                onPress={() => Toaster('Beauty')}
-              />
-              <ButtonWithIcon
-                Icon="pluscircle"
-                TextData="Hospital"
-                onPress={() => navigation.navigate('Health')}
-              />
-              <ButtonWithIcon
-                Icon="customerservice"
-                TextData="Service"
-                onPress={() => Toaster('server')}
-              />
+              {jsonCollector.categories.map((items) => (
+                <View key={`Categories-${items.id}`}>
+                  <ButtonWithIcon
+                    Icon={items.icon}
+                    TextData={items.textData}
+                    onPress={() => {
+                      items.page != ''
+                        ? navigation.navigate(items.page)
+                        : Toaster(items.textData);
+                    }}
+                  />
+                </View>
+              ))}
               <View style={{width: 50}} />
             </ScrollView>
           </View>
@@ -146,7 +135,7 @@ const index = ({navigation}) => {
           )}
         </View>
       </Animated.ScrollView>
-      {Data.backToUp != false ? <ReturnBackScroll /> : null}
+      {Data.backToUp == true && <ReturnBackScroll />}
     </>
   );
 };

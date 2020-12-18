@@ -1,17 +1,16 @@
 import React, {useState} from 'react';
-import {View, Alert, ToastAndroid} from 'react-native';
+import {View, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import Common from '../commonComponents/startingBackground';
-import HeaderOfNotLogin from '../commonComponents/unauthorizedComponentHeader';
 import InputText from '../commonComponents/InputTextFiled';
 import {tokenMethod} from '../../store/login/action';
 import {reg} from '../../constants/emailChecker';
-import BackgroundImag from '../commonComponents/BackgroundImag';
 import Button from '../commonComponents/Button';
 import mainStyle from '../commonComponents/mainStyle';
 import Toaster from '../commonComponents/Toaster';
+import Logout from '../commonComponents/unauthContainer';
+import jsonContainer from './jsonContainer';
 
 const index = ({navigation}) => {
   const signinData = useSelector((state) => state.signin);
@@ -38,42 +37,35 @@ const index = ({navigation}) => {
         loginData.password == signinData.userData.password
       ) {
         dispatchProps(tokenMethod('token'));
-        return Toaster('successful');
+        Toaster('successful');
+        return navigation.navigate('Home');
       } else {
         return Alert.alert('Invalid email and password');
       }
     }
   };
   return (
-    <>
-      <BackgroundImag />
-      <HeaderOfNotLogin value="Login" navigation={navigation} />
-      <Common />
+    <Logout HeaderName="Login" navigation={navigation}>
       <KeyboardAwareScrollView style={mainStyle.KeyBoardScrollView}>
-        <View style={mainStyle.input}>
-          <InputText
-            Icon="mail"
-            Title="email"
-            value={loginData.email}
-            handleState={(value) => Dispatch('email', value)}
-          />
-        </View>
-        <View style={mainStyle.input}>
-          <InputText
-            Icon="lock"
-            Title="password"
-            hide={true}
-            value={loginData.Password}
-            handleState={(value) => Dispatch('password', value)}
-          />
-        </View>
+        {jsonContainer.input.map((items) => (
+          <View style={mainStyle.input} key={items.id}>
+            <InputText
+              Icon={items.Icon}
+              Title={items.title}
+              hide={items.hide}
+              value={loginData[items.title]}
+              handleState={(value) => Dispatch(items.title, value)}
+            />
+          </View>
+        ))}
         <Button
           value="Log-in"
           style={mainStyle.unauthButton}
           onPress={() => Checker()}
         />
       </KeyboardAwareScrollView>
-    </>
+    </Logout>
   );
 };
+
 export default index;

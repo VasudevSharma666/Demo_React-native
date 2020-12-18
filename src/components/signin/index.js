@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
-import {Text, View, Linking, ToastAndroid} from 'react-native';
+import {Text, View, Linking} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
-import Common from '../commonComponents/startingBackground';
 import InputText from '../commonComponents/InputTextFiled';
 import Button from '../commonComponents/Button';
-import UnauthorizedComponentHeader from '../commonComponents/unauthorizedComponentHeader';
 import {styles} from './style';
 import {set_user} from '../../store/signin/action';
 import {reg} from '../../constants/emailChecker';
-import BackgroundImag from '../commonComponents/BackgroundImag';
 import mainStyle from '../commonComponents/mainStyle';
 import {facebookIcon, googleIcon} from '../../constants/color';
 import Toaster from '../commonComponents/Toaster';
+import Layout from '../commonComponents/unauthContainer';
+import jsonContainer from './jsonContainer';
 
 const Index = ({navigation}) => {
   const [userData, setUserData] = useState({
@@ -47,37 +46,20 @@ const Index = ({navigation}) => {
   };
 
   return (
-    <>
-      <BackgroundImag />
-      <UnauthorizedComponentHeader value="SignIn" navigation={navigation} />
-      <Common />
+    <Layout HeaderName="signup" navigation={navigation}>
       <KeyboardAwareScrollView
         style={[mainStyle.KeyBoardScrollView, styles.keyBoard]}>
-        <View style={mainStyle.input}>
-          <InputText
-            Title="name"
-            Icon="user"
-            value={userData.name}
-            handleState={(value) => Dispatch('name', value)}
-          />
-        </View>
-        <View style={mainStyle.input}>
-          <InputText
-            Title="email"
-            Icon="mail"
-            value={userData.email}
-            handleState={(value) => Dispatch('email', value)}
-          />
-        </View>
-        <View style={mainStyle.input}>
-          <InputText
-            Title="password"
-            Icon="lock"
-            hide={true}
-            value={userData.password}
-            handleState={(value) => Dispatch('password', value)}
-          />
-        </View>
+        {jsonContainer.input.map((items) => (
+          <View style={mainStyle.input} key={items.id}>
+            <InputText
+              Title={items.title}
+              Icon={items.Icon}
+              value={userData[items.title]}
+              hide={items.hide}
+              handleState={(value) => Dispatch(items.title, value)}
+            />
+          </View>
+        ))}
         <Button
           value="SignUp"
           style={mainStyle.unauthButton}
@@ -101,7 +83,7 @@ const Index = ({navigation}) => {
           </View>
         </View>
       </KeyboardAwareScrollView>
-    </>
+    </Layout>
   );
 };
 
