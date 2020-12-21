@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {basicComponentsTwo, basicComponentsOne} from '../../constants/color';
+import color from '../../constants/color';
 export const styles = StyleSheet.create({
   facebook: {
     alignSelf: 'flex-start',
@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     width: 130,
   },
   OR: {
-    color: basicComponentsTwo,
+    color: color.basicComponentsTwo,
     fontSize: 15,
     fontWeight: 'bold',
   },

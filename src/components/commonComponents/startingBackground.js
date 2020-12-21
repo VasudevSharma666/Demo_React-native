@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, Image, View} from 'react-native';
 
 import {pin} from '../../constants/image';
-import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+import color from '../../constants/color';
 
 const index = () => (
   <>
@@ -33,18 +33,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: basicComponentsTwo,
+    color: color.basicComponentsTwo,
     fontSize: 26,
     fontWeight: 'bold',
     top: -5,
   },
   text2: {
-    color: basicComponentsTwo,
+    color: color.basicComponentsTwo,
     fontSize: 15,
     fontWeight: 'bold',
   },
   text3: {
-    color: basicComponentsTwo,
+    color: color.basicComponentsTwo,
     fontSize: 20,
     fontWeight: 'bold',
     width: 250,
@@ -57,10 +57,10 @@ const styles = StyleSheet.create({
   },
   lineOne: {
     height: 7,
-    borderTopColor: basicComponentsTwo,
+    borderTopColor: color.basicComponentsTwo,
     borderTopWidth: 2,
     borderBottomWidth: 2,
-    borderBottomColor: basicComponentsTwo,
+    borderBottomColor: color.basicComponentsTwo,
     width: 30,
     left: -17,
     top: 10,

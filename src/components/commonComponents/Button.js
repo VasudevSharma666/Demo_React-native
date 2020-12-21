@@ -1,20 +1,19 @@
 import React from 'react';
-import {StyleSheet, View, Text, Linking, ToastAndroid} from 'react-native';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Facebook from 'react-native-vector-icons/EvilIcons';
 import Twitter from 'react-native-vector-icons/AntDesign';
 import Google from 'react-native-vector-icons/Entypo';
 import Alerting from 'react-native-vector-icons/Foundation';
 import ShieldIcon from 'react-native-vector-icons/FontAwesome';
 
-import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+import color from '../../constants/color';
 import mainStyle from './mainStyle';
 
 const Button = ({
   onPress,
   style,
   value,
-  colorText = basicComponentsTwo,
+  colorText = color.basicComponentsTwo,
   type,
 }) => {
   const IconType = () => {
@@ -35,7 +34,7 @@ const Button = ({
         return (
           <Twitter
             name="heart"
-            style={[mainStyle.IconsCss, {alignSelf: 'center'}]}
+            style={[mainStyle.IconsCss, styles.CenterIcon]}
           />
         );
       }
@@ -43,7 +42,7 @@ const Button = ({
         return (
           <Alerting
             name="alert"
-            style={[mainStyle.IconsCss, {alignSelf: 'center'}]}
+            style={[mainStyle.IconsCss, styles.CenterIcon]}
           />
         );
       }
@@ -51,7 +50,11 @@ const Button = ({
         return (
           <ShieldIcon
             name="shield"
-            style={[mainStyle.IconsCss, {alignSelf: 'center', color: 'green'}]}
+            style={[
+              mainStyle.IconsCss,
+              styles.CenterIcon,
+              styles.GreenColorIcon,
+            ]}
           />
         );
       }
@@ -68,14 +71,7 @@ const Button = ({
         return (
           <Twitter
             name="caretup"
-            style={[
-              mainStyle.IconsCss,
-              {
-                alignSelf: 'center',
-                justifyContent: 'center',
-                color: basicComponentsTwo,
-              },
-            ]}
+            style={[mainStyle.IconsCss, styles.CenterIcon, styles.arrowIcon]}
           />
         );
       }
@@ -101,11 +97,21 @@ const styles = StyleSheet.create({
   },
   ButtonStyle: {
     flexDirection: 'column',
-    backgroundColor: basicComponentsOne,
+    backgroundColor: color.basicComponentsOne,
     borderRadius: 8,
     paddingVertical: 14,
     paddingHorizontal: 10,
     opacity: 100,
+  },
+  CenterIcon: {
+    alignSelf: 'center',
+  },
+  GreenColorIcon: {
+    color: 'green',
+  },
+  arrowIcon: {
+    justifyContent: 'center',
+    color: color.basicComponentsTwo,
   },
 });
 

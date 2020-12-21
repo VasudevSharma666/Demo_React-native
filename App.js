@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from 'react-native-splash-screen';
+import {isNull} from 'lodash';
 
 import startPage from './src/components/startpage';
 import Login from './src/components/login';
@@ -18,7 +19,7 @@ const App = () => {
   }, []);
   return (
     <NavigationContainer>
-      {token.tokenData == null ? (
+      {isNull(token.tokenData) ? (
         <Stack.Navigator initialRouteName="Home" headerMode={null}>
           <Stack.Screen name="Home" component={startPage} />
           <Stack.Screen name="Login" component={Login} />

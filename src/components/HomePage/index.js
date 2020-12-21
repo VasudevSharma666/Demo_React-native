@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Animated,
 } from 'react-native';
+import {isEmpty} from 'lodash';
 
 import Header from '../commonComponents/authenticComponentHeader';
 import {HomeBackground} from '../../constants/image';
@@ -14,9 +15,9 @@ import Search from '../commonComponents/SearchBox';
 import ButtonWithIcon from '../commonComponents/TagCard';
 import Button from '../commonComponents/Button';
 import PostsContainer from '../commonComponents/PostsCard';
-import {Api} from '../../store/api/operation';
+import {HomeApi} from '../../store/api/operation';
 import {styles} from './style';
-import {basicComponentsOne, transparent} from '../../constants/color';
+import color from '../../constants/color';
 import {useDispatch, useSelector} from 'react-redux';
 import Toaster from '../commonComponents/Toaster';
 import mainStyle from '../commonComponents/mainStyle';
@@ -38,7 +39,7 @@ const index = ({navigation}) => {
   const dispatchRedux = useDispatch();
   const ApiData = useSelector((state) => state.Api);
   useEffect(() => {
-    dispatchRedux(Api('/albums', 'home'));
+    dispatchRedux(HomeApi('/albums'));
   }, []);
   useEffect(() => {
     DispatchData('json', ApiData.json.homepage);
@@ -100,7 +101,7 @@ const index = ({navigation}) => {
                     Icon={items.icon}
                     TextData={items.textData}
                     onPress={() => {
-                      items.page != ''
+                      !isEmpty(items.page)
                         ? navigation.navigate(items.page)
                         : Toaster(items.textData);
                     }}
@@ -124,8 +125,8 @@ const index = ({navigation}) => {
           </View>
         </View>
         <View style={mainStyle.PostsContainer}>
-          {Data.json.length == 0 ? (
-            <ActivityIndicator size="large" color={basicComponentsOne} />
+          {isEmpty(Data.json) ? (
+            <ActivityIndicator size="large" color={color.basicComponentsOne} />
           ) : (
             Data.json.map((json, index) => (
               <View key={index}>

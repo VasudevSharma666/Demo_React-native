@@ -1,22 +1,17 @@
 import {StyleSheet} from 'react-native';
-import {
-  basicComponentsOne,
-  transparent,
-  basicComponentsTwo,
-  TextColor,
-} from '../../constants/color';
+import color from '../../constants/color';
 export const styles = StyleSheet.create({
   backgroundBox: {
     justifyContent: 'center',
     height: 90,
-    backgroundColor: basicComponentsOne,
+    backgroundColor: color.basicComponentsOne,
   },
 
   searchBox: {
     width: '70%',
     justifyContent: 'center',
     alignSelf: 'center',
-    backgroundColor: transparent,
+    backgroundColor: color.transparent,
   },
   ButtonSection: {
     justifyContent: 'space-between',
@@ -32,12 +27,12 @@ export const styles = StyleSheet.create({
   },
   SectionContainer: {
     height: 190,
-    backgroundColor: basicComponentsTwo,
+    backgroundColor: color.basicComponentsTwo,
     elevation: 2,
     marginBottom: 10,
   },
   ButtonStyle: {
-    backgroundColor: TextColor,
+    backgroundColor: color.TextColor,
     borderRadius: 0,
     flexDirection: 'row',
     justifyContent: 'space-evenly',

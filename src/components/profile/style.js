@@ -1,9 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {
-  basicComponentsOne,
-  basicComponentsTwo,
-  inputPlaceHolder,
-} from '../../constants/color';
+import color from '../../constants/color';
 
 export const styles = StyleSheet.create({
   ProfileImag: {
@@ -25,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   Labels: {
     flexDirection: 'row',
-    borderTopColor: inputPlaceHolder,
+    borderTopColor: color.inputPlaceHolder,
     borderTopWidth: 0.5,
     width: '100%',
     height: 40,
@@ -41,7 +37,7 @@ export const styles = StyleSheet.create({
   tagBackground: {
     height: 370,
     flexDirection: 'column',
-    backgroundColor: basicComponentsTwo,
+    backgroundColor: color.basicComponentsTwo,
     position: 'absolute',
     top: 55,
     elevation: 2,
@@ -50,12 +46,12 @@ export const styles = StyleSheet.create({
   SocialMedia: {
     borderRadius: 60,
     height: 70,
-    backgroundColor: basicComponentsTwo,
+    backgroundColor: color.basicComponentsTwo,
     marginLeft: 10,
   },
   IconCss: {
     fontSize: 21,
-    color: basicComponentsOne,
+    color: color.basicComponentsOne,
   },
   AddOtherCss: {
     marginLeft: 20,

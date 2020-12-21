@@ -39,4 +39,14 @@ export default {
       value: 'Fifty-lake',
     },
   ],
+  Button_High_Low: [
+    {
+      id: 1,
+      value: 'High to Low',
+    },
+    {
+      id: 2,
+      value: 'Low to High',
+    },
+  ],
 };

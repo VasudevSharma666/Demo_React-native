@@ -3,11 +3,7 @@ import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 import IconLogo from 'react-native-vector-icons/AntDesign';
 import EyeIcon from 'react-native-vector-icons/Ionicons';
 
-import {
-  basicComponentsOne,
-  basicComponentsTwo,
-  inputPlaceHolder,
-} from '../../constants/color';
+import color from '../../constants/color';
 
 const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
   const [Show, setShow] = useState(hide);
@@ -32,7 +28,7 @@ const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
         style={styles.Username}
         placeholder={Title}
         secureTextEntry={Show}
-        placeholderTextColor={inputPlaceHolder}
+        placeholderTextColor={color.inputPlaceHolder}
         value={value}
         autoCapitalize="none"
         onChangeText={(value) => handleState(value)}
@@ -57,13 +53,13 @@ const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
 const styles = StyleSheet.create({
   Username: {
     fontSize: 22,
-    color: basicComponentsTwo,
+    color: color.basicComponentsTwo,
     width: 230,
   },
   UsernamePos: {
     flexDirection: 'row',
     borderWidth: 3,
-    borderColor: basicComponentsTwo,
+    borderColor: color.basicComponentsTwo,
     width: 300,
     height: 50,
     borderRadius: 8,
@@ -74,7 +70,7 @@ const styles = StyleSheet.create({
   },
   IconCss: {
     fontSize: 25,
-    color: basicComponentsOne,
+    color: color.basicComponentsOne,
     marginLeft: 5,
   },
 });

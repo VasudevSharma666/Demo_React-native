@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {basicComponentsOne, transparent} from '../../constants/color';
+import color from '../../constants/color';
 const mainStyle = StyleSheet.create({
   unauthButton: {
     width: '85%',
@@ -22,14 +22,17 @@ const mainStyle = StyleSheet.create({
   },
   IconsCss: {
     fontSize: 21,
-    color: basicComponentsOne,
+    color: color.basicComponentsOne,
   },
   fullScreen: {
     width: '100%',
     height: '100%',
   },
   transparent: {
-    backgroundColor: transparent,
+    backgroundColor: color.transparent,
+  },
+  marginBottom: {
+    marginBottom: 10,
   },
 });
 export default mainStyle;

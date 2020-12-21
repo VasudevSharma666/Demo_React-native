@@ -6,7 +6,7 @@ import {Picker} from '@react-native-community/picker';
 import Header from '../commonComponents/authenticComponentHeader';
 import Button from '../commonComponents/Button';
 import {styles} from './style';
-import {inputPlaceHolder, TextColor} from '../../constants/color';
+import color from '../../constants/color';
 import Toaster from '../commonComponents/Toaster';
 import jsonContainer from './jsonContainer';
 
@@ -34,7 +34,10 @@ const index = ({navigation}) => {
               onValueChange={(itemValue) =>
                 setData({...Data, category: itemValue})
               }>
-              <Picker.Item label="Search Category" color={inputPlaceHolder} />
+              <Picker.Item
+                label="Search Category"
+                color={color.inputPlaceHolder}
+              />
               {jsonContainer.category.map((items) => (
                 <Picker.Item
                   label={items.label}
@@ -53,7 +56,7 @@ const index = ({navigation}) => {
               <Picker.Item
                 label="Search Price Type"
                 value="nullData"
-                color={inputPlaceHolder}
+                color={color.inputPlaceHolder}
               />
               {jsonContainer.prices.map((items) => (
                 <Picker.Item
@@ -67,37 +70,34 @@ const index = ({navigation}) => {
           <TextInput
             style={styles.InputBox}
             placeholder="Location"
-            placeholderTextColor={inputPlaceHolder}
+            placeholderTextColor={color.inputPlaceHolder}
           />
           <Text style={styles.status}>Status</Text>
           <View style={styles.button}>
             <Button
               value="Open Now"
-              colorText={TextColor}
+              colorText={color.TextColor}
               style={styles.ButtonStyle}
               onPress={() => Toaster('Open Now')}
             />
           </View>
           <Text style={[styles.status]}>Rated As</Text>
           <View style={[styles.button, styles.OtherButtonStyle]}>
-            <Button
-              value="High to Low"
-              colorText={TextColor}
-              style={styles.ButtonStyle}
-              onPress={() => Toaster('High to Low')}
-            />
-            <View style={{width: 10}} />
-            <Button
-              value="Low to High"
-              colorText={TextColor}
-              style={styles.ButtonStyle}
-              onPress={() => Toaster('Low to high')}
-            />
+            {jsonContainer.Button_High_Low.map((items) => (
+              <View key={items.id}>
+                <Button
+                  value={items.value}
+                  colorText={color.TextColor}
+                  style={styles.ButtonStyle}
+                  onPress={() => Toaster(items.value)}
+                />
+              </View>
+            ))}
           </View>
           <TextInput
             style={[styles.InputBox, styles.Shift]}
             placeholder="Current Location"
-            placeholderTextColor={inputPlaceHolder}
+            placeholderTextColor={color.inputPlaceHolder}
           />
         </ScrollView>
         <Button value="search" onPress={() => Toaster('searching...')} />

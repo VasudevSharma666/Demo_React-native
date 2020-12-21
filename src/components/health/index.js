@@ -7,7 +7,7 @@ import Header from '../commonComponents/authenticComponentHeader';
 import {HealthImag} from '../../constants/image';
 import Button from '../commonComponents/Button';
 import {styles} from './style';
-import {transparent, basicComponentsOne} from '../../constants/color';
+import color from '../../constants/color';
 import Toaster from '../commonComponents/Toaster';
 import mainStyle from '../commonComponents/mainStyle';
 import jsonContainer from './jsonContainer';
@@ -20,8 +20,8 @@ const index = ({navigation}) => (
       sliderBoxHeight={250}
       circleLoop={true}
       autoplay={true}
-      dotColor={transparent}
-      inactiveDotColor={transparent}
+      dotColor={color.transparent}
+      inactiveDotColor={color.transparent}
     />
     <View style={styles.SilderText}>
       <Text style={styles.text}>
@@ -33,7 +33,7 @@ const index = ({navigation}) => (
             <Button
               value={items.value}
               type={items.type}
-              colorText={basicComponentsOne}
+              colorText={color.basicComponentsOne}
               style={styles.ButtonStyle}
               onPress={() => Toaster(items.value)}
             />

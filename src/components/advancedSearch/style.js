@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {pinIcon, buttonBackground} from '../../constants/color';
+import color from '../../constants/color';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   pinIcon: {
     left: '85%',
     top: -40,
-    color: pinIcon,
+    color: color.pinIcon,
     elevation: 10,
     fontSize: 30,
   },
@@ -18,12 +18,12 @@ export const styles = StyleSheet.create({
   },
   InputBox: {
     borderBottomWidth: 2,
-    borderBottomColor: buttonBackground,
+    borderBottomColor: color.buttonBackground,
   },
   PickerElement: {
     width: '100%',
     borderBottomWidth: 2,
-    borderBottomColor: buttonBackground,
+    borderBottomColor: color.buttonBackground,
   },
   status: {
     fontWeight: 'bold',
@@ -41,7 +41,8 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   ButtonStyle: {
-    backgroundColor: buttonBackground,
+    backgroundColor: color.buttonBackground,
     borderRadius: 20,
+    marginRight: 10,
   },
 });

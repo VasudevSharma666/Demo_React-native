@@ -3,7 +3,7 @@ import {Pressable, StyleSheet, Text, View} from 'react-native';
 
 import Icon from 'react-native-vector-icons/Entypo';
 import mainStyle from '../commonComponents/mainStyle';
-import {basicComponentsOne, basicComponentsTwo} from '../../constants/color';
+import color from '../../constants/color';
 
 const Header = ({Title, navigation}) => {
   const Navigation = () => {
@@ -29,20 +29,20 @@ const Header = ({Title, navigation}) => {
 const styles = StyleSheet.create({
   HeaderBlock: {
     flexDirection: 'row',
-    backgroundColor: basicComponentsOne,
+    backgroundColor: color.basicComponentsOne,
     height: 50,
     width: '100%',
     alignItems: 'center',
     elevation: 4,
   },
   Title: {
-    color: basicComponentsTwo,
+    color: color.basicComponentsTwo,
     fontSize: 20,
     marginLeft: 15,
   },
   IconCss: {
     fontSize: 35,
-    color: basicComponentsTwo,
+    color: color.basicComponentsTwo,
     marginLeft: 15,
   },
 });

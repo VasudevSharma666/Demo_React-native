@@ -1,23 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {
-  Text,
-  View,
-  ScrollView,
-  ActivityIndicator,
-  Animated,
-} from 'react-native';
+import {Text, View, ScrollView, Animated} from 'react-native';
+import {isEmpty} from 'lodash';
 
 import Toaster from '../commonComponents/Toaster';
 import Button from '../commonComponents/Button';
 import Header from '../commonComponents/authenticComponentHeader';
 import SearchBox from '../commonComponents/SearchBox';
 import PostsContainer from '../commonComponents/PostsCard';
-import {Api} from '../../store/api/operation';
+import {FilterApi} from '../../store/api/operation';
 import {styles} from './style';
-import {buttonBackground} from '../../constants/color';
+import color from '../../constants/color';
 import mainStyle from '../commonComponents/mainStyle';
 import {useDispatch, useSelector} from 'react-redux';
 import jsonContainer from './jsonContainer';
+import Skeleton from '../commonComponents/skeletonLoader';
 
 const index = ({navigation}) => {
   const dispatch = useDispatch();
@@ -34,7 +30,7 @@ const index = ({navigation}) => {
   };
 
   useEffect(() => {
-    dispatch(Api('/albums?userId=2', 'filter'));
+    dispatch(FilterApi('/albums?userId=2'));
   }, []);
   useEffect(() => {
     DispatchData('json', ApiData.json.filter);
@@ -44,7 +40,7 @@ const index = ({navigation}) => {
       <Header Title="Home" navigation={navigation} />
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{backgroundColor: buttonBackground}}>
+        style={{backgroundColor: color.buttonBackground}}>
         <Animated.View style={[styles.SectionContainer]}>
           <View style={styles.backgroundBox}>
             <View style={styles.searchBox}>
@@ -69,8 +65,8 @@ const index = ({navigation}) => {
           <Text style={styles.textResult}>{Data.json.length}Result found</Text>
         </Animated.View>
         <View style={mainStyle.PostsContainer}>
-          {Data.json.length == 0 ? (
-            <ActivityIndicator size="large" color="red" />
+          {isEmpty(Data.json) ? (
+            <Skeleton />
           ) : (
             Data.json.map((json, index) => (
               <View key={index}>

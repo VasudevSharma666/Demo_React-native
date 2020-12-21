@@ -1,17 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  Image,
-  Animated,
-  Linking,
-} from 'react-native';
+import {View, Text, Image, Animated, Linking} from 'react-native';
+import {isEmpty} from 'lodash';
 import Icon from 'react-native-vector-icons/Entypo';
-import AddressIcon from 'react-native-vector-icons/Entypo';
-import PhoneIcon from 'react-native-vector-icons/Ionicons';
-import MailIcon from 'react-native-vector-icons/AntDesign';
-import AboutIcon from 'react-native-vector-icons/FontAwesome';
 
 import {styles} from './style';
 import Header from '../commonComponents/authenticComponentHeader';
@@ -19,11 +9,12 @@ import {ProfileDp} from '../../constants/image';
 import Button from '../commonComponents/Button';
 import {ScrollView} from 'react-native-gesture-handler';
 import PostsContainer from '../commonComponents/PostsCard';
-import {basicComponentsOne} from '../../constants/color';
-import {Api} from '../../store/api/operation';
+import color from '../../constants/color';
+import {ProfileApi} from '../../store/api/operation';
 import {useDispatch, useSelector} from 'react-redux';
 import mainStyle from '../commonComponents/mainStyle';
 import jsonContainer from './jsonContainer';
+import Skeleton from '../commonComponents/skeletonLoader';
 
 const index = ({navigation}) => {
   const [json, setJson] = useState([]);
@@ -37,7 +28,7 @@ const index = ({navigation}) => {
   });
 
   useEffect(() => {
-    dispatch(Api('/posts?userId=1', 'profile'));
+    dispatch(ProfileApi('/posts?userId=1'));
   }, []);
   useEffect(() => {
     setJson(ApiData.json.profile);
@@ -78,23 +69,24 @@ const index = ({navigation}) => {
           </View>
         ))}
       </Animated.View>
-
-      <Animated.ScrollView
-        showsVerticalScrollIndicator={false}
-        onScroll={(e) => {
-          scroll_Y.setValue(e.nativeEvent.contentOffset.y);
-        }}
-        contentContainerStyle={{marginTop: 380}}>
-        {json.length == 0 ? (
-          <ActivityIndicator size="large" color={basicComponentsOne} />
-        ) : (
-          json.map((json, index) => (
-            <View key={index} style={[mainStyle.PostsContainer]}>
-              <PostsContainer json={json} />
-            </View>
-          ))
-        )}
-      </Animated.ScrollView>
+      <View style={mainStyle.marginBottom}>
+        <Animated.ScrollView
+          showsVerticalScrollIndicator={false}
+          onScroll={(e) => {
+            scroll_Y.setValue(e.nativeEvent.contentOffset.y);
+          }}
+          contentContainerStyle={{marginTop: 380}}>
+          {isEmpty(json) ? (
+            <Skeleton />
+          ) : (
+            json.map((json, index) => (
+              <View key={index} style={[mainStyle.PostsContainer]}>
+                <PostsContainer json={json} />
+              </View>
+            ))
+          )}
+        </Animated.ScrollView>
+      </View>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {basicComponentsOne, LiteText} from '../../constants/color';
+import color from '../../constants/color';
 export const styles = StyleSheet.create({
   HomeBackground: {
     width: '100%',
@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   FirstText: {
     top: -160,
     alignSelf: 'center',
-    color: basicComponentsOne,
+    color: color.basicComponentsOne,
     fontStyle: 'italic',
     fontSize: 20,
     elevation: 2,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
   SecondText: {
     top: -160,
     alignSelf: 'center',
-    color: basicComponentsOne,
+    color: color.basicComponentsOne,
     fontFamily: 'lucida grande',
     fontStyle: 'italic',
     fontSize: 8,

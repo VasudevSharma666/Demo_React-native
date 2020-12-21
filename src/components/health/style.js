@@ -1,10 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {
-  basicComponentsOne,
-  inputPlaceHolder,
-  TextColor,
-} from '../../constants/color';
+import color from '../../constants/color';
 
 export const styles = StyleSheet.create({
   container: {
@@ -15,10 +11,10 @@ export const styles = StyleSheet.create({
     left: 10,
   },
   text: {
-    color: basicComponentsOne,
+    color: color.basicComponentsOne,
     fontSize: 15,
     fontWeight: 'bold',
-    borderBottomColor: basicComponentsOne,
+    borderBottomColor: color.basicComponentsOne,
     borderBottomWidth: 1,
     width: '85%',
   },
@@ -28,7 +24,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   ButtonStyle: {
-    backgroundColor: inputPlaceHolder,
+    backgroundColor: color.inputPlaceHolder,
     opacity: 0.7,
     marginLeft: 10,
   },
@@ -39,13 +35,13 @@ export const styles = StyleSheet.create({
     width: 100,
     height: 100,
     top: -30,
-    borderColor: basicComponentsOne,
+    borderColor: color.basicComponentsOne,
     borderWidth: 1,
     marginLeft: 10,
   },
   Labels: {
     flexDirection: 'row',
-    borderBottomColor: inputPlaceHolder,
+    borderBottomColor: color.inputPlaceHolder,
     borderBottomWidth: 0.4,
     width: '100%',
     height: '15%',
@@ -53,7 +49,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textData: {
-    color: TextColor,
+    color: color.TextColor,
     fontSize: 18,
     fontWeight: 'bold',
     width: '70%',

@@ -2,18 +2,14 @@ import React from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
 import Search from 'react-native-vector-icons/AntDesign';
 
-import {
-  basicComponentsTwo,
-  TextColor,
-  basicComponentsOne,
-} from '../../constants/color';
+import color from '../../constants/color';
 
 const SearchBox = ({value, handlerState, style}) => (
   <View style={[styles.Container, style]}>
     <View style={styles.Search}>
       <TextInput
         placeholder="What are you looking for..."
-        placeholderTextColor={TextColor}
+        placeholderTextColor={color.TextColor}
         value={value}
         onChangeText={(val) => handlerState(val)}
         style={styles.InputBox}
@@ -27,11 +23,11 @@ const SearchBox = ({value, handlerState, style}) => (
 const styles = StyleSheet.create({
   Container: {
     width: '100%',
-    backgroundColor: basicComponentsOne,
+    backgroundColor: color.basicComponentsOne,
   },
   Search: {
     flexDirection: 'row',
-    backgroundColor: basicComponentsTwo,
+    backgroundColor: color.basicComponentsTwo,
     borderRadius: 10,
     alignItems: 'center',
   },

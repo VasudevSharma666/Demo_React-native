@@ -9,7 +9,7 @@ import {styles} from './style';
 import {set_user} from '../../store/signin/action';
 import {reg} from '../../constants/emailChecker';
 import mainStyle from '../commonComponents/mainStyle';
-import {facebookIcon, googleIcon} from '../../constants/color';
+import color from '../../constants/color';
 import Toaster from '../commonComponents/Toaster';
 import Layout from '../commonComponents/unauthContainer';
 import jsonContainer from './jsonContainer';
@@ -69,7 +69,7 @@ const Index = ({navigation}) => {
           <View style={styles.facebook}>
             <Button
               value="Facebook"
-              style={{backgroundColor: facebookIcon}}
+              style={{backgroundColor: color.facebookIcon}}
               onPress={() => Linking.openURL('https://www.facebook.com/')}
             />
           </View>
@@ -77,7 +77,7 @@ const Index = ({navigation}) => {
           <View style={styles.Google}>
             <Button
               value="Google"
-              style={{backgroundColor: googleIcon}}
+              style={{backgroundColor: color.googleIcon}}
               onPress={() => Linking.openURL('https://www.google.com/')}
             />
           </View>
