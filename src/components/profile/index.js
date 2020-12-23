@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text, Image, Animated, Linking} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
 import Icon from 'react-native-vector-icons/Entypo';
 
@@ -9,16 +10,14 @@ import {ProfileDp} from '../../constants/image';
 import Button from '../commonComponents/Button';
 import {ScrollView} from 'react-native-gesture-handler';
 import PostsContainer from '../commonComponents/PostsCard';
-import color from '../../constants/color';
 import {ProfileApi} from '../../store/api/operation';
-import {useDispatch, useSelector} from 'react-redux';
 import mainStyle from '../commonComponents/mainStyle';
-import jsonContainer from './jsonContainer';
+import JsonContainer from './jsonContainer';
 import Skeleton from '../commonComponents/skeletonLoader';
 
 const index = ({navigation}) => {
   const [json, setJson] = useState([]);
-  const ApiData = useSelector((state) => state.Api);
+  const apiData = useSelector((state) => state.Api);
   const dispatch = useDispatch();
   const scroll_Y = new Animated.Value(0);
   const diffClamp = Animated.diffClamp(scroll_Y, 0, 400);
@@ -31,12 +30,12 @@ const index = ({navigation}) => {
     dispatch(ProfileApi('/posts?userId=1'));
   }, []);
   useEffect(() => {
-    setJson(ApiData.json.profile);
-  }, [ApiData.json.profile]);
+    setJson(apiData.json.profile);
+  }, [apiData.json.profile]);
 
   return (
     <>
-      <Header Title="Profile" navigation={navigation} page="Home" />
+      <Header title="Profile" navigation={navigation} page="Home" />
       <Animated.View
         style={[
           styles.tagBackground,
@@ -48,7 +47,7 @@ const index = ({navigation}) => {
         <Text style={styles.name}>Melisa</Text>
         <View style={styles.Icon}>
           <ScrollView horizontal>
-            {jsonContainer.socialMedia.map((items) => (
+            {JsonContainer.socialMedia.map((items) => (
               <View key={items.id}>
                 <Button
                   type={items.type}
@@ -59,7 +58,7 @@ const index = ({navigation}) => {
             ))}
           </ScrollView>
         </View>
-        {jsonContainer.contactData.map((items) => (
+        {JsonContainer.contactData.map((items) => (
           <View style={[styles.Labels]} key={items.id}>
             <Icon
               name={items.Icon}

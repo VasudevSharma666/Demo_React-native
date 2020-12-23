@@ -8,16 +8,17 @@ import Button from '../commonComponents/Button';
 import {styles} from './style';
 import color from '../../constants/color';
 import Toaster from '../commonComponents/Toaster';
-import jsonContainer from './jsonContainer';
+import JsonContainer from './jsonContainer';
 
 const index = ({navigation}) => {
-  const [Data, setData] = useState({
+  const [data, setData] = useState({
     category: '',
     price: '',
   });
+
   return (
     <>
-      <Header Title="Advanced Search" navigation={navigation} />
+      <Header title="Advanced Search" navigation={navigation} />
       <Icon name="location-pin" style={styles.pinIcon} />
       <View style={styles.formArea}>
         <ScrollView
@@ -30,15 +31,15 @@ const index = ({navigation}) => {
           />
           <View style={styles.PickerElement}>
             <Picker
-              selectedValue={Data.category}
+              selectedValue={data.category}
               onValueChange={(itemValue) =>
-                setData({...Data, category: itemValue})
+                setData({...data, category: itemValue})
               }>
               <Picker.Item
                 label="Search Category"
                 color={color.inputPlaceHolder}
               />
-              {jsonContainer.category.map((items) => (
+              {JsonContainer.category.map((items) => (
                 <Picker.Item
                   label={items.label}
                   value={items.label}
@@ -49,16 +50,16 @@ const index = ({navigation}) => {
           </View>
           <View style={styles.PickerElement}>
             <Picker
-              selectedValue={Data.price}
+              selectedValue={data.price}
               onValueChange={(itemValue) =>
-                setData({...Data, price: itemValue})
+                setData({...data, price: itemValue})
               }>
               <Picker.Item
                 label="Search Price Type"
                 value="nullData"
                 color={color.inputPlaceHolder}
               />
-              {jsonContainer.prices.map((items) => (
+              {JsonContainer.prices.map((items) => (
                 <Picker.Item
                   label={items.label}
                   value={items.value}
@@ -83,7 +84,7 @@ const index = ({navigation}) => {
           </View>
           <Text style={[styles.status]}>Rated As</Text>
           <View style={[styles.button, styles.OtherButtonStyle]}>
-            {jsonContainer.Button_High_Low.map((items) => (
+            {JsonContainer.Button_High_Low.map((items) => (
               <View key={items.id}>
                 <Button
                   value={items.value}

@@ -1,4 +1,5 @@
 import {BaseUrl} from './Urls';
+
 export default (url) => {
   return new Promise((resolve, reject) => {
     fetch(BaseUrl + url)

@@ -5,18 +5,19 @@ import EyeIcon from 'react-native-vector-icons/Ionicons';
 
 import color from '../../constants/color';
 
-const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
-  const [Show, setShow] = useState(hide);
+const InputText = ({title, icon = null, hide = false, handleState, value}) => {
+  const [show, setShow] = useState(hide);
+
   const IconType = () => {
-    switch (Title) {
+    switch (title) {
       case 'password': {
-        return <IconLogo name={Icon} style={[styles.IconCss]} />;
+        return <IconLogo name={icon} style={[styles.IconCss]} />;
       }
-      case Icon == null: {
+      case icon == null: {
         return <></>;
       }
       default: {
-        return <IconLogo name={Icon} style={styles.IconCss} />;
+        return <IconLogo name={icon} style={styles.IconCss} />;
       }
     }
   };
@@ -26,20 +27,20 @@ const InputText = ({Title, Icon = null, hide = false, handleState, value}) => {
       <IconType />
       <TextInput
         style={styles.Username}
-        placeholder={Title}
-        secureTextEntry={Show}
+        placeholder={title}
+        secureTextEntry={show}
         placeholderTextColor={color.inputPlaceHolder}
         value={value}
         autoCapitalize="none"
         onChangeText={(value) => handleState(value)}
       />
-      {Title == 'password' ? (
+      {title == 'password' ? (
         <TouchableOpacity
           style={styles.eye}
           onPress={() => {
-            setShow(!Show);
+            setShow(!show);
           }}>
-          {Show == false ? (
+          {show == false ? (
             <EyeIcon name="eye" style={styles.IconCss} />
           ) : (
             <EyeIcon name="eye-off" style={styles.IconCss} />

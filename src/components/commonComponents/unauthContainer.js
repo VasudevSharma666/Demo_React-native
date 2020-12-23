@@ -7,14 +7,15 @@ import Common from '../commonComponents/startingBackground';
 import Header from '../commonComponents/unauthorizedComponentHeader';
 
 const UnAuthLayout = (props) => {
-  const {HeaderName = '', navigation, children} = props;
+  const {headerName = '', navigation, children} = props;
+
   return (
     <ImageBackground
       source={loginpage}
       style={mainStyles.fullScreen}
       blurRadius={3}>
-      {HeaderName != '' && (
-        <Header value={HeaderName} navigation={navigation} />
+      {headerName != '' && (
+        <Header value={headerName} navigation={navigation} />
       )}
       <Common />
       <ScrollView style={{flex: 1}}>{children}</ScrollView>

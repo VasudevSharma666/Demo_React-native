@@ -1,8 +1,8 @@
 const {combineReducers} = require('redux');
 
-import {loginReducer} from '../login/Reducer';
-import {SignInReducer} from '../signin/Reducer';
-import {ApiReducer} from '../api/Reducer';
+import {loginReducer} from '../login/reducer';
+import {SignInReducer} from '../signin/reducer';
+import {ApiReducer} from '../api/reducer';
 
 export const Reducer = combineReducers({
   login: loginReducer,

@@ -4,11 +4,11 @@ import IconImport from 'react-native-vector-icons/AntDesign';
 
 import color from '../../constants/color';
 
-const TagCard = ({TextData, Icon, onPress}) => (
+const TagCard = ({textData, icon, onPress}) => (
   <TouchableOpacity onPress={onPress} style={styles.Container}>
     <View style={styles.tag}>
-      <IconImport name={Icon} size={30} color={color.basicComponentsOne} />
-      <Text>{TextData}</Text>
+      <IconImport name={icon} size={30} color={color.basicComponentsOne} />
+      <Text>{textData}</Text>
     </View>
   </TouchableOpacity>
 );

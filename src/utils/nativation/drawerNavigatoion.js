@@ -15,9 +15,11 @@ const Drawer = createDrawerNavigator();
 
 const Logout = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(tokenMethod(null));
   }, []);
+
   return <></>;
 };
 

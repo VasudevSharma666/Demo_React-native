@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   View,
   Text,
@@ -7,7 +8,7 @@ import {
   ImageBackground,
   Animated,
 } from 'react-native';
-import {isEmpty} from 'lodash';
+import {isEmpty, isNaN} from 'lodash';
 
 import Header from '../commonComponents/authenticComponentHeader';
 import {HomeBackground} from '../../constants/image';
@@ -18,32 +19,32 @@ import PostsContainer from '../commonComponents/PostsCard';
 import {HomeApi} from '../../store/api/operation';
 import {styles} from './style';
 import color from '../../constants/color';
-import {useDispatch, useSelector} from 'react-redux';
 import Toaster from '../commonComponents/Toaster';
 import mainStyle from '../commonComponents/mainStyle';
-import jsonCollector from './jsonContainer';
+import JsonCollector from './jsonContainer';
 
 const index = ({navigation}) => {
-  const [Data, setData] = useState({
+  const [data, setData] = useState({
     json: [],
     searchBox: '',
     backToUp: false,
   });
   const [refScroll, setRefScroll] = useState(0);
-  const DispatchData = (type, value) => {
-    setData({
-      ...Data,
-      [type]: value,
-    });
-  };
+  const apiData = useSelector((state) => state.Api);
   const dispatchRedux = useDispatch();
-  const ApiData = useSelector((state) => state.Api);
+
   useEffect(() => {
     dispatchRedux(HomeApi('/albums'));
   }, []);
   useEffect(() => {
-    DispatchData('json', ApiData.json.homepage);
-  }, [ApiData.json.homepage]);
+    dispatchData('json', apiData.json.homepage);
+  }, [apiData.json.homepage]);
+  const dispatchData = (type, value) => {
+    setData({
+      ...data,
+      [type]: value,
+    });
+  };
 
   const ReturnBackScroll = () => {
     return (
@@ -56,9 +57,10 @@ const index = ({navigation}) => {
       </View>
     );
   };
+
   return (
     <>
-      <Header Title="Home" navigation={navigation} />
+      <Header title="Home" navigation={navigation} />
       <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         ref={(value) => {
@@ -67,9 +69,9 @@ const index = ({navigation}) => {
         bounces={false}
         onScroll={(e) => {
           if (e.nativeEvent.contentOffset.y <= 30) {
-            DispatchData('backToUp', false);
+            dispatchData('backToUp', false);
           } else {
-            DispatchData('backToUp', true);
+            dispatchData('backToUp', true);
           }
         }}>
         <View style={styles.MainContainer}>
@@ -88,22 +90,22 @@ const index = ({navigation}) => {
           </Text>
           <View style={styles.Search}>
             <Search
-              value={Data.searchBox}
-              handlerState={(value) => DispatchData('searchBox', value)}
+              value={data.searchBox}
+              handlerState={(value) => dispatchData('searchBox', value)}
               style={mainStyle.transparent}
             />
           </View>
           <View style={styles.ButtonWithIcone}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-              {jsonCollector.categories.map((items) => (
+              {JsonCollector.categories.map((items) => (
                 <View key={`Categories-${items.id}`}>
                   <ButtonWithIcon
-                    Icon={items.icon}
-                    TextData={items.textData}
+                    icon={items.icon}
+                    textData={items.textData}
                     onPress={() => {
-                      !isEmpty(items.page)
-                        ? navigation.navigate(items.page)
-                        : Toaster(items.textData);
+                      isEmpty(items.page)
+                        ? Toaster(items.textData)
+                        : navigation.navigate(items.page);
                     }}
                   />
                 </View>
@@ -125,18 +127,26 @@ const index = ({navigation}) => {
           </View>
         </View>
         <View style={mainStyle.PostsContainer}>
-          {isEmpty(Data.json) ? (
+          {isEmpty(data.json) ? (
             <ActivityIndicator size="large" color={color.basicComponentsOne} />
           ) : (
-            Data.json.map((json, index) => (
-              <View key={index}>
-                <PostsContainer json={json} />
-              </View>
-            ))
+            data.json
+              .filter((value) => {
+                if (isEmpty(data.searchBox.trim())) {
+                  return value;
+                } else if (value.title.toLowerCase().includes(data.searchBox)) {
+                  return value;
+                }
+              })
+              .map((json, index) => (
+                <View key={index}>
+                  <PostsContainer json={json} />
+                </View>
+              ))
           )}
         </View>
       </Animated.ScrollView>
-      {Data.backToUp == true && <ReturnBackScroll />}
+      {data.backToUp == true && <ReturnBackScroll />}
     </>
   );
 };

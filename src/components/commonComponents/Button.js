@@ -80,6 +80,7 @@ const Button = ({
       }
     }
   };
+
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={[styles.ButtonStyle, style]}>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Skeleton from 'react-native-skeleton-placeholder';
 import {View, StyleSheet} from 'react-native';
+
 const skeletonLoader = () => {
   const json = [1, 2, 3, 4, 5, 6, 7];
   return (

@@ -10,16 +10,17 @@ import Button from '../commonComponents/Button';
 import mainStyle from '../commonComponents/mainStyle';
 import Toaster from '../commonComponents/Toaster';
 import Logout from '../commonComponents/unauthContainer';
-import jsonContainer from './jsonContainer';
+import JsonContainer from './jsonContainer';
 
 const index = ({navigation}) => {
   const signinData = useSelector((state) => state.signin);
-  const dispatchProps = useDispatch();
+  const dispatchRedux = useDispatch();
   const [loginData, setLoginData] = useState({
     email: '',
     password: '',
   });
-  const Dispatch = (type, value) => {
+
+  const dispatch = (type, value) => {
     setLoginData({
       ...loginData,
       [type]: value,
@@ -36,7 +37,7 @@ const index = ({navigation}) => {
         loginData.email == signinData.userData.email &&
         loginData.password == signinData.userData.password
       ) {
-        dispatchProps(tokenMethod('token'));
+        dispatchRedux(tokenMethod('token'));
         Toaster('successful');
         return navigation.navigate('Home');
       } else {
@@ -45,16 +46,16 @@ const index = ({navigation}) => {
     }
   };
   return (
-    <Logout HeaderName="Login" navigation={navigation}>
+    <Logout headerName="Login" navigation={navigation}>
       <KeyboardAwareScrollView style={mainStyle.KeyBoardScrollView}>
-        {jsonContainer.input.map((items) => (
+        {JsonContainer.input.map((items) => (
           <View style={mainStyle.input} key={items.id}>
             <InputText
-              Icon={items.Icon}
-              Title={items.title}
+              icon={items.Icon}
+              title={items.title}
               hide={items.hide}
               value={loginData[items.title]}
-              handleState={(value) => Dispatch(items.title, value)}
+              handleState={(value) => dispatch(items.title, value)}
             />
           </View>
         ))}

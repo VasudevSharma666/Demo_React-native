@@ -12,7 +12,7 @@ import mainStyle from '../commonComponents/mainStyle';
 import color from '../../constants/color';
 import Toaster from '../commonComponents/Toaster';
 import Layout from '../commonComponents/unauthContainer';
-import jsonContainer from './jsonContainer';
+import JsonContainer from './jsonContainer';
 
 const Index = ({navigation}) => {
   const [userData, setUserData] = useState({
@@ -20,9 +20,9 @@ const Index = ({navigation}) => {
     email: '',
     password: '',
   });
-  const dispatchProps = useDispatch();
+  const dispatchRedux = useDispatch();
 
-  const Dispatch = (type, value) => {
+  const dispatch = (type, value) => {
     setUserData({
       ...userData,
       [type]: value,
@@ -40,23 +40,23 @@ const Index = ({navigation}) => {
     } else if (userData.password.trim() == '') {
       return Toaster('Enter password');
     } else {
-      dispatchProps(set_user(userData));
+      dispatchRedux(set_user(userData));
       return navigation.navigate('Login');
     }
   };
 
   return (
-    <Layout HeaderName="signup" navigation={navigation}>
+    <Layout headerName="signup" navigation={navigation}>
       <KeyboardAwareScrollView
         style={[mainStyle.KeyBoardScrollView, styles.keyBoard]}>
-        {jsonContainer.input.map((items) => (
+        {JsonContainer.input.map((items) => (
           <View style={mainStyle.input} key={items.id}>
             <InputText
-              Title={items.title}
-              Icon={items.Icon}
+              title={items.title}
+              icon={items.Icon}
               value={userData[items.title]}
               hide={items.hide}
-              handleState={(value) => Dispatch(items.title, value)}
+              handleState={(value) => dispatch(items.title, value)}
             />
           </View>
         ))}

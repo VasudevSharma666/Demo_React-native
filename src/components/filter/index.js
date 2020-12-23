@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, ScrollView, Animated} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {isEmpty} from 'lodash';
 
 import Toaster from '../commonComponents/Toaster';
@@ -11,20 +12,20 @@ import {FilterApi} from '../../store/api/operation';
 import {styles} from './style';
 import color from '../../constants/color';
 import mainStyle from '../commonComponents/mainStyle';
-import {useDispatch, useSelector} from 'react-redux';
-import jsonContainer from './jsonContainer';
+import JsonContainer from './jsonContainer';
 import Skeleton from '../commonComponents/skeletonLoader';
 
 const index = ({navigation}) => {
   const dispatch = useDispatch();
-  const ApiData = useSelector((state) => state.Api);
-  const [Data, setData] = useState({
+  const apiData = useSelector((state) => state.Api);
+  const [data, setData] = useState({
     json: [],
     searchBox: '',
   });
+
   const DispatchData = (type, value) => {
     setData({
-      ...Data,
+      ...data,
       [type]: value,
     });
   };
@@ -33,11 +34,12 @@ const index = ({navigation}) => {
     dispatch(FilterApi('/albums?userId=2'));
   }, []);
   useEffect(() => {
-    DispatchData('json', ApiData.json.filter);
-  }, [ApiData.json.filter]);
+    DispatchData('json', apiData.json.filter);
+  }, [apiData.json.filter]);
+
   return (
     <>
-      <Header Title="Home" navigation={navigation} />
+      <Header title="Home" navigation={navigation} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{backgroundColor: color.buttonBackground}}>
@@ -45,13 +47,13 @@ const index = ({navigation}) => {
           <View style={styles.backgroundBox}>
             <View style={styles.searchBox}>
               <SearchBox
-                value={Data.searchBox}
+                value={data.searchBox}
                 handlerState={(value) => DispatchData('searchBox', value)}
               />
             </View>
           </View>
           <View style={styles.ButtonSection}>
-            {jsonContainer.buttonData.map((items) => (
+            {JsonContainer.buttonData.map((items) => (
               <View key={items.id} style={styles.ButtonWidth}>
                 <Button
                   value={items.value}
@@ -62,13 +64,13 @@ const index = ({navigation}) => {
               </View>
             ))}
           </View>
-          <Text style={styles.textResult}>{Data.json.length}Result found</Text>
+          <Text style={styles.textResult}>{data.json.length}Result found</Text>
         </Animated.View>
         <View style={mainStyle.PostsContainer}>
-          {isEmpty(Data.json) ? (
+          {isEmpty(data.json) ? (
             <Skeleton />
           ) : (
-            Data.json.map((json, index) => (
+            data.json.map((json, index) => (
               <View key={index}>
                 <PostsContainer json={json} />
               </View>

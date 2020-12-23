@@ -1,4 +1,5 @@
 import {ToastAndroid} from 'react-native';
+
 const Toaster = (value) =>
   ToastAndroid.showWithGravityAndOffset(
     value,

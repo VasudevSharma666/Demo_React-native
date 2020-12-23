@@ -5,23 +5,24 @@ import Icon from 'react-native-vector-icons/Entypo';
 import mainStyle from '../commonComponents/mainStyle';
 import color from '../../constants/color';
 
-const Header = ({Title, navigation}) => {
+const Header = ({title, navigation}) => {
   const Navigation = () => {
-    if (Title == 'Home') {
+    if (title == 'Home') {
       navigation.openDrawer();
     } else {
       navigation.navigate('Home');
     }
   };
+
   return (
     <View style={styles.HeaderBlock}>
       <Pressable onPress={() => Navigation()}>
         <Icon
-          name={Title == 'Home' ? 'menu' : 'chevron-with-circle-left'}
+          name={title == 'Home' ? 'menu' : 'chevron-with-circle-left'}
           style={styles.IconCss}
         />
       </Pressable>
-      <Text style={[styles.Title, mainStyle.TextBold]}>{Title}</Text>
+      <Text style={[styles.Title, mainStyle.TextBold]}>{title}</Text>
     </View>
   );
 };
