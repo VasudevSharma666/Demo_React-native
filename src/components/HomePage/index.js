@@ -8,7 +8,7 @@ import {
   ImageBackground,
   Animated,
 } from 'react-native';
-import {isEmpty, isNaN} from 'lodash';
+import {isEmpty, filter} from 'lodash';
 
 import Header from '../commonComponents/authenticComponentHeader';
 import {HomeBackground} from '../../constants/image';
@@ -37,8 +37,21 @@ const index = ({navigation}) => {
     dispatchRedux(HomeApi('/albums'));
   }, []);
   useEffect(() => {
-    dispatchData('json', apiData.json.homepage);
-  }, [apiData.json.homepage]);
+    const string = data.searchBox;
+    if (isEmpty(data.searchBox.trim())) {
+      dispatchData('json', apiData.json.homepage);
+    } else {
+      const data = filter(apiData.json.homepage, (json) =>
+        json.title.includes(string),
+      );
+      if (isEmpty(data)) {
+        Toaster('No result found');
+        dispatchData('json', []);
+      } else {
+        dispatchData('json', data);
+      }
+    }
+  }, [data.searchBox, apiData.json.homepage]);
   const dispatchData = (type, value) => {
     setData({
       ...data,
@@ -130,19 +143,11 @@ const index = ({navigation}) => {
           {isEmpty(data.json) ? (
             <ActivityIndicator size="large" color={color.basicComponentsOne} />
           ) : (
-            data.json
-              .filter((value) => {
-                if (isEmpty(data.searchBox.trim())) {
-                  return value;
-                } else if (value.title.toLowerCase().includes(data.searchBox)) {
-                  return value;
-                }
-              })
-              .map((json, index) => (
-                <View key={index}>
-                  <PostsContainer json={json} />
-                </View>
-              ))
+            data.json.map((json, index) => (
+              <View key={index}>
+                <PostsContainer json={json} />
+              </View>
+            ))
           )}
         </View>
       </Animated.ScrollView>

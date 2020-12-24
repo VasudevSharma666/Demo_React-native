@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, ScrollView, Animated} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {isEmpty} from 'lodash';
+import {isEmpty, filter} from 'lodash';
 
 import Toaster from '../commonComponents/Toaster';
 import Button from '../commonComponents/Button';
@@ -34,8 +34,21 @@ const index = ({navigation}) => {
     dispatch(FilterApi('/albums?userId=2'));
   }, []);
   useEffect(() => {
-    DispatchData('json', apiData.json.filter);
-  }, [apiData.json.filter]);
+    const string = data.searchBox;
+    if (isEmpty(data.searchBox.trim())) {
+      DispatchData('json', apiData.json.filter);
+    } else {
+      const data = filter(apiData.json.filter, (json) =>
+        json.title.includes(string),
+      );
+      if (isEmpty(data)) {
+        Toaster('No result found');
+        DispatchData('json', []);
+      } else {
+        DispatchData('json', data);
+      }
+    }
+  }, [data.searchBox, apiData.json.filter]);
 
   return (
     <>
@@ -70,11 +83,13 @@ const index = ({navigation}) => {
           {isEmpty(data.json) ? (
             <Skeleton />
           ) : (
-            data.json.map((json, index) => (
-              <View key={index}>
-                <PostsContainer json={json} />
-              </View>
-            ))
+            data.json.map((json, index) => {
+              return (
+                <View key={index}>
+                  <PostsContainer json={json} />
+                </View>
+              );
+            })
           )}
         </View>
       </ScrollView>

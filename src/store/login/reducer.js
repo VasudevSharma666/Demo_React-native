@@ -9,7 +9,7 @@ export const loginReducer = (state = initialstate, action) => {
       return {...state, tokenData: action.data};
     }
     default: {
-      return {...state};
+      return state;
     }
   }
 };

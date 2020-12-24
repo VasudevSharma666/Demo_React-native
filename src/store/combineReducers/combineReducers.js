@@ -1,4 +1,4 @@
-const {combineReducers} = require('redux');
+import {combineReducers} from 'redux';
 
 import {loginReducer} from '../login/reducer';
 import {SignInReducer} from '../signin/reducer';
