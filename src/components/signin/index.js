@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, Linking} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import * as Animation from 'react-native-animatable';
 
 import InputText from '../commonComponents/InputTextFiled';
 import Button from '../commonComponents/Button';
@@ -49,39 +50,41 @@ const Index = ({navigation}) => {
     <Layout headerName="signup" navigation={navigation}>
       <KeyboardAwareScrollView
         style={[mainStyle.KeyBoardScrollView, styles.keyBoard]}>
-        {JsonContainer.input.map((items) => (
-          <View style={mainStyle.input} key={items.id}>
-            <InputText
-              title={items.title}
-              icon={items.Icon}
-              value={userData[items.title]}
-              hide={items.hide}
-              handleState={(value) => dispatch(items.title, value)}
-            />
+        <Animation.View animation="slideInRight">
+          {JsonContainer.input.map((items) => (
+            <View style={mainStyle.input} key={items.id}>
+              <InputText
+                title={items.title}
+                icon={items.Icon}
+                value={userData[items.title]}
+                hide={items.hide}
+                handleState={(value) => dispatch(items.title, value)}
+              />
+            </View>
+          ))}
+          <Button
+            value="SignUp"
+            style={mainStyle.unauthButton}
+            onPress={() => Checker()}
+          />
+          <View style={styles.LinkButton}>
+            <View style={styles.facebook}>
+              <Button
+                value="Facebook"
+                style={{backgroundColor: color.facebookIcon}}
+                onPress={() => Linking.openURL('https://www.facebook.com/')}
+              />
+            </View>
+            <Text style={styles.OR}>OR</Text>
+            <View style={styles.Google}>
+              <Button
+                value="Google"
+                style={{backgroundColor: color.googleIcon}}
+                onPress={() => Linking.openURL('https://www.google.com/')}
+              />
+            </View>
           </View>
-        ))}
-        <Button
-          value="SignUp"
-          style={mainStyle.unauthButton}
-          onPress={() => Checker()}
-        />
-        <View style={styles.LinkButton}>
-          <View style={styles.facebook}>
-            <Button
-              value="Facebook"
-              style={{backgroundColor: color.facebookIcon}}
-              onPress={() => Linking.openURL('https://www.facebook.com/')}
-            />
-          </View>
-          <Text style={styles.OR}>OR</Text>
-          <View style={styles.Google}>
-            <Button
-              value="Google"
-              style={{backgroundColor: color.googleIcon}}
-              onPress={() => Linking.openURL('https://www.google.com/')}
-            />
-          </View>
-        </View>
+        </Animation.View>
       </KeyboardAwareScrollView>
     </Layout>
   );

@@ -1,5 +1,4 @@
-import {HomepageJson, ProfileJson, FilterJson} from './type';
-import fetchCall from '../../utils/fetchCall';
+import {HomepageJson, ProfileJson, FilterJson, findFriends} from './type';
 
 export const HomePageMethod = (data) => {
   return {
@@ -18,6 +17,13 @@ export const ProfileMethod = (data) => {
 export const FilterMethod = (data) => {
   return {
     type: FilterJson,
+    data: data,
+  };
+};
+
+export const findFriendsMethod = (data) => {
+  return {
+    type: findFriends,
     data: data,
   };
 };

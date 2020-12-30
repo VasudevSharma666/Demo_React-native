@@ -31,7 +31,7 @@ const index = ({navigation}) => {
   };
 
   useEffect(() => {
-    dispatch(FilterApi('/albums?userId=2'));
+    dispatch(FilterApi('/albums'));
   }, []);
   useEffect(() => {
     const string = data.searchBox;
@@ -49,6 +49,23 @@ const index = ({navigation}) => {
       }
     }
   }, [data.searchBox, apiData.json.filter]);
+
+  const operation = (value) => {
+    var data = apiData.json.filter;
+    if (value == 'Filter') {
+      data = filter(apiData.json.filter, (json) => {
+        if (json.userId == '3') {
+          return json;
+        }
+      });
+    } else if (value == 'Sort') {
+      data = data.sort((a, b) => a.title.localeCompare(b.title));
+    } else {
+      data = data.sort((a, b) => a.id - b.id);
+    }
+
+    DispatchData('json', data);
+  };
 
   return (
     <>
@@ -72,7 +89,7 @@ const index = ({navigation}) => {
                   value={items.value}
                   type={items.value}
                   style={styles.ButtonStyle}
-                  onPress={() => Toaster(items.value)}
+                  onPress={() => operation(items.value)}
                 />
               </View>
             ))}

@@ -2,9 +2,9 @@ import {user, logout} from './type';
 
 const initialState = {
   userData: {
-    name: 'k',
-    email: 'k@gmail.com',
-    password: '1',
+    name: '',
+    email: '',
+    password: '',
   },
 };
 

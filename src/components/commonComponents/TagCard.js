@@ -1,15 +1,16 @@
 import React from 'react';
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
 import IconImport from 'react-native-vector-icons/AntDesign';
+import * as Animatable from 'react-native-animatable';
 
 import color from '../../constants/color';
 
 const TagCard = ({textData, icon, onPress}) => (
   <TouchableOpacity onPress={onPress} style={styles.Container}>
-    <View style={styles.tag}>
+    <Animatable.View animation="slideInRight" style={styles.tag}>
       <IconImport name={icon} size={30} color={color.basicComponentsOne} />
       <Text>{textData}</Text>
-    </View>
+    </Animatable.View>
   </TouchableOpacity>
 );
 

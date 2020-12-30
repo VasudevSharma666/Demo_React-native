@@ -4,11 +4,13 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import HealthIcon from 'react-native-vector-icons/FontAwesome5';
 import {useDispatch} from 'react-redux';
 
+import mainStyle from '../../components/commonComponents/mainStyle';
 import HomePage from '../../components/HomePage';
 import Filter from '../../components/filter';
 import Profile from '../../components/profile';
 import AdvancedSearch from '../../components/advancedSearch';
 import Health from '../../components/health';
+import findFriends from '../../components/findFriends';
 import {tokenMethod} from '../../store/login/action';
 
 const Drawer = createDrawerNavigator();
@@ -40,21 +42,21 @@ const drawerNavigation = () => (
       name="Home"
       component={HomePage}
       options={{
-        drawerIcon: () => <Icon name="home" size={20} color="white" />,
+        drawerIcon: () => <Icon name="home" style={mainStyle.DrawerIcon} />,
       }}
     />
     <Drawer.Screen
       name="Profile"
       component={Profile}
       options={{
-        drawerIcon: () => <Icon name="user" size={20} color="white" />,
+        drawerIcon: () => <Icon name="user" style={mainStyle.DrawerIcon} />,
       }}
     />
     <Drawer.Screen
       name="Advanced Search"
       component={AdvancedSearch}
       options={{
-        drawerIcon: () => <Icon name="search1" size={20} color="white" />,
+        drawerIcon: () => <Icon name="search1" style={mainStyle.DrawerIcon} />,
       }}
     />
     <Drawer.Screen
@@ -62,7 +64,7 @@ const drawerNavigation = () => (
       component={Health}
       options={{
         drawerIcon: () => (
-          <HealthIcon name="hospital-symbol" size={20} color="white" />
+          <HealthIcon name="hospital-symbol" style={mainStyle.DrawerIcon} />
         ),
       }}
     />
@@ -70,14 +72,23 @@ const drawerNavigation = () => (
       name="Filter search"
       component={Filter}
       options={{
-        drawerIcon: () => <Icon name="filter" size={20} color="white" />,
+        drawerIcon: () => <Icon name="filter" style={mainStyle.DrawerIcon} />,
+      }}
+    />
+    <Drawer.Screen
+      name="Find Friends"
+      component={findFriends}
+      options={{
+        drawerIcon: () => (
+          <Icon name="addusergroup" style={mainStyle.DrawerIcon} />
+        ),
       }}
     />
     <Drawer.Screen
       name="Logout"
       component={Logout}
       options={{
-        drawerIcon: () => <Icon name="logout" size={20} color="white" />,
+        drawerIcon: () => <Icon name="logout" style={mainStyle.DrawerIcon} />,
       }}
     />
   </Drawer.Navigator>

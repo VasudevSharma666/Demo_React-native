@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import * as Animation from 'react-native-animatable';
 
 import InputText from '../commonComponents/InputTextFiled';
 import {tokenMethod} from '../../store/login/action';
@@ -48,22 +49,24 @@ const index = ({navigation}) => {
   return (
     <Logout headerName="Login" navigation={navigation}>
       <KeyboardAwareScrollView style={mainStyle.KeyBoardScrollView}>
-        {JsonContainer.input.map((items) => (
-          <View style={mainStyle.input} key={items.id}>
-            <InputText
-              icon={items.Icon}
-              title={items.title}
-              hide={items.hide}
-              value={loginData[items.title]}
-              handleState={(value) => dispatch(items.title, value)}
-            />
-          </View>
-        ))}
-        <Button
-          value="Log-in"
-          style={mainStyle.unauthButton}
-          onPress={() => Checker()}
-        />
+        <Animation.View animation="slideInRight">
+          {JsonContainer.input.map((items) => (
+            <View style={mainStyle.input} key={items.id}>
+              <InputText
+                icon={items.Icon}
+                title={items.title}
+                hide={items.hide}
+                value={loginData[items.title]}
+                handleState={(value) => dispatch(items.title, value)}
+              />
+            </View>
+          ))}
+          <Button
+            value="Log-in"
+            style={mainStyle.unauthButton}
+            onPress={() => Checker()}
+          />
+        </Animation.View>
       </KeyboardAwareScrollView>
     </Logout>
   );

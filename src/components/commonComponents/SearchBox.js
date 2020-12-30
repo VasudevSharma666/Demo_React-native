@@ -1,12 +1,13 @@
 import React from 'react';
 import {View, StyleSheet, TextInput} from 'react-native';
 import Search from 'react-native-vector-icons/AntDesign';
+import * as Animatable from 'react-native-animatable';
 
 import color from '../../constants/color';
 
 const SearchBox = ({value, handlerState, style}) => (
   <View style={[styles.Container, style]}>
-    <View style={styles.Search}>
+    <Animatable.View animation="slideInRight" style={styles.Search}>
       <TextInput
         placeholder="What are you looking for..."
         placeholderTextColor={color.TextColor}
@@ -16,7 +17,7 @@ const SearchBox = ({value, handlerState, style}) => (
         autoCapitalize="none"
       />
       <Search name="search1" size={20} />
-    </View>
+    </Animatable.View>
   </View>
 );
 

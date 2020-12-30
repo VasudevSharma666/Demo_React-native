@@ -36,5 +36,9 @@ const mainStyle = StyleSheet.create({
   marginBottom: {
     marginBottom: 10,
   },
+  DrawerIcon: {
+    fontSize: 22,
+    color: color.basicComponentsTwo,
+  },
 });
 export default mainStyle;

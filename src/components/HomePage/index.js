@@ -7,6 +7,7 @@ import {
   ScrollView,
   ImageBackground,
   Animated,
+  FlatList,
 } from 'react-native';
 import {isEmpty, filter} from 'lodash';
 
